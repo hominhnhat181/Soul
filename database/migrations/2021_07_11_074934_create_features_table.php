@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTracksTable extends Migration
+class CreateFeaturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class CreateTracksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tracks', function (Blueprint $table) {
+        Schema::create('features', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('images');
-            $table->string('song');
-            $table->unsignedBigInteger('album_id');
-            $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
-            $table->unsignedBigInteger('artist_id');
-            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
             $table->enum('status',[1,2])->default(1)->nullable()->comment('0=not verify,1=active,2=deactive');
             $table->timestamps();
         });
@@ -34,6 +28,6 @@ class CreateTracksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tracks');
+        Schema::dropIfExists('feature');
     }
 }

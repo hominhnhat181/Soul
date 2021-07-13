@@ -20,3 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'getValue'])->name('home');
+
+
+Route::get('/album', [App\Http\Controllers\HomeController::class, 'getAlbum']);

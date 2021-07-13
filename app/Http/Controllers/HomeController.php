@@ -8,15 +8,23 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
- // get tag value from game many to many relationship
- public function getValue(){
+    // get tag value from game many to many relationship
+    public function getValue()
+    {
+        $turma = Album::find(1);
+        // dd($turma);
+        foreach ($turma->tags as $as) {
+            $d =  $as->pivot->tag_id;
+            $tag = Tag::where('id', $d)->value('name');
+            echo $tag . ' <br>';
+        }
+        dd($tag);
 
-    $turma = Album::find(1);
-    // dd($turma);
-    foreach ($turma->tags as $as) {
-        $d =  $as->pivot->tag_id;
-        $tag = Tag::where('id', $d)->value('name');
-        echo $tag.' <br>';
     }
-}
+
+    public function getAlbum(){
+        $turma = Album::limit(5)->get();
+       return view('frontend.home.index', compact('turma'));
+       
+    }
 }

@@ -14391,7 +14391,7 @@ h4,
 
 h5,
 .h5 {
-  font-size: 1.0625rem;
+  font-size: 0.9025rem;
   line-height: 1.4em;
   margin-bottom: 15px;
 }
@@ -17834,6 +17834,7 @@ label {
 .card-stats .card-header .card-category:not([class*="text-"]) {
   color: #999999;
   font-size: 14px;
+  font-weight: bold;
 }
 
 .card-stats .card-header+.card-footer {
@@ -20538,7 +20539,16 @@ Copyright (c) 2015 Daniel Eden
 
 .dark-edition .card {
   background: #202940;
-  height: 167px;
+  height: auto;
+  position: relative;
+}
+.dark-edition .card span{
+  position:absolute !important; 
+  width:100% !important;
+  height:100% !important;
+  top:0 !important;
+  left: 0 !important;
+  z-index: 1 !important;
 }
 
 .dark-edition .card .card-header.card-header-text .card-title,
@@ -20576,7 +20586,8 @@ Copyright (c) 2015 Daniel Eden
   -webkit-background-clip: text;
   background-clip: text;
   background-image: linear-gradient(60deg, #7b1fa2, #913f9e);
-  color: transparent;
+  color: #8b92a9;
+  font-size: 13px;
 }
 
 .dark-edition .card .card-header-warning .card-icon,
@@ -22070,3 +22081,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+.card_album{
+  margin-top: 10px;
+}
