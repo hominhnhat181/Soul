@@ -22,6 +22,7 @@ class CreateTracksTable extends Migration
             $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
             $table->unsignedBigInteger('artist_id');
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
+            $table->enum('status',[1,2])->default(1)->nullable()->comment('0=not verify,1=active,2=deactive');
             
 
             $table->timestamps();

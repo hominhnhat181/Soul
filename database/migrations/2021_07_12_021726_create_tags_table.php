@@ -16,6 +16,8 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->enum('status',[1,2])->default(1)->nullable()->comment('0=not verify,1=active,2=deactive');
+
             $table->timestamps();
         });
     }

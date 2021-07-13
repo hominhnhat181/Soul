@@ -17,6 +17,8 @@ class CreateArtistsTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('images');
+            $table->enum('status',[1,2])->default(1)->nullable()->comment('0=not verify,1=active,2=deactive');
+
             $table->timestamps();
             // update tag
         });

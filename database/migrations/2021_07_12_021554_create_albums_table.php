@@ -19,6 +19,8 @@ class CreateAlbumsTable extends Migration
             $table->string('images');
             $table->string('title');
             $table->string('desc');
+            $table->enum('status',[1,2])->default(1)->nullable()->comment('0=not verify,1=active,2=deactive');
+
             $table->timestamps();
         });
     }

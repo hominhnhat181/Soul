@@ -10,12 +10,12 @@ class Album extends Model
     use HasFactory;
     protected $table ='albums';
     protected $fillable =[
-        'name','images','title','desc'
+        'name','images','title','desc','status'
     ] ;
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'album_tag', 'album_is', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'album_tag', 'album_id', 'tag_id');
     }
 
     public function artist()
@@ -23,13 +23,5 @@ class Album extends Model
         return $this->belongsToMany(Artist::class,'artist_album', 'artist_id','album_id');
     }
 
-    // get tag value from game many to many relationship
-    public function getValue(){
-        $turma = Tag::find(1);
-        foreach ($turma->tags as $as) {
-            $d =  $as->pivot->tag_id;
-            $tag = Tag::where('id', $d)->value('name');
-            echo $tag.' <br>';
-        }
-    }
+   
 }

@@ -31,6 +31,7 @@ class TrackFactory extends Factory
             'artist_id'=>Artist::all()->random()->id,
             'album_id'=>Album::all()->random()->id,
             'tag_id'=>Tag::all()->random()->id,
+
         ];
     }
 }

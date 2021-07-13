@@ -25,7 +25,6 @@ class AlbumFactory extends Factory
             'name'=>$this->faker->name(15),
             'images' => $this->faker->image('public/front/images',640,480, null, false),
             'title'=>$this->faker->text(40),
-
             'desc'=>$this->faker->text(100),
         ];
     }

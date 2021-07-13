@@ -12,12 +12,12 @@ class Artist extends Model
     protected $table ='artists';
     protected $fillable = [
         'name',
-        'images',
+        'images','status'
     ];
 
     public function albums()
     {
-        return $this->belongsToMany(Album::class, 'artist_album', 'artist_is', 'album_id');
+        return $this->belongsToMany(Album::class, 'artist_album', 'artist_id', 'album_id');
     }
     
 
