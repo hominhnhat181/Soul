@@ -50,12 +50,46 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)">
-                                <i class="material-icons">person</i>
-                                <p class="d-lg-none d-md-block">
-                                    Account
-                                </p>
-                            </a>
+                            @if (Auth::guest())
+                                <a class="nav-link" href="{{ URL('login') }}">
+                                    <i class="material-icons">person</i>
+                                    <p class="d-lg-none d-md-block">
+                                        Account
+                                    </p>
+                                </a>
+                            @else
+                                @if (Auth::user()->is_admin == 1)
+
+                                    <a class="nav-link" href="{{ URL('login') }}" id="navbarDropdownMenuLink2"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">person</i>
+                                        <p class="d-lg-none d-md-block">
+                                            Account
+                                        </p>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right"
+                                        style=" margin-right: 60px; margin-top: -13px ;"
+                                        aria-labelledby="navbarDropdownMenuLink2">
+                                        <a class="dropdown-item" href="{{ URL('account') }}">Account</a>
+                                        <a class="dropdown-item" href="{{ URL('admin') }}">Control Page</a>
+                                        <a class="dropdown-item" href="{{ URL('logout') }}">Logout</a>
+                                    </div>
+                                @else
+                                    <a class="nav-link" href="{{ URL('login') }}" id="navbarDropdownMenuLink2"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">person</i>
+                                        <p class="d-lg-none d-md-block">
+                                            Account
+                                        </p>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right"
+                                        style=" margin-right: 60px; margin-top: -13px ;"
+                                        aria-labelledby="navbarDropdownMenuLink2">
+                                        <a class="dropdown-item" href="{{ URL('account') }}">Account</a>
+                                        <a class="dropdown-item" href="{{ URL('logout') }}">Logout</a>
+                                    </div>
+                                @endif
+                            @endif
                         </li>
                     </ul>
                 </div>

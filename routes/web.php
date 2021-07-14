@@ -12,14 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('frontend/home/index');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'getValue'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'listFeature'])->name('home');
 
 
 Route::get('/album', [App\Http\Controllers\HomeController::class, 'getAlbum']);
+
+
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
+

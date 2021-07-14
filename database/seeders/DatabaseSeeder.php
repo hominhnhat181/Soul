@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Artist_Album;
-use App\Models\Feature;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,15 +17,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UserTableSeeder::class,
-            FeatureSeeder::class,
-            ArtistTableSeeder::class,
-            AlbumTableSeeder::class,
-            TagTableSeeder::class,
-            TrackTableSeeder::class,
-            AlbumTagSeeder::class,
-            ArtistAlbumSeeder::class,
-           
+            // UserTableSeeder::class,
+            // FeatureSeeder::class,
+            // ArtistTableSeeder::class,
+            // AlbumTableSeeder::class,
+            // TagTableSeeder::class,
+            // TrackTableSeeder::class,
+            // AlbumTagSeeder::class,
+            // ArtistAlbumSeeder::class,
         ]);
+        // User::create([
+        //     'name' => "Admin",
+        //     'email' => "nhat@ho.com",
+        //     'password' => Hash::make("admin123"), // password
+        //     'status'    =>  '1',
+        // ]);
     }
 }
