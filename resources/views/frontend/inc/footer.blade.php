@@ -59,22 +59,22 @@
             <li class="header-title">Images</li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{ asset('/assets/img/sidebar-1.jpg') }}" alt="">
+                    <img src="{{ asset('/assets/front/img/sidebar-1.jpg') }}" alt="">
                 </a>
             </li>
             <li class="active">
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{ asset('/assets/img/sidebar-2.jpg') }}" alt="">
+                    <img src="{{ asset('/assets/front/img/sidebar-2.jpg') }}" alt="">
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{ asset('/assets/img/sidebar-3.jpg') }}" alt="">
+                    <img src="{{ asset('/assets/front/img/sidebar-3.jpg') }}" alt="">
                 </a>
             </li>
             <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{ asset('/assets/img/sidebar-4.jpg') }}" alt="">
+                    <img src="{{ asset('/assets/front/img/sidebar-4.jpg') }}" alt="">
                 </a>
             </li>
             <li class="button-container">
@@ -112,23 +112,23 @@
     </div>
 </div>
 <!--   Core JS Files   -->
-<link href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" />
+<link href="{{asset('assets/front/css/material-dashboard.css')}}" rel="stylesheet" />
 
-<script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
-<script src="{{asset('assets/js/core/popper.min.js')}}"></script>
-<script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
+<script src="{{asset('assets/front/js/core/jquery.min.js')}}"></script>
+<script src="{{asset('assets/front/js/core/popper.min.js')}}"></script>
+<script src="{{asset('assets/front/js/core/bootstrap-material-design.min.js')}}"></script>
 <script src="https://unpkg.com/default-passive-events"></script>
-<script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+<script src="{{asset('assets/front/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!--  Google Maps Plugin    -->
 {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
 <!-- Chartist JS -->
-<script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
+<script src="{{asset('assets/front/js/plugins/chartist.min.js')}}"></script>
 <!--  Notifications Plugin    -->
-<script src="{{asset('assets/js/plugins/bootstrap-notify.js')}}"></script>
+<script src="{{asset('assets/front/js/plugins/bootstrap-notify.js')}}"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="{{asset('assets/js/material-dashboard.js?v=2.1.0')}}"></script>
+<script src="{{asset('assets/front/js/material-dashboard.js?v=2.1.0')}}"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script>
     $(document).ready(function() {
@@ -302,7 +302,7 @@
 </script>
 <script>
     $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
+        // Javascript method's body can be found in assets/front/js/demos.js
         md.initDashboardPageCharts();
 
     });

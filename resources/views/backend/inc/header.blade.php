@@ -60,7 +60,7 @@
                             @else
                                 @if (Auth::user()->is_admin == 1)
                                     <a class="nav-link" href="" id="navbarDropdownMenuLink2"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('/assets/img/faces/marc.jpg')}}"  ></a>
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('/assets/back/img/faces/marc.jpg')}}"  ></a>
                                     <div class="dropdown-menu dropdown-menu-right"
                                         style=" margin-right: 60px; margin-top: -13px ;"
                                         aria-labelledby="navbarDropdownMenuLink2">
@@ -70,7 +70,7 @@
                                     </div>
                                 @else
                                 <a class="nav-link" href="" id="navbarDropdownMenuLink2"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img  src="{{ asset('/assets/img/faces/marc.jpg')}}"  ></a>
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img  src="{{ asset('/assets/back/img/faces/marc.jpg')}}"  ></a>
                                     <div class="dropdown-menu dropdown-menu-right"
                                         style=" margin-right: 60px; margin-top: -13px ;"
                                         aria-labelledby="navbarDropdownMenuLink2">

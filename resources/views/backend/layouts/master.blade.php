@@ -15,22 +15,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"> 
 
     {{-- icon --}}
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/apple-icon.png')}}">
-    <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/back/img/apple-icon.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('assets/back/img/favicon.png')}}">
 
     {{-- css --}}
-    <link href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/back/css/material-dashboard.css')}}" rel="stylesheet" />
 
-    <title>Home</title>
+    <title>Dashboard</title>
 </head>
 <body class="dark-edition">
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=495127995056192&autoLogAppEvents=1" nonce="mgnraTKs"></script>
-    @include('frontend.inc.header')
-    @include('frontend.inc.sidebar')
+    @include('backend.inc.header')
+    @include('backend.inc.sidebar')
 
     @yield('content')
 
-    @include('frontend.inc.footer')
+    @include('backend.inc.footer')
   </body>
 </html>

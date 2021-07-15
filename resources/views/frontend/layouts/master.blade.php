@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"> 
 
     {{-- icon --}}
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/apple-icon.png')}}">
-    <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/front/img/apple-icon.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('assets/front/img/favicon.png')}}">
 
     {{-- css --}}
-    <link href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/front/css/material-dashboard.css')}}" rel="stylesheet" />
 
     <title>Home</title>
 </head>
