@@ -14833,7 +14833,8 @@ fieldset[disabled] .form-group .form-control {
 
 .navbar .collapse .navbar-nav .nav-item .nav-link {
     position: relative;
-    padding: 10px 15px;
+    padding: 10px ;
+    padding-left:15px;
     font-weight: 400;
     font-size: 12px;
     text-transform: uppercase;
@@ -14866,6 +14867,7 @@ fieldset[disabled] .form-group .form-control {
 
 .navbar .collapse .navbar-nav .nav-item .nav-link .notification {
     top: 0px;
+    right: 7px;
 }
 
 .off-canvas-sidebar .navbar .navbar-collapse .navbar-nav .nav-item .nav-link {
@@ -24613,4 +24615,10 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 }
 .navbar .container-fluid {
     margin: 0 45px;
+}
+.nav-item img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-top: -3px;
 }

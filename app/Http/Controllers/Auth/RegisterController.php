@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Services\AuthService;
+use Socialite;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,24 +31,57 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
+    private $authService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+
+
+
+    public function __construct(AuthService $authService)
     {
         $this->middleware('guest');
+        $this->authService = $authService;
+
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
+
+    public function redirectRegisterProvider($provider){
+        session(['auth' => 'register']);
+        return \Socialite::driver($provider)->redirect();
+    }
+
+
+    public function callbackRegister($provider)
+    {
+        $redirectSession = session('auth');
+
+        $msgErr = ['error' => __('auth.user_not_exist')];
+        // login social
+        if($redirectSession == 'login'){
+            $user = $this->authService->getUserSocial(Socialite::driver($provider)->user(), $provider);
+            if($user){
+                auth()->login($user);
+                return redirect()->route('home');
+            }
+            return redirect()->route('login')->with($msgErr);
+        }
+
+        // register social
+        $user = $this->authService->createUserSocial(Socialite::driver($provider)->user(), $provider);
+        if($user){
+            auth()->login($user);
+            return redirect()->route('my-profile')->with(['user' => $user]);
+        }
+        $msgErr['error'] = __('auth.user_already_exist');
+        return redirect()->route('register')->with($msgErr);
+    }
+
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -56,12 +91,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
+
     protected function create(array $data)
     {
         return User::create([

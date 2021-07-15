@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+use Socialite;
 class LoginController extends Controller
 {
     /*
@@ -35,20 +35,29 @@ class LoginController extends Controller
      * @return void
      */
 
-    public function logout(Request $request)
-    {
-        $redirect_route = 'home';
 
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
-
-        return $this->loggedOut($request) ?: redirect()->route($redirect_route);
-    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+    public function logout(Request $request)
+    {
+        $redirect_route = 'home';
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        return $this->loggedOut($request) ?: redirect()->route($redirect_route);
+    }
+
+
+    public function redirectToProvider($provider)
+    {
+        session(['auth' => 'login']);
+        return Socialite::driver($provider)->redirect();
+    }
+    
+
 
     
 }
