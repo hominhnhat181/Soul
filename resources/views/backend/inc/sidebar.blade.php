@@ -23,31 +23,31 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="./typography.html">
+                <a class="nav-link" href="{{route('admin.album')}}">
                     <i class="material-icons">album</i>
                     <p>Albums</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="./icons.html">
+                <a class="nav-link" href="{{route('admin.genre')}}">
                     <i class="material-icons">loyalty</i>
                     <p>Genres</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="./icons.html">
+                <a class="nav-link" href="{{route('admin.track')}}">
                     <i class="material-icons">audiotrack</i>
                     <p>Tracks</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="./map.html">
+                <a class="nav-link" href="{{route('admin.artist')}}">
                     <i class="material-icons">mic</i>
                     <p>Bands - Singles</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="./user.html">
+                <a class="nav-link" href="{{route('admin.user')}}">
                     <i class="material-icons">person</i>
                     <p>Users</p>
                 </a>

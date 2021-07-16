@@ -24735,6 +24735,19 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 
 }
 
+.true_table .table_img{
+    width: 111px;
+    height: 111px;
+    border-radius: 3px;
+}
+
+.true_table .center{
+    text-align: center;
+}
+
+.true_table td{
+    padding-bottom: 10px;
+}
 
 /* paganation */
 

@@ -12,4 +12,9 @@ class Feature extends Model
     protected $fillable =[
         'name','status'
     ] ;
+
+    public function albums()
+    {
+        return $this->hasMany(Album::class);
+    }
 }

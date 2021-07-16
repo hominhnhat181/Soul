@@ -17,6 +17,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->namespace('App\\Http\\Controllers\\Admin')->group(function () {
     Route::get('/', 'DashboardController@dashboard')->name('admin.dashboard');
-    Route::get('/feature', 'DashboardController@feature')->name('admin.feature');
+    // feature
+    Route::get('/feature', 'FeatureController@show')->name('admin.feature');
+
+    // album
+    Route::get('/album', 'AlbumController@show')->name('admin.album');
+
+    // genre
+    Route::get('/genre', 'GenreController@show')->name('admin.genre');
+
+    // artist
+    Route::get('/artist', 'ArtistController@show')->name('admin.artist');
+
+    // track
+    Route::get('/track', 'TrackController@show')->name('admin.track');
+
+    // user
+    Route::get('/user', 'UserController@show')->name('admin.user');
+
+
 
 });

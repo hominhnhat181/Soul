@@ -1,0 +1,93 @@
+<?php
+
+namespace App\Services;
+
+class BaseService
+{
+
+    protected $_model;
+
+    public function __construct()
+    {
+        $this->setModel();
+    }
+
+
+    public function getModel()
+    {
+    }
+
+
+    public function setModel()
+    {
+        $this->_model = app()->make(
+            $this->getModel()
+        );
+    }
+
+
+    public function show()
+    {
+        return $this->_model->get();
+    }
+
+
+    public function showWithRelation($rela)
+    {
+        return $this->_model->with($rela)->get();
+    }
+
+
+    public function find($id)
+    {
+        $result = $this->_model->where('id', $id)->get();
+        return $result;
+    }
+
+
+    public function store(array $attributes)
+    {
+        return $this->_model->create($attributes);
+    }
+
+
+    public function update($id, array $attributes)
+    {
+        $result = $this->find($id);
+        if ($result) {
+            $this->_model->where('id', $id)->update($attributes);
+            return $result;
+        }
+        return false;
+    }
+
+
+    public function destroy($id)
+    {
+        $result = $this->_model->where('id', $id)->get();
+        if ($result) {
+            $this->_model->where('id', $id)->delete();
+            return true;
+        }
+        return false;
+    }
+
+
+    // HAND MAKE
+
+    public function sidebar()
+    {
+        return  View::share('data', Category::get());
+    }
+
+    public function shareHeadFoot()
+    {
+        $cat = Category::get();
+        $typ = Type::get();
+
+        return  View::share([
+            'cat' => $cat,
+            'typ' => $typ,
+        ]);
+    }
+}

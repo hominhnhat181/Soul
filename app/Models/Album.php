@@ -23,9 +23,9 @@ class Album extends Model
         return $this->belongsToMany(Artist::class,'artist_album', 'artist_id','album_id');
     }
 
-
+    // add the foreign key in second parameter if want to get name of field relation
     public function features(){
-        return $this->belongsTo(Feature::class);
+        return $this->belongsTo(Feature::class,'feature_id');
     }
 
    

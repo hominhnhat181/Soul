@@ -35,84 +35,33 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Feature Name</th>
-                                <th>Image</th>
                                 <th>Status</th>
                                 <th>Created at</th>
                                 <th style="text-align: center">Control</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>The Guardian Angles</td>
-                                <td>gg</td>
-                                <td>Active</td>
-                                <td>15/7/2021</td>
-                                <td>
-                                    <div class="ct row" >
-                                        <button class="ct_btn col-md-3">Detail</button>
-                                        <button class="ct_btn col-md-3">Deactive</button>
-                                        <button class="ct_btn col-md-3" >Delete</button>
-                                    </div>
-                                </td>
+                            @foreach ($data as $ft)
+                                <tr>
+                                    <td>{{ $ft->id }}</td>
+                                    <td>{{ $ft->name }}</td>
+                                    @if ($ft->status == 0)
+                                        <td>Not verify</td>
+                                    @elseif($ft->status == 1)
+                                        <td>Active</td>
+                                    @else
+                                        <td>De-active</td>
+                                    @endif
+                                    <td>{{ $ft->created_at }}</td>
+                            <td>
+                                <div class="ct row">
+                                    <button class="ct_btn col-md-3">Detail</button>
+                                    <button class="ct_btn col-md-3">Deactive</button>
+                                    <button class="ct_btn col-md-3">Delete</button>
+                                </div>
+                            </td>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>The Guardian Angles</td>
-                                <td>gg</td>
-                                <td>Active</td>
-                                <td>15/7/2021</td>
-                                <td>
-                                    <div class="ct row" >
-                                        <button class="ct_btn col-md-3">Detail</button>
-                                        <button class="ct_btn col-md-3">Deactive</button>
-                                        <button class="ct_btn col-md-3" >Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>The Guardian Angles</td>
-                                <td>gg</td>
-                                <td>Active</td>
-                                <td>15/7/2021</td>
-                                <td>
-                                    <div class="ct row" >
-                                        <button class="ct_btn col-md-3">Detail</button>
-                                        <button class="ct_btn col-md-3">Deactive</button>
-                                        <button class="ct_btn col-md-3" >Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>The Guardian Angles</td>
-                                <td>gg</td>
-                                <td>Active</td>
-                                <td>15/7/2021</td>
-                                <td>
-                                    <div class="ct row" >
-                                        <button class="ct_btn col-md-3">Detail</button>
-                                        <button class="ct_btn col-md-3">Deactive</button>
-                                        <button class="ct_btn col-md-3" >Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>The Guardian Angles</td>
-                                <td>gg</td>
-                                <td>Active</td>
-                                <td>15/7/2021</td>
-                                <td>
-                                    <div class="ct row" >
-                                        <button class="ct_btn col-md-3">Detail</button>
-                                        <button class="ct_btn col-md-3">Deactive</button>
-                                        <button class="ct_btn col-md-3" >Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
