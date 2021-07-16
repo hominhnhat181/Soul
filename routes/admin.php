@@ -17,5 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->namespace('App\\Http\\Controllers\\Admin')->group(function () {
     Route::get('/', 'DashboardController@dashboard')->name('admin.dashboard');
+    Route::get('/feature', 'DashboardController@feature')->name('admin.feature');
 
 });

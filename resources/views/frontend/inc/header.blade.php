@@ -51,7 +51,7 @@
                         </li>
                         <li class="nav-item">
                             @if (Auth::guest())
-                                <a class="nav-link" href="{{ URL('/login') }}">
+                                <a class="nav-link" href="{{ Route('login') }}">
                                     <i class="material-icons">person</i>
                                     <p class="d-lg-none d-md-block">
                                         Account
@@ -65,8 +65,8 @@
                                         style=" margin-right: 60px; margin-top: -13px ;"
                                         aria-labelledby="navbarDropdownMenuLink2">
                                         <a class="dropdown-item" href="{{ URL('account') }}">Account</a>
-                                        <a class="dropdown-item" href="{{ URL('admin') }}">Control Page</a>
-                                        <a class="dropdown-item" href="{{ URL('logout') }}">Logout</a>
+                                        <a class="dropdown-item" href="{{ Route('admin.dashboard') }}">Control Page</a>
+                                        <a class="dropdown-item" href="{{ ROute('logout') }}">Logout</a>
                                     </div>
                                 @else
                                 <a class="nav-link" href="" id="navbarDropdownMenuLink2"
@@ -75,7 +75,7 @@
                                         style=" margin-right: 60px; margin-top: -13px ;"
                                         aria-labelledby="navbarDropdownMenuLink2">
                                         <a class="dropdown-item" href="{{ URL('account') }}">Account</a>
-                                        <a class="dropdown-item" href="{{ URL('logout') }}">Logout</a>
+                                        <a class="dropdown-item" href="{{ Route('logout') }}">Logout</a>
                                     </div>
                                 @endif
                             @endif

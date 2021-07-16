@@ -9,4 +9,8 @@ class DashboardController
     public function dashboard(){
         return view('backend.dashboard');
     }
+
+    public function feature(){
+        return view('backend.pages.feature');
+    }
 }

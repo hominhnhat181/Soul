@@ -41,7 +41,7 @@
                                     Some Actions
                                 </p>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="dropdown-menu dropdown-menu-right" style="margin-top: 10px" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="javascript:void(0)">Mike John responded to your email</a>
                                 <a class="dropdown-item" href="javascript:void(0)">You have 5 new tasks</a>
                                 <a class="dropdown-item" href="javascript:void(0)">You're now friend with Andrew</a>
@@ -62,7 +62,7 @@
                                     <a class="nav-link" href="" id="navbarDropdownMenuLink2"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('/assets/back/img/faces/marc.jpg')}}"  ></a>
                                     <div class="dropdown-menu dropdown-menu-right"
-                                        style=" margin-right: 60px; margin-top: -13px ;"
+                                        style=" margin-right: 60px; margin-top: -9px ;"
                                         aria-labelledby="navbarDropdownMenuLink2">
                                         <a class="dropdown-item" href="{{ URL('account') }}">Account</a>
                                         <a class="dropdown-item" href="{{ URL('admin') }}">Control Page</a>
