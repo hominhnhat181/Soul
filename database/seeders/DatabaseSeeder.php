@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             'email' => "nhat@ho",
             'password' => Hash::make("123"), // password
             'status'    =>  '1',
+            'is_admin' => '1'
         ]);
     }
 }

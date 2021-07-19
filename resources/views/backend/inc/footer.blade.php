@@ -36,24 +36,26 @@
     date.innerHTML = '&copy; ' + x + date.innerHTML;
 </script>
 
-<link href="{{asset('assets/back/css/material-dashboard.css')}}" rel="stylesheet" />
 
-<script src="{{asset('assets/back/js/core/jquery.min.js')}}"></script>
-<script src="{{asset('assets/back/js/core/popper.min.js')}}"></script>
-<script src="{{asset('assets/back/js/core/bootstrap-material-design.min.js')}}"></script>
+<link href="{{ asset('assets/back/css/material-dashboard.css') }}" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<script src="{{ asset('assets/back/js/core/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/back/js/core/popper.min.js') }}"></script>
+<script src="{{ asset('assets/back/js/core/bootstrap-material-design.min.js') }}"></script>
 <script src="https://unpkg.com/default-passive-events"></script>
-<script src="{{asset('assets/back/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+<script src="{{ asset('assets/back/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!--  Google Maps Plugin    -->
 {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
 <!-- Chartist JS -->
-<script src="{{asset('assets/back/js/plugins/chartist.min.js')}}"></script>
+<script src="{{ asset('assets/back/js/plugins/chartist.min.js') }}"></script>
 <!--  Notifications Plugin    -->
-<script src="{{asset('assets/back/js/plugins/bootstrap-notify.js')}}"></script>
+<script src="{{ asset('assets/back/js/plugins/bootstrap-notify.js') }}"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="{{asset('assets/back/js/material-dashboard.js?v=2.1.0')}}"></script>
+<script src="{{ asset('assets/back/js/material-dashboard.js?v=2.1.0') }}"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+
 <script>
     $(document).ready(function() {
         $().ready(function() {

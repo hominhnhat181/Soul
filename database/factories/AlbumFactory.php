@@ -24,7 +24,7 @@ class AlbumFactory extends Factory
     {
         return [
             'name'=>$this->faker->name(15),
-            'images' => $this->faker->image('public/front/images',640,480, null, false),
+            'image' => $this->faker->image('public/front/images',640,480, null, false),
             'title'=>$this->faker->text(40),
             'desc'=>$this->faker->text(100),
             'feature_id'=>Feature::all()->random()->id,

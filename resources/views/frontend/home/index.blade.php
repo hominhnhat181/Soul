@@ -19,7 +19,7 @@
                                     <div class="card card-stats">
                                         {{-- <a class="link_album" href=""><span></span></a> --}}
                                         <div class="card-header card-header-warning card-header-icon">
-                                                <img src="{{ asset('/front/images/'.$ab->images) }}">
+                                                <img src="{{ asset('/front/images/'.$ab->image) }}">
                                             <div class="card_album">
                                                 <a href="" class="card-category">{{ $ab->name }}</a>
                                                 <a href="" class="card-title">

@@ -24670,7 +24670,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     border: unset;
     outline: unset;
 }
-.admin_search .admin_search-btn{
+.admin_search a{
     background-color: rgb(228, 228, 228);
     font-size: 0.975rem;
     font-weight: 500;
@@ -24679,8 +24679,11 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     border: unset;
     outline: unset;
     border-radius: 5px;
+    line-height: 45px;
+    text-align: center;
+
 }
-.admin_search .admin_search-btn:hover{
+.admin_search a:hover{
     background-color: #3c4858;
     cursor: pointer;
     color: white;
@@ -24723,9 +24726,12 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     color: thistle;
     margin-right: 4px;
     font-size: 14px;
+    font-weight: 400;
     width: 80px !important;
     padding: unset;
-    
+    text-align: center;
+    margin-top: 3px;
+    line-height: 28px;
 }   
 
 .ct .ct_btn:hover{
@@ -24738,7 +24744,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 .true_table .table_img{
     width: 111px;
     height: 111px;
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
 .true_table .center{
@@ -24903,3 +24909,66 @@ a {
   .pagination .prev a { text-indent: -2px; }
   .pagination .prev:before,
   .pagination .next:before { content: none; }
+
+
+  /* create */
+
+  .main_contain-create{
+    min-height: 80vh;
+    padding-bottom: 40px;
+    height: auto;
+    background-color: rgb(2, 10, 33);
+  }
+
+  #sort_features{
+      padding-top: 1px;
+      position: relative;
+  }
+
+  .submit_btn{
+      position: absolute;
+      bottom: -110px;
+      left: 15px;
+  }
+
+  .form_create{
+      max-width: 700px;
+      margin: 30px auto;
+      background: #fff;
+      padding-bottom: 100px;
+  }
+
+  .form_create-ctn{
+    padding: 30px 50px;
+
+  }
+
+  .ctn_input .input_obj{
+      margin-bottom: 10px;
+  }
+
+  .account-settings{
+    margin-left: 30px;
+
+  }
+
+  .account-settings .user-profile{
+      margin: 0;
+      padding: 0;
+  }
+
+
+  .input_obj input{
+      width: 230px;
+  }
+
+  .input_obj .one{
+      width: 230px;
+      height: 30px;
+    padding-left: 8px;
+
+  }
+
+  #genre{
+      margin-top: 25.5px;
+  }

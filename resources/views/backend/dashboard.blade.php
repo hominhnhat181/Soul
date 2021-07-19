@@ -9,41 +9,41 @@
             <div class="main_contain-object row">
                 <div class="object col-sm">
                     <div class="object_list">
-                        <a href="">Total User</a>
+                        <a href="{{Route('admin.user')}}">Total User</a>
                     </div>
-                    <span>18</span>
+                    <span>{{$data['user']}}</span>
                 </div>
                 <div class="object col-sm">
                     <div class="object_list">
-                        <a href="">Total Feature</a>
+                        <a href="{{Route('admin.feature')}}">Total Feature</a>
                     </div>
-                    <span>18</span>
+                    <span>{{$data['feature']}}</span>
                 </div>
                 <div class="object col-sm">
                     <div class="object_list">
-                        <a href="">Total Album</a>
+                        <a href="{{Route('admin.album')}}">Total Album</a>
                     </div>
-                    <span>18</span>
+                    <span>{{$data['album']}}</span>
                 </div>
             </div>
             <div class="main_contain-object row">
                 <div class="object col-sm">
                     <div class="object_list">
-                        <a href="">Total Genres</a>
+                        <a href="{{Route('admin.genre')}}">Total Genres</a>
                     </div>
-                    <span>18</span>
+                    <span>{{$data['genre']}}</span>
                 </div>
                 <div class="object col-sm">
                     <div class="object_list">
-                        <a href="">Total Track</a>
+                        <a href="{{Route('admin.track')}}">Total Track</a>
                     </div>
-                    <span>18</span>
+                    <span>{{$data['track']}}</span>
                 </div>
                 <div class="object col-sm">
                     <div class="object_list">
-                        <a href="">Total Single & Band</a>
+                        <a href="{{Route('admin.artist')}}">Total Single & Band</a>
                     </div>
-                    <span>18</span>
+                    <span>{{$data['artist']}}</span>
                 </div>
             </div>
         </div>

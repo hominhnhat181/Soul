@@ -4,7 +4,7 @@
     <div class="main_contain">
         <div class="main_contain-hover">
             <div class="main_contain-title">
-                <h2>Feature</h2>
+                <h2>Tracks</h2>
             </div>
             <form class="" id="sort_features" action="" method="GET">
                 <div class="row mb-2">
@@ -36,6 +36,8 @@
                                 <th>ID</th>
                                 <th>Track</th>
                                 <th>Artist</th>
+                                <th>Album</th>
+                                <th>Genre</th>
                                 <th class="center">Image</th>
                                 <th>Status</th>
                                 <th>Created at</th>
@@ -47,8 +49,10 @@
                                 <tr>
                                     <td>{{ $ab->id }}</td>
                                     <td>{{ $ab->name }}</td>
-                                    <td></td>
-                                    <td class="center"><img class="table_img" src="{{ asset('/front/images/'.$ab->images) }}" alt=""></td>
+                                    <td>{{ $ab->artists->name }}</td>
+                                    <td>{{ $ab->albums->name }}</td>
+                                    <td>{{ $ab->tags->name }}</td>
+                                    <td class="center"><img class="table_img" src="{{ asset('/front/images/'.$ab->image) }}" alt=""></td>
                                     @if ($ab->status == 0)
                                         <td>Not verify</td>
                                     @elseif($ab->status == 1)
@@ -56,12 +60,12 @@
                                     @else
                                         <td>De-active</td>
                                     @endif
-                                    <td>{{ $ab->created_at }}</td>
+                                    <td>{{ $ab->created_at->toDateString() }}</td>
                             <td>
                                 <div class="ct row">
-                                    <button class="ct_btn col-md-3">Detail</button>
-                                    <button class="ct_btn col-md-3">Deactive</button>
-                                    <button class="ct_btn col-md-3">Delete</button>
+                                    <button class="ct_btn col-md-6">Detail</button>
+                                    <button class="ct_btn col-md-6">Deactive</button>
+                                    <button class="ct_btn col-md-6">Delete</button>
                                 </div>
                             </td>
                             </tr>

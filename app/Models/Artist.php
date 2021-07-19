@@ -12,7 +12,7 @@ class Artist extends Model
     protected $table ='artists';
     protected $fillable = [
         'name',
-        'images','status'
+        'image','status'
     ];
 
     public function albums()

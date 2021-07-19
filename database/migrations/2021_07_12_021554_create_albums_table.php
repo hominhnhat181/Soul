@@ -15,10 +15,10 @@ class CreateAlbumsTable extends Migration
     {
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('images');
-            $table->string('title');
-            $table->string('desc');
+            $table->string('name');
+            $table->string('image')->nullable();
+            $table->string('title')->nullable();
+            $table->string('desc')->nullable();
             $table->unsignedBigInteger('feature_id');
             $table->foreign('feature_id')->references('id')->on('features')->onDelete('cascade');
             $table->enum('status',[1,2])->default(1)->nullable()->comment('0=not verify,1=active,2=deactive');
