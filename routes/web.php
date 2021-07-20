@@ -24,3 +24,5 @@ Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\RegisterCont
 // get data social provider
 Route::get('register/social/{provider}', [App\Http\Controllers\Auth\RegisterController::class, 'redirectRegisterProvider'])->name('register.social');
 Route::get('login/social/{provider}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('login.social');
+
+Route::get('/{id}/playlist', [App\Http\Controllers\PlaylistController::class, 'goPlaylist'])->name('playlist');

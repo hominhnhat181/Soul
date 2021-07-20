@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="input_obj ">
                                     <h4>Song</h4>
-                                    <input name="song" type="text">
+                                    <input name="song" type="file">
                                 </div>
                                 <div class="input_obj ">
                                     <h4>Artist</h4>

@@ -23,8 +23,7 @@ class ArtistFactory extends Factory
     {
         return [
             'name'=>$this->faker->name(15),
-            'image' => $this->faker->image('public/front/images',640,480, null, false),
-
+            'image' => 'origin.png',
         ];
     }
 }

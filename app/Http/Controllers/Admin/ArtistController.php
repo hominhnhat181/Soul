@@ -25,9 +25,6 @@ class ArtistController {
 
     public function store(Request $request){
         $attributes = $request->all();
-        if(!($request->image)){
-            $attributes['image'] = 'origin.png';
-        }
         $this->bandArtistService->store($attributes);
         flash("Create Artist success")->success();
         return redirect(Route('admin.artist'));

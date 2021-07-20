@@ -15999,6 +15999,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
     position: relative;
     top: 0;
     height: 100vh;
+  
 }
 
 .sidebar {
@@ -16466,7 +16467,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .main-panel > .content {
     margin-top: 70px;
-    padding: 30px 15px;
+    padding: 30px 15px 75px;
     min-height: calc(100vh - 123px);
 }
 
@@ -16475,7 +16476,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .main-panel > .navbar {
-    margin-bottom: 0;
+    margin-bottom: 70px;
 }
 
 .main-panel .header {
@@ -18855,7 +18856,7 @@ label {
 
 .card-stats .card-header .card-category:not([class*="text-"]) {
     color: #999999;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
 }
 
@@ -21689,7 +21690,7 @@ Copyright (c) 2015 Daniel Eden
 
 .dark-edition .card {
     background: #202940;
-    height: auto;
+    height: 145px;
     position: relative;
 }
 .dark-edition .card span {
@@ -21704,6 +21705,8 @@ Copyright (c) 2015 Daniel Eden
 .dark-edition .card .card-header.card-header-text .card-title,
 .dark-edition .card .card-header.card-header-icon .card-title {
     color: #606477;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .dark-edition .card .card-header.card-header-tabs .nav-tabs-title {
@@ -24621,4 +24624,37 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     height: 35px;
     border-radius: 50%;
     margin-top: -3px;
+}
+
+/* playlist */
+.playlist{
+    margin-top: 70px;
+}
+
+.title_track img{
+    height: 60px;
+    width: 60px;
+    margin-right: 10px;
+}
+.title_track .info #track{
+    font-size: 12px;
+    margin: 0;
+}
+.title_track .info #artist{
+    font-size: 11px;
+    margin: 0;
+}
+
+.title_track .info{
+    display: block;
+    margin: auto 0;
+}
+
+.center{
+    justify-content: center;
+    text-align: center;
+}
+
+.table-dark tbody tr:hover{
+    background-color: #424040;
 }

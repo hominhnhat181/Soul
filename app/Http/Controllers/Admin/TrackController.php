@@ -32,9 +32,6 @@ class TrackController
 
     public function store(Request $request){
         $attributes = $request->all();
-        if(!($request->image)){
-            $attributes['image'] = 'origin.png';
-        }
         $this->trackService->store($attributes);
         flash("Create Track success")->success();
         return redirect(Route('admin.track'));

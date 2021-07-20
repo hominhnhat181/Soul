@@ -53,9 +53,6 @@ class UserController
 
     public function update ($id, Request $request){
         $attributes = $request->except('_token','image');
-        if(!empty($request->image )){
-            $attributes['image'] = $request->image;
-        }
         $this->userService->update($id, $attributes);
         flash("Update User success")->success();
         return redirect(Route('admin.user'));

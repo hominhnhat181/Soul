@@ -31,9 +31,6 @@ class AlbumController
 
     public function store(Request $request){
         $attributes = $request->all();
-        if(!($request->image)){
-            $album->image = 'origin.png';
-        }
         $album = new Album();
         $album->name = $attributes['name'];
         $album->title = $attributes['title'];
