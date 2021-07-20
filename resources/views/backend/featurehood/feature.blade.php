@@ -21,12 +21,13 @@
                         <input class="admin_search-chose" type="text" placeholder="Status">
                     </div>
                     <div class="admin_search col-md-4 row" id="omega">
-                        <button class="admin_search-btn col-md">Search</button>
-                        <button class="admin_search-btn col-md">Reset</button>
-                        <button class="admin_search-btn col-md">Excel</button>
-                        <button class="admin_search-btn col-md">Create</button>
+                        <a class="admin_search-btn col-md" href="">Search</a>
+                        <a class="admin_search-btn col-md" href="">Reset</a>
+                        <a class="admin_search-btn col-md" href="">Excel</a>
+                        <a class="admin_search-btn col-md" href="{{Route('admin.feature.create')}}">Create</a>
                     </div>
                 </div>
+            @include('flash::message')
             </form>
             <div class="table_view">
                 <div class="table_hover">
@@ -46,18 +47,22 @@
                                     <td>{{ $ft->id }}</td>
                                     <td>{{ $ft->name }}</td>
                                     @if ($ft->status == 0)
-                                        <td>Not verify</td>
+                                        <td style="color: lightcoral">Not verify</td>
                                     @elseif($ft->status == 1)
-                                        <td>Active</td>
+                                        <td style="color: lightgreen">Active</td>
                                     @else
-                                        <td>De-active</td>
+                                        <td style="color: lightcoral">De-active</td>
                                     @endif
                                     <td>{{ $ft->created_at->toDateString() }}</td>
                             <td>
                                 <div class="ct row">
-                                    <button class="ct_btn col-md-3">Detail</button>
-                                    <button class="ct_btn col-md-3">Deactive</button>
-                                    <button class="ct_btn col-md-3">Delete</button>
+                                    <a href="{{Route('admin.feature.edit', ['id' => $ft->id])}}" class="ct_btn col-md-3">Detail</a>
+                                    @if($ft->status == 0 || $ft->status == 2)
+                                    <a href="" class="ct_btn col-md-3" data-toggle="modal" data-target="#ModalCenterS{{$ft->id}}">Active</a>
+                                    @else
+                                    <a href="" class="ct_btn col-md-3" data-toggle="modal" data-target="#ModalCenterS{{$ft->id}}">Deactive</a>
+                                    @endif
+                                    <a href="" class="ct_btn col-md-3" data-toggle="modal" data-target="#ModalCenterD{{$ft->id}}">Delete</a>
                                 </div>
                             </td>
                             </tr>
@@ -80,7 +85,49 @@
             </div>
         </div>
     </div>
+    @foreach ($data as $ft)
 
+<!-- Modal status-->
+<div class="modal fade" id="ModalCenterS{{$ft->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLongTitle">Change Status Feature</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure about that? 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <a href="{{Route('admin.feature.status',['id' => $ft->id])}}"><button type="button" class="btn btn-primary">Save changes</button></a> 
+        </div>
+      </div>  
+    </div>
+  </div>
+  <!-- Modal delete -->
+  <div class="modal fade" id="ModalCenterD{{$ft->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLongTitle">Delete Feature</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure about that? 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <a href="{{Route('admin.feature.destroy', ['id' => $ft->id])}}"><button type="button" class="btn btn-primary">Save changes</button></a>
+        </div>
+      </div>  
+    </div>
+  </div>
+  @endforeach
     <script>
         $('.pagination li').on('click', function(event) {
             event.preventDefault();

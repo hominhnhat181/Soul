@@ -21,12 +21,13 @@
                         <input class="admin_search-chose" type="text" placeholder="Status">
                     </div>
                     <div class="admin_search col-md-4 row" id="omega">
-                        <button class="admin_search-btn col-md">Search</button>
-                        <button class="admin_search-btn col-md">Reset</button>
-                        <button class="admin_search-btn col-md">Excel</button>
-                        <button class="admin_search-btn col-md">Create</button>
+                        <a class="admin_search-btn col-md" href="">Search</a>
+                        <a class="admin_search-btn col-md" href="">Reset</a>
+                        <a class="admin_search-btn col-md" href="">Excel</a>
+                        <a class="admin_search-btn col-md" href="{{ Route('admin.artist.create') }}">Create</a>
                     </div>
                 </div>
+                @include('flash::message')
             </form>
             <div class="table_view">
                 <div class="table_hover">
@@ -42,27 +43,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $ab)
+                            @foreach ($data as $at)
                                 <tr>
-                                    <td>{{ $ab->id }}</td>
-                                    <td>{{ $ab->name }}</td>
-                                    <td class="center"><img class="table_img" src="{{ asset('/front/images/'.$ab->image) }}" alt=""></td>
-                                    @if ($ab->status == 0)
-                                        <td>Not verify</td>
-                                    @elseif($ab->status == 1)
-                                        <td>Active</td>
+                                    <td>{{ $at->id }}</td>
+                                    <td>{{ $at->name }}</td>
+                                    <td class="center"><img class="table_img"
+                                            src="{{ asset('/front/images/' . $at->image) }}" alt=""></td>
+                                    @if ($at->status == 0)
+                                        <td style="color: lightcoral">Not verify</td>
+                                    @elseif($at->status == 1)
+                                        <td style="color: lightgreen">Active</td>
                                     @else
-                                        <td>De-active</td>
+                                        <td style="color: lightcoral">De-active</td>
                                     @endif
-                                    <td>{{ $ab->created_at->toDateString() }}</td>
-                            <td>
-                                <div class="ct row">
-                                    <button class="ct_btn col-md-3">Detail</button>
-                                    <button class="ct_btn col-md-3">Deactive</button>
-                                    <button class="ct_btn col-md-3">Delete</button>
-                                </div>
-                            </td>
-                            </tr>
+                                    <td>{{ $at->created_at->toDateString() }}</td>
+                                    <td>
+                                        <div class="ct row">
+                                            <a href="{{ Route('admin.artist.edit', ['id' => $at->id]) }}"
+                                                class="ct_btn col-md-3">Detail</a>
+                                            @if ($at->status == 0 || $at->status == 2)
+                                                <a href="" class="ct_btn col-md-3" data-toggle="modal"
+                                                    data-target="#ModalCenterS{{ $at->id }}">Active</a>
+                                            @else
+                                                <a href="" class="ct_btn col-md-3" data-toggle="modal"
+                                                    data-target="#ModalCenterS{{ $at->id }}">Deactive</a>
+                                            @endif
+                                            <a href="" class="ct_btn col-md-3" data-toggle="modal"
+                                                data-target="#ModalCenterD{{ $at->id }}">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -82,6 +92,52 @@
             </div>
         </div>
     </div>
+    @foreach ($data as $at)
+        <!-- Modal status-->
+        <div class="modal fade" id="ModalCenterS{{ $at->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLongTitle">Change Status Album</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure about that?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="{{ Route('admin.artist.status', ['id' => $at->id]) }}"><button type="button"
+                                class="btn btn-primary">Save changes</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal delete -->
+        <div class="modal fade" id="ModalCenterD{{ $at->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLongTitle">Delete Album</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure about that?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="{{ Route('admin.artist.destroy', ['id' => $at->id]) }}"><button type="button"
+                                class="btn btn-primary">Save changes</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
     <script>
         $('.pagination li').on('click', function(event) {

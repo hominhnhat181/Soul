@@ -1,37 +1,60 @@
 @extends('backend.layouts.master')
 
 @section('content')
-
     <head>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
         <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
     </head>
     <div class="main_contain">
         <div class="main_contain-create">
-            <form class="" id="sort_features" action="{{ Route('admin.album.store') }}" method="Post">
+            <form class="" id="sort_features" action="{{ Route('admin.track.store') }}" method="Post">
                 @csrf
                 <div class="form_create">
                     <div class="form_create-ctn">
                         <div class="ctn_title">
-                            <h2>Create Album</h2>
+                            <h2>Create Track</h2>
                         </div>
                         <div class="row">
                             <div class="ctn_input col-md-6">
                                 <div class="input_obj ">
-                                    <h4>Album name</h4>
+                                    <h4>Track name</h4>
                                     <input name="name" type="text">
                                 </div>
                                 <div class="input_obj ">
-                                    <h4>Title</h4>
-                                    <input name="title" type="text">
+                                    <h4>Song</h4>
+                                    <input name="song" type="text">
                                 </div>
                                 <div class="input_obj ">
-                                    <h4>Desc</h4>
-                                    <input name="desc" type="text">
+                                    <h4>Artist</h4>
+                                    <select class="one" name="artist_id">
+                                        <option value="">Chose Artist</option>
+                                        @foreach ($artist as $at)
+                                            <option value="{{ $at->id }} ">{{ $at->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="input_obj ">
+                                    <h4>Album</h4>
+                                    <select class="one" name="album_id">
+                                        <option value="">Chose Album</option>
+                                        @foreach ($album as $ab)
+                                            <option value="{{ $ab->id }} ">{{ $ab->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="input_obj ">
+                                    <h4>Genre</h4>
+                                    <select class="one" name="tag_id">
+                                        <option value="">Chose Genre</option>
+                                        @foreach ($genre as $gr)
+                                            <option value="{{ $gr->id }} ">{{ $gr->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="input_obj ">
+                                    <button class="btn btn-danger submit_btn">Save</button>
                                 </div>
                             </div>
                             <div class="ctn_input col-md-6" style="margin-top: -53px">
@@ -45,28 +68,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="input_obj ">
-                                    <h4>Feature</h4>
-                                    <select class="one" name="feature_id">
-                                        @foreach ($feature as $ft)
-                                            <option value="{{ $ft->id }} ">{{ $ft->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="ctn_input col-md-12">
-                                <div class="input_obj" id="genre">
-                                    <h4>Genre</h4>
-                                    <select name="tag_id[]" id="choices-multiple-remove-button"
-                                        placeholder="Select upto 5 Genres" multiple>
-                                        @foreach ($tag as $tag)
-                                            <option value="{{ $tag->id }} ">{{ $tag->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="input_obj ">
-                                    <button class="btn btn-danger submit_btn">Save</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -74,7 +75,5 @@
             </form>
         </div>
     </div>
-
     <script src="{{ asset('assets/back/js/auth.js') }}"></script>
-
 @endsection

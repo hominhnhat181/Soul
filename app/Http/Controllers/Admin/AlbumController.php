@@ -31,6 +31,9 @@ class AlbumController
 
     public function store(Request $request){
         $attributes = $request->all();
+        if(!($request->image)){
+            $album->image = 'origin.png';
+        }
         $album = new Album();
         $album->name = $attributes['name'];
         $album->title = $attributes['title'];
@@ -41,8 +44,8 @@ class AlbumController
         $album->save();
         // seed new album relation value 
         $album->tags()->sync($request->tag_id);
+        flash("Create Album success")->success();
         return redirect('admin/album');
-
     }
 
 
@@ -65,6 +68,7 @@ class AlbumController
             $album->tags()->sync($request->tag_id);
         }
         $this->albumService->update($id, $attributes);
+        flash("Update Album success")->success();
         return redirect(Route('admin.album'));
     }
 

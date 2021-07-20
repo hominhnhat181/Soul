@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 
@@ -26,6 +27,56 @@ class UserController
     public function show(){
         $data = $this->userService->show();
         return view('backend.userhood.user', compact('data') );
+    }
+
+    public function create(){
+        return view('backend.userhood.createUser');
+    }
+
+
+    public function store(Request $request){
+        $attributes = $request->all();
+        if(!($request->image)){
+            $attributes['image'] = 'origin.png';
+        }
+        $this->userService->store($attributes);
+        flash("Create User success")->success();
+        return redirect(Route('admin.user'));
+    }
+
+
+    public function edit($id){
+        $data = User::where('id',$id)->get();
+        return view('backend.userhood.editUser',compact('data'));
+    }
+
+
+    public function update ($id, Request $request){
+        $attributes = $request->except('_token','image');
+        if(!empty($request->image )){
+            $attributes['image'] = $request->image;
+        }
+        $this->userService->update($id, $attributes);
+        flash("Update User success")->success();
+        return redirect(Route('admin.user'));
+    }
+
+    public function destroy($id){
+        $this->userService->destroy($id);
+        return back();
+    }
+
+    
+    public function changeStatus($id){
+        $st = User::findOrFail($id);
+        if($st->status == "0" || $st->status == "2") {
+            $st->status = "1";
+        }else {
+            $st->status = "2";
+        }
+        $st->save();
+        flash("Change status success")->success();
+        return redirect(Route('admin.user'));
     }
 
 

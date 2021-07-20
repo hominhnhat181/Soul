@@ -36,19 +36,15 @@
                                         <h4>Desc</h4>
                                         <input name="desc" value="{{ $data->title }}" type="text">
                                     </div>
-
-
                                 </div>
                                 <div class="ctn_input col-md-6" style="margin-top: -53px">
                                     <div class="account-settings col-md-4 ">
                                         <div class="user-profile">
                                             <div class="user-avatar">
                                                 <div id="profile-container ">
-                                                    <img id="profileImage"
-                                                        src="{{ asset('front/images/'.$data->image) }}" />
+                                                    <img id="profileImage" src="{{ asset('front/images/'.$data->image) }}" />
                                                 </div>
                                                 <input id="imageUpload" type="file" name="image" placeholder="Photo" capture>
-                                                <input  type="hidden" name="originImage" value="{{$data->image}}" capture>
                                             </div>
                                         </div>
                                     </div>

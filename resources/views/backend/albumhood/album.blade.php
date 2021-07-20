@@ -24,11 +24,10 @@
                         <a class="admin_search-btn col-md" href="">Search</a>
                         <a class="admin_search-btn col-md" href="">Reset</a>
                         <a class="admin_search-btn col-md" href="">Excel</a>
-                        <a class="admin_search-btn col-md" href="{{Route('admin.album.create')}}">Create</a>
+                        <a class="admin_search-btn col-md" href="{{ Route('admin.album.create') }}">Create</a>
                     </div>
                 </div>
-            @include('flash::message')
-               
+                @include('flash::message')
             </form>
             <div class="table_view">
                 <div class="table_hover">
@@ -50,28 +49,32 @@
                                     <td>{{ $ab->id }}</td>
                                     <td>{{ $ab->name }}</td>
                                     <td>{{ $ab->features->name }}</td>
-                                    <td class="center"><img class="table_img" src="{{ asset('/front/images/'.$ab->image) }}" alt=""></td>
-
+                                    <td class="center"><img class="table_img"
+                                            src="{{ asset('/front/images/' . $ab->image) }}" alt=""></td>
                                     @if ($ab->status == 0)
-                                        <td>Not verify</td>
+                                        <td style="color: lightcoral">Not verify</td>
                                     @elseif($ab->status == 1)
-                                        <td>Active</td>
+                                        <td style="color: lightgreen">Active</td>
                                     @else
-                                        <td>De-active</td>
+                                        <td style="color: lightcoral">De-active</td>
                                     @endif
                                     <td>{{ $ab->created_at->toDateString() }}</td>
-                            <td>
-                                <div class="ct row">
-                                    <a href="{{Route('admin.album.edit', ['id' => $ab->id])}}" class="ct_btn col-md-3">Detail</a>
-                                    @if($ab->status == 0 || $ab->status == 2)
-                                    <a href="" class="ct_btn col-md-3" data-toggle="modal" data-target="#ModalCenterS{{$ab->id}}">Active</a>
-                                    @else
-                                    <a href="" class="ct_btn col-md-3" data-toggle="modal" data-target="#ModalCenterS{{$ab->id}}">Deactive</a>
-                                    @endif
-                                    <a href="" class="ct_btn col-md-3" data-toggle="modal" data-target="#ModalCenterD{{$ab->id}}">Delete</a>
-                                </div>
-                            </td>
-                            </tr>
+                                    <td>
+                                        <div class="ct row">
+                                            <a href="{{ Route('admin.album.edit', ['id' => $ab->id]) }}"
+                                                class="ct_btn col-md-3">Detail</a>
+                                            @if ($ab->status == 0 || $ab->status == 2)
+                                                <a href="" class="ct_btn col-md-3" data-toggle="modal"
+                                                    data-target="#ModalCenterS{{ $ab->id }}">Active</a>
+                                            @else
+                                                <a href="" class="ct_btn col-md-3" data-toggle="modal"
+                                                    data-target="#ModalCenterS{{ $ab->id }}">Deactive</a>
+                                            @endif
+                                            <a href="" class="ct_btn col-md-3" data-toggle="modal"
+                                                data-target="#ModalCenterD{{ $ab->id }}">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -92,48 +95,51 @@
         </div>
     </div>
     @foreach ($data as $ab)
-
-<!-- Modal status-->
-<div class="modal fade" id="ModalCenterS{{$ab->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLongTitle">Change Status Album</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure about that? 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-       <a href="{{Route('admin.changeSt',['id' => $ab->id])}}"><button type="button" class="btn btn-primary">Save changes</button></a> 
-      </div>
-    </div>  
-  </div>
-</div>
-<!-- Modal delete -->
-<div class="modal fade" id="ModalCenterD{{$ab->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLongTitle">Delete Album</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <!-- Modal status-->
+        <div class="modal fade" id="ModalCenterS{{ $ab->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLongTitle">Change Status Album</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure about that?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="{{ Route('admin.album.status', ['id' => $ab->id]) }}"><button type="button"
+                                class="btn btn-primary">Save changes</button></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          Are you sure about that? 
+        <!-- Modal delete -->
+        <div class="modal fade" id="ModalCenterD{{ $ab->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLongTitle">Delete Album</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure about that?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="{{ Route('admin.album.destroy', ['id' => $ab->id]) }}"><button type="button"
+                                class="btn btn-primary">Save changes</button></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <a href="{{Route('admin.album.destroy', ['id' => $ab->id])}}"><button type="button" class="btn btn-primary">Save changes</button></a>
-        </div>
-      </div>  
-    </div>
-  </div>
-  @endforeach
+    @endforeach
 
     <script>
         $('.pagination li').on('click', function(event) {
