@@ -1,22 +1,15 @@
 @extends('backend.layouts.master')
-
+@section('title')
+   Update Album
+@endsection
 @section('content')
-
-    <head>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
-        <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
-
-    </head>
     <div class="main_contain">
         <div class="main_contain-create">
             @foreach ($data as $data)
                 <form class="" id="sort_features" action="{{ Route('admin.album.update', ['id' => $data->id]) }}"
                     method="Post">
                     @csrf
+                    {{ method_field('PUT') }}
                     <div class="form_create">
                         <div class="form_create-ctn">
                             <div class="ctn_title">
@@ -63,7 +56,7 @@
                                     <div class="input_obj" id="genre">
                                         <h4 >Genre: 
                                             @foreach ($data->tags as $ogg)
-                                            <a href="{{Route('admin.genre')}}" style="font-size: 14px; font-weight: 500; color:black";>{{ $ogg->name }}, </a>
+                                            <a href="{{Route('admin.genre.index')}}" style="font-size: 14px; font-weight: 500; color:black";>{{ $ogg->name }}, </a>
                                             @endforeach </h4>
                                         <select name="tag_id[]" id="choices-multiple-remove-button"
                                             placeholder="Select new genres?" multiple>
@@ -83,7 +76,4 @@
             @endforeach
         </div>
     </div>
-
-    <script src="{{ asset('assets/back/js/auth.js') }}"></script>
-
 @endsection

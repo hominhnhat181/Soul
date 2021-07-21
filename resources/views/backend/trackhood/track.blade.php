@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Track Detail
+@endsection
 @section('content')
     <div class="main_contain">
         <div class="main_contain-hover">
@@ -24,10 +26,10 @@
                         <a class="admin_search-btn col-md" href="">Search</a>
                         <a class="admin_search-btn col-md" href="">Reset</a>
                         <a class="admin_search-btn col-md" href="">Excel</a>
-                        <a class="admin_search-btn col-md" href="{{Route('admin.track.create')}}">Create</a>
+                        <a class="admin_search-btn col-md" href="{{ Route('admin.track.create') }}">Create</a>
                     </div>
                 </div>
-            @include('flash::message')
+                @include('flash::message')
             </form>
             <div class="table_view">
                 <div class="table_hover">
@@ -53,7 +55,8 @@
                                     <td>{{ $tr->artists->name }}</td>
                                     <td>{{ $tr->albums->name }}</td>
                                     <td>{{ $tr->tags->name }}</td>
-                                    <td class="center"><img class="table_img" src="{{ asset('/front/images/'.$tr->image) }}" alt=""></td>
+                                    <td class="center"><img class="table_img"
+                                            src="{{ asset('/front/images/' . $tr->image) }}" alt=""></td>
                                     @if ($tr->status == 0)
                                         <td style="color: lightcoral">Not verify</td>
                                     @elseif($tr->status == 1)
@@ -62,19 +65,23 @@
                                         <td style="color: lightcoral">De-active</td>
                                     @endif
                                     <td>{{ $tr->created_at->toDateString() }}</td>
-                            <td>
-                                <div class="ct row">
-                                    <a href="{{Route('admin.track.edit', ['id' => $tr->id])}}" class="ct_btn col-md-7">Detail</a>
+                                    <td>
+                                        <div class="ct row">
+                                            <a href="{{ Route('admin.track.edit', ['id' => $tr->id]) }}"
+                                                class="ct_btn col-md-7">Detail</a>
 
-                                    @if($tr->status == 0 || $tr->status == 2)
-                                    <a href="" class="ct_btn col-md-7" data-toggle="modal" data-target="#ModalCenterS{{$tr->id}}">Active</a>
-                                    @else
-                                    <a href="" class="ct_btn col-md-7" data-toggle="modal" data-target="#ModalCenterS{{$tr->id}}">Deactive</a>
-                                    @endif
-                                    <a href="" class="ct_btn col-md-7" data-toggle="modal" data-target="#ModalCenterD{{$tr->id}}">Delete</a>
-                                </div>
-                            </td>
-                            </tr>
+                                            @if ($tr->status == 0 || $tr->status == 2)
+                                                <a href="" class="ct_btn col-md-7" data-toggle="modal"
+                                                    data-target="#ModalCenterS{{ $tr->id }}">Active</a>
+                                            @else
+                                                <a href="" class="ct_btn col-md-7" data-toggle="modal"
+                                                    data-target="#ModalCenterS{{ $tr->id }}">Deactive</a>
+                                            @endif
+                                            <a href="" class="ct_btn col-md-7" data-toggle="modal"
+                                                data-target="#ModalCenterD{{ $tr->id }}">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -95,71 +102,53 @@
         </div>
     </div>
     @foreach ($data as $tr)
-    <!-- Modal status-->
-<div class="modal fade" id="ModalCenterS{{$tr->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLongTitle">Change Status Album</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <!-- Modal status-->
+        <div class="modal fade" id="ModalCenterS{{ $tr->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLongTitle">Change Status Album</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure about that?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="{{ Route('admin.track.status', ['id' => $tr->id]) }}"><button type="button"
+                                class="btn btn-primary">Save changes</button></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          Are you sure about that? 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <a href="{{Route('admin.track.status',['id' => $tr->id])}}"><button type="button" class="btn btn-primary">Save changes</button></a> 
-        </div>
-      </div>  
-    </div>
-  </div>
-  <!-- Modal delete -->
-  <div class="modal fade" id="ModalCenterD{{$tr->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLongTitle">Delete Album</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Are you sure about that? 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <a href="{{Route('admin.track.destroy', ['id' => $tr->id])}}"><button type="button" class="btn btn-primary">Save changes</button></a>
-          </div>
-        </div>  
-      </div>
-    </div>
+        <!-- Modal delete -->
+        <form action="{{ Route('admin.track.destroy', ['id' => $tr->id]) }}" method="POST">
+            @csrf
+            {{ method_field('DELETE') }}
+            <div class="modal fade" id="ModalCenterD{{ $tr->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLongTitle">Delete Track</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure about that?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a href="{{ Route('admin.user.destroy', ['userId' => $tr->id]) }}"><button type="submit" type="button"
+                                    class="btn btn-primary">Save changes</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     @endforeach
-
-    <script>
-        $('.pagination li').on('click', function(event) {
-            event.preventDefault();
-            var $this = $(this),
-                $pagination = $this.parent(),
-                $pages = $pagination.children(),
-                $active = $pagination.find('.active');
-
-            if ($this.hasClass('prev')) {
-                if ($pages.index($active) > 1) {
-                    $active.removeClass('active').prev().addClass('active');
-                }
-            } else if ($this.hasClass('next')) {
-                if ($pages.index($active) < $pages.length - 2) {
-                    $active.removeClass('active').next().addClass('active');
-                }
-            } else {
-                $this.addClass('active').siblings().removeClass('active');
-            }
-            $active = $pagination.find('.active');
-            $('.prev')[$pages.index($active) == 1 ? 'addClass' : 'removeClass']('disabled');
-            $('.next')[$pages.index($active) == $pages.length - 2 ? 'addClass' : 'removeClass']('disabled');
-        });
-        $('.pagination li:eq(1)').trigger('click');
-    </script>
 @endsection

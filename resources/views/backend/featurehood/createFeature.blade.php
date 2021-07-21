@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Feature Detail
+@endsection
 @section('content')
     <div class="main_contain">
         <div class="main_contain-create">

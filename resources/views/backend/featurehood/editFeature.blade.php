@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Create New Feature
+@endsection
 @section('content')
 
     <div class="main_contain">
@@ -8,6 +10,7 @@
                 <form class="" id="sort_features" action="{{ Route('admin.feature.update', ['id' => $data->id]) }}"
                     method="Post">
                     @csrf
+                    {{ method_field('PUT') }}
                     <div class="form_create">
                         <div class="form_create-ctn">
                             <div class="ctn_title">

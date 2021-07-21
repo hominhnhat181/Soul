@@ -10,7 +10,8 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    
-
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -22,8 +23,11 @@
 
     {{-- css --}}
     <link href="{{asset('assets/back/css/material-dashboard.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
 
-    <title>Dashboard</title>
+    <title> @yield('title')</title>
+   
+
 </head>
 <body class="dark-edition">
     <div id="fb-root"></div>

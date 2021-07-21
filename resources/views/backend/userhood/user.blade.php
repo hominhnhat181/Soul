@@ -1,16 +1,18 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    User Detail
+@endsection
 @section('content')
     <div class="main_contain">
         <div class="main_contain-hover">
             <div class="main_contain-title">
                 <h2>User</h2>
             </div>
-            <form class="" id="sort_features" action="" method="GET">
+            <form class="" id="sort_user" action="" method="GET">
                 <div class="row mb-2">
                     <div class="admin_search col-md-12">
                         <i class="material-icons search">search</i>
-                        <input class="admin_search-input" type="text" placeholder="Search...">
+                        <input class="admin_search-input" value="{{ request('search') }}" name="search" type="text" placeholder="Search...">
                     </div>
                     <div class="admin_search col-md-4" id="alpha">
                         <i class="material-icons more">expand_more</i>
@@ -20,6 +22,10 @@
                         <i class="material-icons more">expand_more</i>
                         <input class="admin_search-chose" type="text" placeholder="Status">
                     </div>
+                    <?php
+                        $request = request()->all();
+                        $newRequest = http_build_query($request);
+                    ?>
                     <div class="admin_search col-md-4 row" id="omega">
                         <a class="admin_search-btn col-md" href="">Search</a>
                         <a class="admin_search-btn col-md" href="">Reset</a>
@@ -44,7 +50,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $at)
+                            @foreach ($customers as $at)
                                 <tr>
                                     <td>{{ $at->id }}</td>
                                     <td>{{ $at->name }}</td>
@@ -62,7 +68,7 @@
                                     <td>{{ $at->created_at->toDateString() }}</td>
                                     <td>
                                         <div class="ct row">
-                                            <a href="{{ Route('admin.user.edit', ['id' => $at->id]) }}"
+                                            <a href="{{ Route('admin.user.edit', ['userId' => $at->id]) }}"
                                                 class="ct_btn col-md-3">Detail</a>
                                             @if ($at->status == 0 || $at->status == 2)
                                                 <a href="" class="ct_btn col-md-3" data-toggle="modal"
@@ -112,59 +118,38 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="{{ Route('admin.user.status', ['id' => $at->id]) }}"><button type="button"
+                        <a href="{{ Route('admin.user.status', ['userId' => $at->id]) }}"><button type="button"
                                 class="btn btn-primary">Save changes</button></a>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Modal delete -->
-        <div class="modal fade" id="ModalCenterD{{ $at->id }}" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="exampleModalLongTitle">Delete Album</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure about that?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="{{ Route('admin.user.destroy', ['id' => $at->id]) }}"><button type="button"
-                                class="btn btn-primary">Save changes</button></a>
+            <!-- Modal delete -->
+        <form action="{{ Route('admin.user.destroy', ['userId' => $at->id]) }}" method="POST">
+            @csrf
+            {{ method_field('DELETE') }}
+            <div class="modal fade" id="ModalCenterD{{ $at->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLongTitle">Delete Album</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure about that?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a href="{{ Route('admin.user.destroy', ['userId' => $at->id]) }}"><button type="submit" type="button"
+                                    class="btn btn-primary">Save changes</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
     @endforeach
-
-    <script>
-        $('.pagination li').on('click', function(event) {
-            event.preventDefault();
-            var $this = $(this),
-                $pagination = $this.parent(),
-                $pages = $pagination.children(),
-                $active = $pagination.find('.active');
-
-            if ($this.hasClass('prev')) {
-                if ($pages.index($active) > 1) {
-                    $active.removeClass('active').prev().addClass('active');
-                }
-            } else if ($this.hasClass('next')) {
-                if ($pages.index($active) < $pages.length - 2) {
-                    $active.removeClass('active').next().addClass('active');
-                }
-            } else {
-                $this.addClass('active').siblings().removeClass('active');
-            }
-            $active = $pagination.find('.active');
-            $('.prev')[$pages.index($active) == 1 ? 'addClass' : 'removeClass']('disabled');
-            $('.next')[$pages.index($active) == $pages.length - 2 ? 'addClass' : 'removeClass']('disabled');
-        });
-        $('.pagination li:eq(1)').trigger('click');
-    </script>
 @endsection

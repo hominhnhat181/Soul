@@ -1,12 +1,8 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Create New Artist & Band
+@endsection
 @section('content')
-
-    <head>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
-    </head>
     <div class="main_contain">
         <div class="main_contain-create">
             <form class="" id="sort_features" action="{{ Route('admin.artist.store') }}" method="Post">

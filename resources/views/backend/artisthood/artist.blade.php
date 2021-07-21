@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Artist & Band Detail
+@endsection
 @section('content')
     <div class="main_contain">
         <div class="main_contain-hover">
@@ -116,52 +118,30 @@
             </div>
         </div>
         <!-- Modal delete -->
-        <div class="modal fade" id="ModalCenterD{{ $at->id }}" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="exampleModalLongTitle">Delete Album</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure about that?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="{{ Route('admin.artist.destroy', ['id' => $at->id]) }}"><button type="button"
-                                class="btn btn-primary">Save changes</button></a>
+        <form action="{{ Route('admin.artist.destroy', ['id' => $at->id]) }}" method="POST">
+            @csrf
+            {{ method_field('DELETE') }}
+            <div class="modal fade" id="ModalCenterD{{ $at->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLongTitle">Delete Artist</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure about that?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a href="{{ Route('admin.user.destroy', ['userId' => $at->id]) }}"><button type="submit" type="button"
+                                    class="btn btn-primary">Save changes</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     @endforeach
-
-    <script>
-        $('.pagination li').on('click', function(event) {
-            event.preventDefault();
-            var $this = $(this),
-                $pagination = $this.parent(),
-                $pages = $pagination.children(),
-                $active = $pagination.find('.active');
-
-            if ($this.hasClass('prev')) {
-                if ($pages.index($active) > 1) {
-                    $active.removeClass('active').prev().addClass('active');
-                }
-            } else if ($this.hasClass('next')) {
-                if ($pages.index($active) < $pages.length - 2) {
-                    $active.removeClass('active').next().addClass('active');
-                }
-            } else {
-                $this.addClass('active').siblings().removeClass('active');
-            }
-            $active = $pagination.find('.active');
-            $('.prev')[$pages.index($active) == 1 ? 'addClass' : 'removeClass']('disabled');
-            $('.next')[$pages.index($active) == $pages.length - 2 ? 'addClass' : 'removeClass']('disabled');
-        });
-        $('.pagination li:eq(1)').trigger('click');
-    </script>
 @endsection

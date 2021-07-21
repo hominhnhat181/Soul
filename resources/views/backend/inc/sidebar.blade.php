@@ -17,37 +17,37 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="{{route('admin.feature')}}">
+                <a class="nav-link" href="{{route('admin.feature.index')}}">
                     <i class="material-icons">star</i>
                     <p>Features</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="{{route('admin.album')}}">
+                <a class="nav-link" href="{{route('admin.album.index')}}">
                     <i class="material-icons">album</i>
                     <p>Albums</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="{{route('admin.genre')}}">
+                <a class="nav-link" href="{{route('admin.genre.index')}}">
                     <i class="material-icons">loyalty</i>
                     <p>Genres</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="{{route('admin.track')}}">
+                <a class="nav-link" href="{{route('admin.track.index')}}">
                     <i class="material-icons">audiotrack</i>
                     <p>Tracks</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="{{route('admin.artist')}}">
+                <a class="nav-link" href="{{route('admin.artist.index')}}">
                     <i class="material-icons">mic</i>
                     <p>Bands - Singles</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="{{route('admin.user')}}">
+                <a class="nav-link" href="{{route('admin.user.index')}}">
                     <i class="material-icons">person</i>
                     <p>Users</p>
                 </a>

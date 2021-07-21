@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Album Detail
+@endsection
 @section('content')
     <div class="main_contain">
         <div class="main_contain-hover">
@@ -118,30 +120,34 @@
             </div>
         </div>
         <!-- Modal delete -->
-        <div class="modal fade" id="ModalCenterD{{ $ab->id }}" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="exampleModalLongTitle">Delete Album</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure about that?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="{{ Route('admin.album.destroy', ['id' => $ab->id]) }}"><button type="button"
-                                class="btn btn-primary">Save changes</button></a>
+        <form action="{{ Route('admin.album.destroy', ['id' => $ab->id]) }}" method="POST">
+            @csrf
+            {{ method_field('DELETE') }}
+            <div class="modal fade" id="ModalCenterD{{ $ab->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLongTitle">Delete Album</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure about that?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a href="{{ Route('admin.user.destroy', ['userId' => $ab->id]) }}"><button type="submit" type="button"
+                                    class="btn btn-primary">Save changes</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     @endforeach
 
-    <script>
+    {{-- <script>
         $('.pagination li').on('click', function(event) {
             event.preventDefault();
             var $this = $(this),
@@ -165,5 +171,5 @@
             $('.next')[$pages.index($active) == $pages.length - 2 ? 'addClass' : 'removeClass']('disabled');
         });
         $('.pagination li:eq(1)').trigger('click');
-    </script>
+    </script> --}}
 @endsection

@@ -1,15 +1,10 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Create New Album
+@endsection
 @section('content')
 
-    <head>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
-        <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
-    </head>
     <div class="main_contain">
         <div class="main_contain-create">
             <form class="" id="sort_features" action="{{ Route('admin.album.store') }}" method="Post">

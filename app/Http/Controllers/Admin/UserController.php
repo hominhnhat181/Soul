@@ -24,148 +24,111 @@ class UserController
         $this->userService = $userService;
     }
 
-    public function show(){
+    public function index(Request $request)
+    {
         $data = $this->userService->show();
-        return view('backend.userhood.user', compact('data') );
+        $sort_search = null;
+        $customers = $this->getData($request, $sort_search, 10);
+        return view('backend.userhood.user', compact('data', 'sort_search', 'customers'));
     }
 
-    public function create(){
+
+    private function getData($request, $sort_search = null, $is_paginate = 0)
+    {
+        $customers = User::where('is_admin', '<>', 1)->orderBy('id');
+        // !empty (request->search)
+        if ($request->has('search')) {
+            // get request value
+            $sort_search = $request->search;
+            $customers = $customers->where(function ($user) use ($sort_search) {
+                $user
+                    ->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $sort_search . '%')
+                    ->orwhere('name', 'like', '%' . $sort_search . '%')
+                    ->orWhere('email', 'like', '%' . $sort_search . '%');
+            });
+        }
+        // if($request->joined_date){
+        //     $customers = $customers->whereDate('created_at', $request->joined_date);
+        // }
+        // if( $request->status ){
+        //     $customers = $customers->where('status', $request->status);
+        // }
+        if ($is_paginate) {
+            $customers = $customers->paginate($is_paginate);
+        } else {
+            $customers = $customers->get();
+        }
+        return $customers;
+    }
+
+
+
+    public function create()
+    {
         return view('backend.userhood.createUser');
     }
 
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $attributes = $request->all();
-        if(!($request->image)){
+        if (!($request->image)) {
             $attributes['image'] = 'origin.png';
         }
         $this->userService->store($attributes);
         flash("Create User success")->success();
-        return redirect(Route('admin.user'));
+        return redirect()->route('admin.user.index');
     }
 
 
-    public function edit($id){
-        $data = User::where('id',$id)->get();
-        return view('backend.userhood.editUser',compact('data'));
+    public function edit($id)
+    {
+        $data = User::where('id', $id)->get();
+        return view('backend.userhood.editUser', compact('data'));
     }
 
 
-    public function update ($id, Request $request){
-        $attributes = $request->except('_token','image');
+    public function update($id, Request $request)
+    {
+        $attributes = $request->except('_token', 'image', '_method');
+        if (!empty($request->image)) {
+            $attributes['image'] = $request->image;
+        }
         $this->userService->update($id, $attributes);
         flash("Update User success")->success();
-        return redirect(Route('admin.user'));
+        return redirect()->route('admin.user.index');
     }
 
-    public function destroy($id){
+
+    public function destroy($id)
+    {
         $this->userService->destroy($id);
+        flash("Delete User success")->success();
         return back();
     }
 
-    
-    public function changeStatus($id){
+
+    public function show($id)
+    {
+    }
+
+
+    public function changeStatus($id)
+    {
         $st = User::findOrFail($id);
-        if($st->status == "0" || $st->status == "2") {
+        if ($st->status == "0" || $st->status == "2") {
             $st->status = "1";
-        }else {
+        } else {
             $st->status = "2";
         }
         $st->save();
         flash("Change status success")->success();
-        return redirect(Route('admin.user'));
+        return redirect()->route('admin.user.index');
     }
 
 
-    // public function index(Request $request)
-    // {
-    //     $sort_search = null;
-    //     $customers = $this->getData($request,$sort_search, 10);
-    //     return view('backend.users.index', compact('customers','sort_search'));
-    // }
 
-    // private function getData($request,$sort_search = null, $is_paginate = 0){
-    //     $customers = User::where('is_admin','<>',1)->orderBy('id', 'desc');
-    //     if ($request->has('search')){
-    //         $sort_search = $request->search;
-    //         $customers = $customers->where(function($user) use ($sort_search){
-    //             $user
-    //             ->Where(\DB::raw("CONCAT('#',id)"), 'like', '%'.$sort_search.'%')
-    //             ->orwhere('name', 'like', '%'.$sort_search.'%')
-    //             ->orWhere('phone','like', '%'.$sort_search.'%')
-    //             ->orWhere('email', 'like', '%'.$sort_search.'%');
-    //         });
-    //     }
-    //     if($request->joined_date){
-    //         $customers = $customers->whereDate('created_at', $request->joined_date);
-    //     }
-    //     if( $request->status ){
-    //         $customers = $customers->where('status', $request->status);
-    //     }
-    //     if($is_paginate){
-    //         $customers = $customers->paginate($is_paginate);
-    //     }else{
-    //         $customers = $customers->get();
-    //     }
-    //     return $customers;
-    // }
 
-    // public function updateStatus(Request $request)
-    // {
-    //     $id = $request->id;
-    //     $customer = User::findOrFail($id);
-    //     if($request->type == "Active User"){
-    //         $customer->status = '1';
-    //     }else{
-    //         $customer->status = '2';
-    //     }
-    //     $customer->save();
-    //     return response()->json(['status'=>true], 200);
-    // }
-
-    // public function create()
-    // {
-    //     return view('backend.users.create');
-    // }
-
-    // public function store(UserRequest $request)
-    // {
-    //     $request->merge(['password' => Hash::make($request->password)]);
-    //     User::create($request->all());
-    //     flash("Update status success")->success();
-    //     return redirect()->route('users.index');
-    // }
-
-    // public function show($id)
-    // {
-    //     //
-    // }
-
-    // public function edit($id)
-    // {
-    //     $user = User::find($id);
-    //     return view('backend.users.detail')->with(compact('user'));
-    // }
-
-    // public function update(UserRequest $request, $id)
-    // {
-    //     $data = $request->only(['name', 'email', 'phone', 'city_id', 'district_id', 'ward_id', 'address']);
-    //     if (!empty($request->password)) {
-    //         $request->merge(['password' => Hash::make($request->password)]);
-    //         $data = $request->only(['name', 'email', 'phone', 'password', 'city_id', 'district_id', 'ward_id', 'address']);
-    //     }
-    //     $user = User::where('id', $id)->update($data);
-    //     flash(__('Update User SuccessFull'))->success();
-    //     return back();
-    // }
-
-    // public function destroy($id)
-    // {
-    //     $customers = User::findOrFail($id);
-    //     $customers->delete();
-    //     flash(__('Delete User SuccessFull'))->success();
-    //     return back();
-    // }
 
     // public function export(Request $request)
     // {

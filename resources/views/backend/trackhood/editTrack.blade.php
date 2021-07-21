@@ -1,18 +1,14 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Update Track
+@endsection
 @section('content')
-
-    <head>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-        <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
-    </head>
     <div class="main_contain">
         <div class="main_contain-create">
             @foreach ($data as $tr)
                 <form class="" id="sort_features" action="{{ Route('admin.track.update', ['id' => $tr->id]) }}" method="Post">
                     @csrf
+                    {{ method_field('PUT') }}
                     <div class="form_create">
                         <div class="form_create-ctn">
                             <div class="ctn_title">
@@ -68,16 +64,14 @@
                                             <div class="user-avatar">
                                                 <div id="profile-container ">
                                                     <img id="profileImage"
-                                                        src="{{ asset('/front/images/origin.png') }}" />
+                                                        src="{{ asset('/front/images/'.$tr->image) }}" />
                                                 </div>
                                                 <input id="imageUpload" type="file" name="image" placeholder="Photo"
                                                     capture>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>

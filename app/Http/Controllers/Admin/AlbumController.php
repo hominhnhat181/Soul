@@ -7,7 +7,8 @@ use App\Models\Feature;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Services\AlbumService;
-class AlbumController 
+
+class AlbumController
 {
     private $albumService;
     public function __construct(AlbumService $albumService)
@@ -15,21 +16,30 @@ class AlbumController
         $this->albumService = $albumService;
     }
 
-    public function show(){
+
+    public function show()
+    {
+    }
+
+
+    public function index()
+    {
         $rela = 'features';
         $data = $this->albumService->showWithRelation($rela);
         return view('backend.albumhood.album', compact('data'));
     }
 
 
-    public function create(){
+    public function create()
+    {
         $feature = Feature::get();
         $tag = Tag::get();
-        return view('backend.albumhood.createAlbum', compact('feature','tag'));
+        return view('backend.albumhood.createAlbum', compact('feature', 'tag'));
     }
 
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $attributes = $request->all();
         $album = new Album();
         $album->name = $attributes['name'];
@@ -42,49 +52,53 @@ class AlbumController
         // seed new album relation value 
         $album->tags()->sync($request->tag_id);
         flash("Create Album success")->success();
-        return redirect('admin/album');
+        return redirect()->Route('admin.album.index');
     }
 
 
-    public function edit($id){
-        $data = Album::with('features')->where('id',$id)->get();
-        $feature = Feature::where('id','!=',$data_feature=Album::findOrFail($id)->feature_id)->get();
+    public function edit($id)
+    {
+        $data = Album::with('features')->where('id', $id)->get();
+        $feature = Feature::where('id', '!=', $data_feature = Album::findOrFail($id)->feature_id)->get();
         $genre = Tag::get();
-        return view('backend.albumhood.editAlbum',compact('data','feature','genre'));
+        return view('backend.albumhood.editAlbum', compact('data', 'feature', 'genre'));
     }
 
 
-    public function update ($id, Request $request){
-        $attributes = $request->except('_token','originImage','tag_id','image');
+    public function update($id, Request $request)
+    {
+        $attributes = $request->except('_token', 'originImage', 'tag_id', 'image', '_method');
         $album = Album::findOrFail($id);
 
-        if(!empty($request->image )){
+        if (!empty($request->image)) {
             $attributes['image'] = $request->image;
         }
-        if(!empty($request->tag_id)){
+        if (!empty($request->tag_id)) {
             $album->tags()->sync($request->tag_id);
         }
         $this->albumService->update($id, $attributes);
         flash("Update Album success")->success();
-        return redirect(Route('admin.album'));
+        return redirect()->Route('admin.album.index');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $this->albumService->destroy($id);
+        flash("Delete Album success")->success();
         return back();
     }
 
-    
-    public function changeStatus($id){
+
+    public function changeStatus($id)
+    {
         $ab = Album::findOrFail($id);
-        if($ab->status == "0" || $ab->status == "2") {
+        if ($ab->status == "0" || $ab->status == "2") {
             $ab->status = "1";
-        }else {
+        } else {
             $ab->status = "2";
         }
         $ab->save();
         flash("Update status success")->success();
-        return redirect('admin/album');
-
+        return redirect()->Route('admin.album.index');
     }
 }

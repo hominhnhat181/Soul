@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
-
+@section('title')
+    Create New Genre
+@endsection
 @section('content')
     <div class="main_contain">
         <div class="main_contain-create">
