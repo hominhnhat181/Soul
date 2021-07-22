@@ -7,6 +7,7 @@ use App\Models\Feature;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Services\AlbumService;
+use Illuminate\Support\Facades\DB;
 
 class AlbumController
 {
@@ -17,16 +18,50 @@ class AlbumController
     }
 
 
-    public function show()
+    public function index(Request $request)
     {
+        $typing_search = null;
+        $album = $this->getData($request, $typing_search, 8);
+        return view('backend.albumhood.album', compact('album'));
     }
 
 
-    public function index()
+    private function getData($request, $typing_search, $is_paginate = 0)
     {
-        $rela = 'features';
-        $data = $this->albumService->showWithRelation($rela);
-        return view('backend.albumhood.album', compact('data'));
+        $album = Album::orderBy('id');
+        // !empty (request->search)
+        if ($request->has('search')) {
+            // get request value
+            $typing_search = $request->search;
+            $album = $album->where(function ($alb) use ($typing_search) {
+                $alb->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $typing_search . '%')
+                    ->orwhere('name', 'like', '%' . $typing_search . '%');
+            });
+        }
+        if ($request->status) {
+            // option can't get value = 0
+            if ($request->status == "3") {
+                $album = $album->where('status', "0");
+            } else {
+                $album = $album->where('status', $request->status);
+            }
+        }
+        if ($request->joined_date) {
+            $album = $album->whereDate('created_at', $request->joined_date);
+        }
+        if ($is_paginate) {
+            $album = $album->paginate($is_paginate);
+        } else {
+            $album = $album->get();
+        }
+        return $album;
+    }
+
+
+    
+
+    public function show()
+    {
     }
 
 

@@ -24,6 +24,7 @@
     {{-- css --}}
     <link href="{{asset('assets/back/css/material-dashboard.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <!-- Latest compiled and minified JavaScript -->
   

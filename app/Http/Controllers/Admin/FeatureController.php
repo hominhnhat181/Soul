@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 use App\Services\FeatureService;
-
+use DB;
 class FeatureController
 {
     private $featureService;
@@ -14,13 +14,45 @@ class FeatureController
         $this->featureService = $featureService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->featureService->show();
-        return view('backend.featurehood.feature', compact('data'));
+        $typing_search = null;
+        $feature = $this->getData($request, $typing_search, 8);
+        return view('backend.featurehood.feature', compact('feature'));
     }
 
-    
+    private function getData($request, $typing_search, $paginate = 0)
+    {
+        $feature = Feature::orderBy('id');
+        // !empty (request->search)
+        if ($request->has('search')) {
+            // get request value
+            $typing_search = $request->search;
+            $feature = $feature->where(function ($fea) use ($typing_search) {
+                $fea->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $typing_search . '%')
+                    ->orwhere('name', 'like', '%' . $typing_search . '%');
+            });
+        }
+        if ($request->status) {
+            // option can't get value = 0
+            if ($request->status == "3") {
+                $feature = $feature->where('status', "0");
+            } else {
+                $feature = $feature->where('status', $request->status);
+            }
+        }
+        if ($request->joined_date) {
+            $feature = $feature->whereDate('created_at', $request->joined_date);
+        }
+        if ($paginate) {
+            $feature = $feature->paginate($paginate);
+        } else {
+            $feature = $feature->get();
+        }
+        return $feature;
+    }
+
+
     public function show()
     {
     }

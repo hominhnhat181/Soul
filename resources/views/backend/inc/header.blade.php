@@ -65,8 +65,8 @@
                                         style=" margin-right: 60px; margin-top: -9px ;"
                                         aria-labelledby="navbarDropdownMenuLink2">
                                         <a class="dropdown-item" href="{{ URL('account') }}">Account</a>
-                                        <a class="dropdown-item" href="{{ URL('admin') }}">Control Page</a>
-                                        <a class="dropdown-item" href="{{ URL('logout') }}">Logout</a>
+                                        <a class="dropdown-item" href="{{ Route('home') }}">Home Pages</a>
+                                        <a class="dropdown-item" href="{{ Route('logout') }}">Logout</a>
                                     </div>
                                 @else
                                 <a class="nav-link" href="" id="navbarDropdownMenuLink2"

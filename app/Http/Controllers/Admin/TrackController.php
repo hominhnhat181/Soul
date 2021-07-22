@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Services\TrackService;
+use Illuminate\Support\Facades\DB;
 
 class TrackController
 {
@@ -17,11 +18,45 @@ class TrackController
         $this->trackService = $trackService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->trackService->show();
-        return view('backend.trackhood.track', compact('data'));
+        $typing_search = null;
+        $track = $this->getData($request, $typing_search, 8);
+        return view('backend.trackhood.track', compact('track'));
     }
+
+
+    private function getData($request, $typing_search, $is_paginate = 0)
+    {
+        $track = Track::orderBy('id');
+        // !empty (request->search)
+        if ($request->has('search')) {
+            // get request value
+            $typing_search = $request->search;
+            $track = $track->where(function ($user) use ($typing_search) {
+                $user->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $typing_search . '%')
+                    ->orwhere('name', 'like', '%' . $typing_search . '%');
+            });
+        }
+        if ($request->status) {
+            // option can't get value = 0
+            if ($request->status == "3") {
+                $track = $track->where('status', "0");
+            } else {
+                $track = $track->where('status', $request->status);
+            }
+        }
+        if ($request->joined_date) {
+            $track = $track->whereDate('created_at', $request->joined_date);
+        }
+        if ($is_paginate) {
+            $track = $track->paginate($is_paginate);
+        } else {
+            $track = $track->get();
+        }
+        return $track;
+    }
+
 
     public function show()
     {

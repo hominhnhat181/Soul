@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-// learn
 Route::prefix('admin')->name('admin.')->namespace('App\\Http\\Controllers\\Admin')->group(function () {
     Route::get('/', 'DashboardController@dashboard')->name('dashboard');
-    //user 
+    Route::get('/account', 'DashboardController@account')->name('account');
+
+    // user 
     Route::prefix('user')->name('user.')->group(function () {
         Route::resource('/', 'UserController', ['parameters' => ['' => 'userId']]);
         Route::get('/{userId}/userSt', 'UserController@changeStatus')->name('status');
@@ -48,3 +48,5 @@ Route::prefix('admin')->name('admin.')->namespace('App\\Http\\Controllers\\Admin
         Route::get('/{id}/trackSt', 'TrackController@changeStatus')->name('status');
     });
 });
+
+

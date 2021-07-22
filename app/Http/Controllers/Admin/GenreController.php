@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Services\GenreService;
-
+use DB;
 class GenreController
 {
     private $genreService;
@@ -14,10 +14,43 @@ class GenreController
         $this->genreService = $genreService;
     }
 
-    public function index()
+    public function index(Request $request)
+    {   
+        $typing_search = null;
+        $genre = $this->getData($request, $typing_search, 10);
+        return view('backend.genrehood.genre', compact('genre'));
+    }
+
+
+    private function getData($request, $typing_search, $is_paginate = 0)
     {
-        $data = $this->genreService->show();
-        return view('backend.genrehood.genre', compact('data'));
+        $genre = Tag::orderBy('id');
+        // !empty (request->search)
+        if ($request->has('search')) {
+            // get request value
+            $typing_search = $request->search;
+            $genre = $genre->where(function ($tag) use ($typing_search) {
+                $tag->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $typing_search . '%')
+                    ->orwhere('name', 'like', '%' . $typing_search . '%');
+            });
+        }
+        if ($request->status) {
+            // option can't get value = 0
+            if ($request->status == "3") {
+                $genre = $genre->where('status', "0");
+            } else {
+                $genre = $genre->where('status', $request->status);
+            }
+        }
+        if ($request->joined_date) {
+            $genre = $genre->whereDate('created_at', $request->joined_date);
+        }
+        if ($is_paginate) {
+            $genre = $genre->paginate($is_paginate);
+        } else {
+            $genre = $genre->get();
+        }
+        return $genre;
     }
 
 

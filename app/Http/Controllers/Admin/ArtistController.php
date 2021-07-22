@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Artist;
 use Illuminate\Http\Request;
 use App\Services\BandArtistService;
+use Illuminate\Support\Facades\DB;
 
 class ArtistController {
     private $bandArtistService;
@@ -13,10 +14,45 @@ class ArtistController {
         $this->bandArtistService = $bandArtistService;
     }
 
-    public function index(){
-        $data = $this->bandArtistService->show();
-        return view('backend.artisthood.artist', compact('data'));
+    public function index(Request $request){
+
+        $typing_search = null;
+        $artist = $this->getData($request, $typing_search, 10);
+        return view('backend.artisthood.artist', compact('artist'));
+    }   
+
+    private function getData($request, $typing_search, $is_paginate = 0)
+    {
+        $customers = Artist::orderBy('id');
+        // !empty (request->search)
+        if ($request->has('search')) {
+            // get request value
+            $typing_search = $request->search;
+            $customers = $customers->where(function ($user) use ($typing_search) {
+                $user->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $typing_search . '%')
+                    ->orwhere('name', 'like', '%' . $typing_search . '%');
+            });
+        }
+        if ($request->status) {
+            // option can't get value = 0
+            if ($request->status == "3") {
+                $customers = $customers->where('status', "0");
+            } else {
+                $customers = $customers->where('status', $request->status);
+            }
+        }
+        if ($request->joined_date) {
+            $customers = $customers->whereDate('created_at', $request->joined_date);
+        }
+        if ($is_paginate) {
+            $customers = $customers->paginate($is_paginate);
+        } else {
+            $customers = $customers->get();
+        }
+        return $customers;
     }
+
+
 
     public function create(){
         return view('backend.artisthood.createArtist');

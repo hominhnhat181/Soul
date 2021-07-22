@@ -26,23 +26,23 @@ class UserController
 
     public function index(Request $request)
     {
-        $sort_search = null;
-        $customers = $this->getData($request, $sort_search, 10);
-        return view('backend.userhood.user', compact('sort_search', 'customers'));
+        $typing_search = null;
+        $customers = $this->getData($request, $typing_search, 10);
+        return view('backend.userhood.user', compact('customers'));
     }
 
 
-    private function getData($request, $sort_search = null, $is_paginate = 0)
+    private function getData($request, $typing_search, $is_paginate = 0)
     {
         $customers = User::where('is_admin', '<>', 1)->orderBy('id');
         // !empty (request->search)
         if ($request->has('search')) {
             // get request value
-            $sort_search = $request->search;
-            $customers = $customers->where(function ($user) use ($sort_search) {
-                $user->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $sort_search . '%')
-                    ->orwhere('name', 'like', '%' . $sort_search . '%')
-                    ->orWhere('email', 'like', '%' . $sort_search . '%');
+            $typing_search = $request->search;
+            $customers = $customers->where(function ($user) use ($typing_search) {
+                $user->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $typing_search . '%')
+                    ->orwhere('name', 'like', '%' . $typing_search . '%')
+                    ->orWhere('email', 'like', '%' . $typing_search . '%');
             });
         }
         if ($request->status) {
@@ -61,7 +61,7 @@ class UserController
         } else {
             $customers = $customers->get();
         }
-        return $customers;  
+        return $customers;
     }
 
 

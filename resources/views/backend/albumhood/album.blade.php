@@ -8,23 +8,38 @@
             <div class="main_contain-title">
                 <h2>Albums</h2>
             </div>
-            <form class="" id="sort_features" action="" method="GET">
+            <form class="" id="sort_album" action="" method="GET">
                 <div class="row mb-2">
                     <div class="admin_search col-md-12">
                         <i class="material-icons search">search</i>
-                        <input class="admin_search-input" type="text" placeholder="Search...">
+                        <input class="admin_search-input" value="{{ request('search') }}" name="search" type="text"
+                            placeholder="Search...">
                     </div>
-                    <div class="admin_search col-md-4" id="alpha">
+                    <div class="admin_search col-md-4" id="alphax">
                         <i class="material-icons more">expand_more</i>
-                        <input class="admin_search-chose" type="text" placeholder="Date">
+                        <input id="datepicker" class="admin_search-chose" id="joined_date" name="joined_date"
+                            value="{{ request('joined_date') }}" autocomplete="off" placeholder="Date">
                     </div>
-                    <div class="admin_search col-md-4" id="alpha">
+                    <div class="admin_search col-md-4" id="alphay">
                         <i class="material-icons more">expand_more</i>
-                        <input class="admin_search-chose" type="text" placeholder="Status">
+                        <select class="admin_search-chose" id="select_user" name="status">
+                            <option value="">Status</option>
+                            {{-- if request('status') == value option then selected, else fail --}}
+                            <option value="1" {{ request('status') == "1" ? 'selected' : '' }}>Active</option>
+                            <option value="2" {{ request('status') == "2" ? 'selected' : '' }}>Deactive</option>
+                            <option value="3" {{ request('status') == "3" ? 'selected' : '' }}>Unverify</option>
+                        </select>
                     </div>
+                    {{-- *** --}}
+                    <?php
+                    $request = request()->all();
+                    $newRequest = http_build_query($request);
+                    ?>
+                    {{-- *** --}}
                     <div class="admin_search col-md-4 row" id="omega">
-                        <a class="admin_search-btn col-md" href="">Search</a>
-                        <a class="admin_search-btn col-md" href="">Reset</a>
+                        <button type="submit" class="admin_search-btn col-md" href="">Search</button>
+    
+                        <a class="admin_search-btn col-md" href="{{ route('admin.album.index') }}">Reset</a>
                         <a class="admin_search-btn col-md" href="">Excel</a>
                         <a class="admin_search-btn col-md" href="{{ Route('admin.album.create') }}">Create</a>
                     </div>
@@ -46,7 +61,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $ab)
+                            @if(!empty($album) && count($album));
+                            @foreach ($album as $ab)
                                 <tr>
                                     <td>{{ $ab->id }}</td>
                                     <td>{{ $ab->name }}</td>
@@ -78,6 +94,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -96,7 +113,7 @@
             </div>
         </div>
     </div>
-    @foreach ($data as $ab)
+    @foreach ($album as $ab)
         <!-- Modal status-->
         <div class="modal fade" id="ModalCenterS{{ $ab->id }}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -172,4 +189,8 @@
         });
         $('.pagination li:eq(1)').trigger('click');
     </script> --}}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="{{asset('assets/back/js/caledar.js')}}"></script>
 @endsection

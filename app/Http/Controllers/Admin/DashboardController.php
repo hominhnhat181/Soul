@@ -22,5 +22,10 @@ class DashboardController
         return view('backend.dashboard', compact('data'));
     }
 
-   
+
+    public function account(){
+        return  view('backend.account');
+
+    }
+
 }

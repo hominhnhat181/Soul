@@ -4,10 +4,6 @@ User Detail
 @endsection
 @section('content')
 
-<head>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-</head>
 <div class="main_contain">
     <div class="main_contain-hover">
         <div class="main_contain-title">
@@ -67,8 +63,9 @@ User Detail
                     </thead>
                     <tbody>
                         @if (!empty($customers) && count($customers))
-
+                        {{-- @php  $id = 0  @endphp --}}
                         @foreach ($customers as $at)
+                        {{-- @php  $id += 1 @endphp --}}
                         <tr>
                             <td>{{ $at->id }}</td>
                             <td>{{ $at->name }}</td>
@@ -174,28 +171,5 @@ User Detail
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-
-<script type="text/javascript">
-    // create table cale  
-    $('#datepicker').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true,
-        minYear: 1901,
-        maxYear: parseInt(moment().format('YYYY'),10)
-    });
-    // custom fomat cale
-    $('input[name="joined_date"]').on('apply.daterangepicker', function (ev, picker) {
-        $(this).val(picker.startDate.format('YYYY/MM/DD'));
-    });
-    // cancel chosing
-    $('input[name="joined_date"]').on('cancel.daterangepicker', function (ev, picker) {
-        $(this).val('');
-    });
-    // get value
-    $('input[name="joined_date"]').val('');
-    @if(request('joined_date'))
-    $('input[name="joined_date"]').value("{{request('joined_date')}}");
-    @endif
-</script>
+<script src="{{asset('assets/back/js/caledar.js')}}"></script>
 @endsection
