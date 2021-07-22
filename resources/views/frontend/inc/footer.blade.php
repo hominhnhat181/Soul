@@ -1,84 +1,77 @@
-<script>
-    const x = new Date().getFullYear();
-    let date = document.getElementById('date');
-    date.innerHTML = '&copy; ' + x + date.innerHTML;
-</script>
 
 
-{{-- <div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-        <a href="#" data-toggle="dropdown">
-            <i class="fa fa-cog fa-2x"> </i>
-        </a>
-        <ul class="dropdown-menu">
-            <li class="header-title"> Sidebar Filters</li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger active-color">
-                    <div class="badge-colors ml-auto mr-auto">
-                        <span class="badge filter badge-purple active" data-color="purple"></span>
-                        <span class="badge filter badge-azure" data-color="azure"></span>
-                        <span class="badge filter badge-green" data-color="green"></span>
-                        <span class="badge filter badge-warning" data-color="orange"></span>
-                        <span class="badge filter badge-danger" data-color="danger"></span>
+</div>
+{{-- Player --}}
+<div class="player">
+    <ul>
+        <li class="cover">
+            <div class="player_info" style="display: flex">
+                <div class="player_img">
+                    <img
+                        src="http://i1285.photobucket.com/albums/a583/TheGreatOzz1/Hosted-Images/Noisy-Freeks-Image_zps4kilrxml.png" />
+                </div>
+                <div class="player_track">
+                    <h1>The Noisy Freaks</h1>
+                    <h2>I Need You Back</h2>
+                </div>
+            </div>
+        </li>
+        <li class="info">
+            <div class="controls">
+                <span class="expend"><svg class="step-backward" viewBox="0 0 25 25" xml:space="preserve">
+                        <g>
+                            <polygon points="4.9,4.3 9,4.3 9,11.6 21.4,4.3 21.4,20.7 9,13.4 9,20.7 4.9,20.7" />
+                        </g>
+                    </svg></span>
+                <svg id="play" viewBox="0 0 25 25" xml:space="preserve">
+                    <defs>
+                        <rect x="-49.5" y="-132.9" width="446.4" height="366.4" />
+                    </defs>
+                    <g>
+                        <circle fill="none" cx="12.5" cy="12.5" r="10.8" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M8.7,6.9V18c0,0,0.2,1.4,1.8,0l8.1-4.8c0,0,1.2-1.1-1-2L9.8,6.5 C9.8,6.5,9.1,6,8.7,6.9z" />
+                    </g>
+                </svg>
+                <svg id="pause" viewBox="0 0 25 25" xml:space="preserve">
+                    <g>
+                        <rect x="6" y="4.6" width="3.8" height="15.7" />
+                        <rect x="14" y="4.6" width="3.9" height="15.7" />
+                    </g>
+                </svg>
+                <span class="expend"><svg class="step-foreward" viewBox="0 0 25 25" xml:space="preserve">
+                        <g>
+                            <polygon
+                                points="20.7,4.3 16.6,4.3 16.6,11.6 4.3,4.3 4.3,20.7 16.7,13.4 16.6,20.7 20.7,20.7" />
+                        </g>
+                    </svg>
+                </span>
+            </div>
+            <div class="button-items">
+                <audio id="music" preload="auto" loop="false">
+                    <source src="{{url('front/audio/lastnightonearth.mp3')}}" type="audio/mp3">
+                    {{-- <source src="https://dl.dropbox.com/s/75jpngrgnavyu7f/The-Noisy-Freaks.ogg?dl=1" type="audio/ogg"> --}}
+                </audio>
+                <div style="display: flex">
+                    <div class="time">
+                        <p id="timer">0:00</p>
                     </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="header-title">Images</li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{ asset('/assets/front/img/sidebar-1.jpg') }}" alt="">
-                </a>
-            </li>
-            <li class="active">
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{ asset('/assets/front/img/sidebar-2.jpg') }}" alt="">
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{ asset('/assets/front/img/sidebar-3.jpg') }}" alt="">
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{ asset('/assets/front/img/sidebar-4.jpg') }}" alt="">
-                </a>
-            </li>
-            <li class="button-container">
-                <a href="https://www.creative-tim.com/product/material-dashboard-dark" target="_blank"
-                    class="btn btn-primary btn-block">Free Download</a>
-            </li>
-            <!-- <li class="header-title">Want more components?</li>
-        <li class="button-container">
-            <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
-              Get the pro version
-            </a>
-        </li> -->
-            <li class="button-container">
-                <a href="https://demos.creative-tim.com/material-dashboard-dark/docs/2.0/getting-started/introduction.html"
-                    target="_blank" class="btn btn-default btn-block">
-                    View Documentation
-                </a>
-            </li>
-            <li class="button-container github-star">
-                <a class="github-button"
-                    href="https://github.com/creativetimofficial/material-dashboard/tree/dark-edition"
-                    data-icon="octicon-star" data-size="large" data-show-count="true"
-                    aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-            </li>
-            <li class="header-title">Thank you for 95 shares!</li>
-            <li class="button-container text-center">
-                <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot;
-                    45</button>
-                <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot;
-                    50</button>
-                <br>
-                <br>
-            </li>
-        </ul>
-    </div>
-</div> --}}
+                    <div id="slider">
+                        <div id="elapsed"></div>
+                    </div>
+                    <div class="time">
+                        <p>0:00</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+{{-- END FOOTER --}}
+
+
 <!--   Core JS Files   -->
 <link href="{{ asset('assets/front/css/material-dashboard.css') }}" rel="stylesheet" />
 
@@ -210,24 +203,20 @@
                         $sidebar_img_container.fadeIn('fast');
                         $sidebar.attr('data-image', '#');
                     }
-
                     if ($full_page_background.length != 0) {
                         $full_page_background.fadeIn('fast');
                         $full_page.attr('data-image', '#');
                     }
-
                     background_image = true;
                 } else {
                     if ($sidebar_img_container.length != 0) {
                         $sidebar.removeAttr('data-image');
                         $sidebar_img_container.fadeOut('fast');
                     }
-
                     if ($full_page_background.length != 0) {
                         $full_page.removeAttr('data-image', '#');
                         $full_page_background.fadeOut('fast');
                     }
-
                     background_image = false;
                 }
             });

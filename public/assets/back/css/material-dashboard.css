@@ -24621,6 +24621,18 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     position: relative;
     font-weight: 500;
 }
+
+#alphax{
+    padding-right: 0;
+}
+#alphax i{
+    right: 10px;
+}
+
+#alphay{
+    padding-left: 10px;
+}
+
 .admin_search .search{
     position: absolute;
     z-index: 10;
@@ -24647,8 +24659,10 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     background-color: rgb(228, 228, 228);
     cursor: pointer;
     font-weight: 500;
+    color: rgb(119, 119, 119);
 }
 .admin_search .admin_search-chose{
+    color: rgb(119, 119, 119);
     font-size: 0.975rem;
     width: 100%;
     padding-left: 20px;
@@ -24660,9 +24674,15 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     font-weight: 500;
 }
 
+#sort_user{
+    margin-bottom: 0;
+}
+#sort_user .row{
+    margin-bottom: 0 !important;
+}
 
 #omega{
-    padding-right: unset;
+    padding: unset;
 }
 
 .admin_search .admin_search-btn{
@@ -24670,7 +24690,13 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     border: unset;
     outline: unset;
 }
-.admin_search a{
+
+.admin_search select{
+    color: rgb(119, 119, 119);
+}
+
+
+.admin_search a, .admin_search button {
     background-color: rgb(228, 228, 228);
     font-size: 0.975rem;
     font-weight: 500;
@@ -24681,9 +24707,10 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     border-radius: 5px;
     line-height: 45px;
     text-align: center;
+    height: 45px;
 
 }
-.admin_search a:hover{
+.admin_search a:hover, .admin_search button:hover{
     background-color: #3c4858;
     cursor: pointer;
     color: white;
@@ -24776,16 +24803,7 @@ a {
     border-radius: 50%;
 }
   
-  @font-face {
-    font-family: 'Edmondsans';
-    src: url('http://designitcodeit.com/live/huP64P3jnA76/fonts/edmondsans-bold-webfont.eot');
-    src: url('http://designitcodeit.com/live/huP64P3jnA76/fonts/edmondsans-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('http://designitcodeit.com/live/huP64P3jnA76/fonts/edmondsans-bold-webfont.woff') format('woff'),
-         url('http://designitcodeit.com/live/huP64P3jnA76/fonts/edmondsans-bold-webfont.ttf') format('truetype'),
-         url('http://designitcodeit.com/live/huP64P3jnA76/fonts/edmondsans-bold-webfont.svg#EdmondsansBoldRegular') format('svg');
-    font-weight: bold;
-    font-style: normal;
-  }
+
   
   .pagination li {
     border-top-color:  #1a2035;
@@ -24971,4 +24989,19 @@ a {
 
   #genre{
       margin-top: 25.5px;
+  }
+
+  .gj-icon{
+      display: none;
+      position: unset !important;
+  }
+  #datepicker::placeholder{
+    color: rgb(119, 119, 119);
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500 !important;
+  }
+
+
+  .daterangepicker {
+    width: 414px;
   }

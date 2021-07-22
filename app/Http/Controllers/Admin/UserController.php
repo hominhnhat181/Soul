@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\UserService;
-
+use DB;
 // use App\Models\User;
 // use Excel;
 // use App\Exports\UserExport;
@@ -26,10 +26,9 @@ class UserController
 
     public function index(Request $request)
     {
-        $data = $this->userService->show();
         $sort_search = null;
         $customers = $this->getData($request, $sort_search, 10);
-        return view('backend.userhood.user', compact('data', 'sort_search', 'customers'));
+        return view('backend.userhood.user', compact('sort_search', 'customers'));
     }
 
 
@@ -41,24 +40,28 @@ class UserController
             // get request value
             $sort_search = $request->search;
             $customers = $customers->where(function ($user) use ($sort_search) {
-                $user
-                    ->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $sort_search . '%')
+                $user->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $sort_search . '%')
                     ->orwhere('name', 'like', '%' . $sort_search . '%')
                     ->orWhere('email', 'like', '%' . $sort_search . '%');
             });
         }
-        // if($request->joined_date){
-        //     $customers = $customers->whereDate('created_at', $request->joined_date);
-        // }
-        // if( $request->status ){
-        //     $customers = $customers->where('status', $request->status);
-        // }
+        if ($request->status) {
+            // option can't get value = 0
+            if ($request->status == "3") {
+                $customers = $customers->where('status', "0");
+            } else {
+                $customers = $customers->where('status', $request->status);
+            }
+        }
+        if ($request->joined_date) {
+            $customers = $customers->whereDate('created_at', $request->joined_date);
+        }
         if ($is_paginate) {
             $customers = $customers->paginate($is_paginate);
         } else {
             $customers = $customers->get();
         }
-        return $customers;
+        return $customers;  
     }
 
 
