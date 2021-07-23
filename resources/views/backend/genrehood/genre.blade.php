@@ -8,7 +8,7 @@ Genre Detail
         <div class="main_contain-title">
             <h2>Features</h2>
         </div>
-        <form class="" id="sort_genre" action="" method="GET">
+        <form class="" id="sort_user" action="" method="GET">
             <div class="row mb-2">
                 <div class="admin_search col-md-12">
                     <i class="material-icons search">search</i>
@@ -33,7 +33,7 @@ Genre Detail
                 {{-- *** --}}
                 <?php
                     $request = request()->all();
-                    $newRequest = http_build_query($request);
+                    $newRequest = http_build_query($request)
                     ?>
                 {{-- *** --}}
                 <div class="admin_search col-md-4 row" id="omega">
@@ -52,7 +52,7 @@ Genre Detail
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Feature Name</th>
+                            <th>Genre</th>
                             <th>Status</th>
                             <th>Created at</th>
                             <th style="text-align: center">Control</th>

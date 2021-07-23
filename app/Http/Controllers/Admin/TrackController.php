@@ -28,26 +28,30 @@ class TrackController
 
     private function getData($request, $typing_search, $is_paginate = 0)
     {
-        $track = Track::orderBy('id');
-        // !empty (request->search)
-        if ($request->has('search')) {
-            // get request value
+        $track = Track::join('artists','tracks.artist_id','=','artists.id')
+                        ->join('tags','tracks.tag_id','=','tags.id')
+                        ->join('albums','tracks.album_id','=','albums.id')
+                        ->select('tracks.*')->orderBy('tracks.id');
+        if ($request->has('search')) {  
             $typing_search = $request->search;
             $track = $track->where(function ($user) use ($typing_search) {
-                $user->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $typing_search . '%')
-                    ->orwhere('name', 'like', '%' . $typing_search . '%');
+                $user->Where(DB::raw("CONCAT('#',tracks.id)"), 'like', '%' . $typing_search . '%')
+                    ->orwhere('tracks.name', 'like', '%' . $typing_search . '%')
+                    ->orwhere('artists.name', 'like', '%' . $typing_search . '%')
+                    ->orwhere('tags.name', 'like', '%' . $typing_search . '%')
+                    ->orwhere('albums.name', 'like', '%' . $typing_search . '%');
             });
         }
         if ($request->status) {
             // option can't get value = 0
             if ($request->status == "3") {
-                $track = $track->where('status', "0");
+                $track = $track->where('tracks.status', "0");
             } else {
-                $track = $track->where('status', $request->status);
+                $track = $track->where('tracks.status', $request->status);
             }
         }
         if ($request->joined_date) {
-            $track = $track->whereDate('created_at', $request->joined_date);
+            $track = $track->whereDate('tracks.created_at', $request->joined_date);
         }
         if ($is_paginate) {
             $track = $track->paginate($is_paginate);

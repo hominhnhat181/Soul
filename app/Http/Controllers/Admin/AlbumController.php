@@ -28,26 +28,27 @@ class AlbumController
 
     private function getData($request, $typing_search, $is_paginate = 0)
     {
-        $album = Album::orderBy('id');
+        $album = Album::join('features','albums.feature_id','=','features.id')->select('albums.*')->orderBy('albums.id');
         // !empty (request->search)
         if ($request->has('search')) {
             // get request value
             $typing_search = $request->search;
             $album = $album->where(function ($alb) use ($typing_search) {
-                $alb->Where(DB::raw("CONCAT('#',id)"), 'like', '%' . $typing_search . '%')
-                    ->orwhere('name', 'like', '%' . $typing_search . '%');
+                $alb->Where(DB::raw("CONCAT('#',albums.id)"), 'like', '%' . $typing_search . '%')
+                    ->orwhere('features.name', 'like', '%' . $typing_search . '%')
+                    ->orwhere('albums.name', 'like', '%' . $typing_search . '%');
             });
         }
         if ($request->status) {
             // option can't get value = 0
             if ($request->status == "3") {
-                $album = $album->where('status', "0");
+                $album = $album->where('albums.status', "0");
             } else {
-                $album = $album->where('status', $request->status);
+                $album = $album->where('albums.status', $request->status);
             }
         }
         if ($request->joined_date) {
-            $album = $album->whereDate('created_at', $request->joined_date);
+            $album = $album->whereDate('albums.created_at', $request->joined_date);
         }
         if ($is_paginate) {
             $album = $album->paginate($is_paginate);

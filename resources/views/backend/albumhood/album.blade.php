@@ -8,12 +8,12 @@
             <div class="main_contain-title">
                 <h2>Albums</h2>
             </div>
-            <form class="" id="sort_album" action="" method="GET">
+            <form class="" id="sort_user" action="" method="GET">
                 <div class="row mb-2">
                     <div class="admin_search col-md-12">
                         <i class="material-icons search">search</i>
                         <input class="admin_search-input" value="{{ request('search') }}" name="search" type="text"
-                            placeholder="Search...">
+                            placeholder="Search... typing album or feature">
                     </div>
                     <div class="admin_search col-md-4" id="alphax">
                         <i class="material-icons more">expand_more</i>
@@ -61,7 +61,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(!empty($album) && count($album));
+                            @if(!empty($album) && count($album))
                             @foreach ($album as $ab)
                                 <tr>
                                     <td>{{ $ab->id }}</td>

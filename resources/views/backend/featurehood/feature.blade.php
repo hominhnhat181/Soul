@@ -33,7 +33,7 @@ Update Feature
                 {{-- *** --}}
                 <?php
                     $request = request()->all();
-                    $newRequest = http_build_query($request);
+                    $newRequest = http_build_query($request)
                     ?>
                 {{-- *** --}}
                 <div class="admin_search col-md-4 row" id="omega">

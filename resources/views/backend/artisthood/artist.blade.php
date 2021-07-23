@@ -8,7 +8,7 @@
             <div class="main_contain-title">
                 <h2>Artists</h2>
             </div>
-            <form class="" id="sort_artist" action="" method="GET">
+            <form class="" id="sort_user" action="" method="GET">
                 <div class="row mb-2">
                     <div class="admin_search col-md-12">
                         <i class="material-icons search">search</i>
