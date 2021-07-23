@@ -1042,6 +1042,11 @@ pre code {
     margin-left: 0;
 }
 
+.gutters_account{
+    margin: 57px 0 70px 100px !important;
+
+}
+
 .no-gutters > .col,
 .no-gutters > [class*="col-"] {
     padding-right: 0;
@@ -9295,6 +9300,9 @@ button.bg-dark:focus {
 
 .text-right {
     text-align: right !important;
+    position: absolute;
+    right: 13px;
+    bottom: -108px;
 }
 
 .text-center {
@@ -21959,6 +21967,7 @@ Copyright (c) 2015 Daniel Eden
 
 .dark-edition .form-group label {
     color: #a9afbbd1;
+    font: 600;
 }
 
 .dark-edition [class^="bmd-label"],
@@ -24966,7 +24975,7 @@ a {
   }
 
   .account-settings{
-    margin-left: 30px;
+    margin-left: 9px;
 
   }
 

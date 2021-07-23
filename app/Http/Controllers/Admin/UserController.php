@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use DB;
+use Illuminate\Support\Facades\Hash;
+
 // use App\Models\User;
 // use Excel;
 // use App\Exports\UserExport;
@@ -65,7 +67,6 @@ class UserController
     }
 
 
-
     public function create()
     {
         return view('backend.userhood.createUser');
@@ -78,6 +79,7 @@ class UserController
         if (!($request->image)) {
             $attributes['image'] = 'origin.png';
         }
+        $attributes['password'] = Hash::make($request->password);
         $this->userService->store($attributes);
         flash("Create User success")->success();
         return redirect()->route('admin.user.index');
@@ -96,6 +98,9 @@ class UserController
         $attributes = $request->except('_token', 'image', '_method');
         if (!empty($request->image)) {
             $attributes['image'] = $request->image;
+        }
+        if (!empty($request->password)) {
+            $attributes['password'] = Hash::make($request->password);
         }
         $this->userService->update($id, $attributes);
         flash("Update User success")->success();
@@ -130,8 +135,26 @@ class UserController
     }
 
 
+    // ADMIN -----------------------------------------------------------------------------------
 
+    public function admin($id){
+        $admins = User::where('id',$id)->where('is_admin',1)->get();
+        return view('backend.account',compact('admins'));
+    }
 
+    public function adminUpdate($id, Request $request){
+        $attributes = $request->only('name','email');
+        if (!empty($request->image)) {
+            $attributes['image'] = $request->image;
+        }
+        if (!empty($request->password)) {
+            $attributes['password'] = Hash::make($request->password);
+        }
+        $this->userService->update($id, $attributes);
+        flash("Update Admin success")->success();
+        return redirect()->route('admin.dashboard');
+
+    }
 
     // public function export(Request $request)
     // {

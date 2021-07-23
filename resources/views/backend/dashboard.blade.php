@@ -6,6 +6,7 @@
             <div class="main_contain-title">
                 <h2>Over View</h2>
             </div>
+            @include('flash::message')
             <div class="main_contain-object row">
                 <div class="object col-sm">
                     <div class="object_list">

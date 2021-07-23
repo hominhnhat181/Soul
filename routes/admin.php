@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->namespace('App\\Http\\Controllers\\Admin')->group(function () {
     Route::get('/', 'DashboardController@dashboard')->name('dashboard');
-    Route::get('/account', 'DashboardController@account')->name('account');
-
+    Route::get('/{id}/profile', 'UserController@admin')->name('profile');
+    Route::post('/{id}/update', 'UserController@adminUpdate')->name('profile.update');
     // user 
     Route::prefix('user')->name('user.')->group(function () {
         Route::resource('/', 'UserController', ['parameters' => ['' => 'userId']]);

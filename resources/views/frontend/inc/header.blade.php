@@ -59,18 +59,20 @@
                                 </a>
                             @else
                                 @if (Auth::user()->is_admin == 1)
-                                    <a class="nav-link" href="" id="navbarDropdownMenuLink2"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('/assets/front/img/faces/marc.jpg')}}"  ></a>
+                                <a class="nav-link" href="" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><img
+                                    src="{{ asset('/front/images/'.Auth::user()->image)}}"></a>
                                     <div class="dropdown-menu dropdown-menu-right"
                                         style=" margin-right: 60px; margin-top: -13px ;"
                                         aria-labelledby="navbarDropdownMenuLink2">
-                                        <a class="dropdown-item" href="{{ URL('account') }}">Account</a>
+                                        <a class="dropdown-item" href="{{ Route('admin.profile',['id'=>Auth::user()->id]) }}">Account</a>
                                         <a class="dropdown-item" href="{{ Route('admin.dashboard') }}">Control Page</a>
                                         <a class="dropdown-item" href="{{ ROute('logout') }}">Logout</a>
                                     </div>
                                 @else
-                                <a class="nav-link" href="" id="navbarDropdownMenuLink2"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img  src="{{ asset('/assets/front/img/faces/marc.jpg')}}"  ></a>
+                                <a class="nav-link" href="" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><img
+                                    src="{{ asset('/front/images/'.Auth::user()->image)}}"></a>
                                     <div class="dropdown-menu dropdown-menu-right"
                                         style=" margin-right: 60px; margin-top: -13px ;"
                                         aria-labelledby="navbarDropdownMenuLink2">

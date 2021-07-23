@@ -16,16 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            UserTableSeeder::class,
-            FeatureSeeder::class,
-            ArtistTableSeeder::class,
-            AlbumTableSeeder::class,
-            TagTableSeeder::class,
-            TrackTableSeeder::class,
-            AlbumTagSeeder::class,
-            ArtistAlbumSeeder::class,
-        ]);
+        // $this->call([
+        //     UserTableSeeder::class,
+        //     FeatureSeeder::class,
+        //     ArtistTableSeeder::class,
+        //     AlbumTableSeeder::class,
+        //     TagTableSeeder::class,
+        //     TrackTableSeeder::class,
+        //     AlbumTagSeeder::class,
+        //     ArtistAlbumSeeder::class,
+        // ]);
         User::create([
             'name' => "Nhat",
             'email' => "nhat@ho",
