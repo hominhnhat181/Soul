@@ -17,7 +17,7 @@ class ArtistController {
     public function index(Request $request){
 
         $typing_search = null;
-        $artist = $this->getData($request, $typing_search, 10);
+        $artist = $this->getData($request, $typing_search, 8);
         return view('backend.artisthood.artist', compact('artist'));
     }   
 

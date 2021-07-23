@@ -12,7 +12,6 @@ class HomeController extends Controller
 
     public function index(){
         $feature = Feature::get();
-        
        return view('frontend.home.index', compact('feature'));
 
     }

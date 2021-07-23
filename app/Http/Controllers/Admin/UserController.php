@@ -5,18 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\UserService;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
-// use App\Models\User;
-// use Excel;
-// use App\Exports\UserExport;
-// use Auth;
-// // use App\Http\Requests\UserRequest;
-// use App\Models\Province;
-// use App\Models\District;
-// use App\Models\Ward;
-// use Illuminate\Support\Facades\Hash;
 
 class UserController
 {
@@ -29,7 +19,7 @@ class UserController
     public function index(Request $request)
     {
         $typing_search = null;
-        $customers = $this->getData($request, $typing_search, 10);
+        $customers = $this->getData($request, $typing_search, 8);
         return view('backend.userhood.user', compact('customers'));
     }
 

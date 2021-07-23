@@ -98,23 +98,11 @@ User Detail
                         </tr>
                         @endforeach
                         @endif
-
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="pagination">
-            <ul>
-                <li class="prev disabled"><a href="#">&lt;</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">6</a></li>
-                <li class="next"><a href="#">&gt;</a></li>
-            </ul>
-        </div>
+        {{ $customers->links('vendor.pagination.custom-pagination') }}
     </div>
 </div>
 @foreach ($customers as $at)

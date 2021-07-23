@@ -2,14 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Album;
-use App\Models\Artist;
-use App\Models\Feature;
-use App\Models\Tag;
-use App\Models\Track;
-use App\Models\User;
-use Illuminate\Http\Request;
-
+use App\Models\{Album,Artist,Feature,Tag,Track,User};
 class DashboardController
 {
     public function dashboard(){

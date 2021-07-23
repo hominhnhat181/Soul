@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 use App\Services\FeatureService;
-use DB;
+use Illuminate\Support\Facades\DB;
 class FeatureController
 {
     private $featureService;

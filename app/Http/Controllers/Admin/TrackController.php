@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Album;
-use App\Models\Artist;
-use App\Models\Tag;
-use App\Models\Track;
+use App\Models\{Album,Artist,Tag,Track};
 use Illuminate\Http\Request;
 use App\Services\TrackService;
 use Illuminate\Support\Facades\DB;
-
 class TrackController
 {
     private $trackService;

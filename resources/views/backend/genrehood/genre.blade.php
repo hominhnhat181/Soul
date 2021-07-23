@@ -94,22 +94,10 @@ Genre Detail
                 </table>
             </div>
         </div>
-        <div class="pagination">
-            <ul>
-                <li class="prev disabled"><a href="#">&lt;</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">6</a></li>
-                <li class="next"><a href="#">&gt;</a></li>
-            </ul>
-        </div>
+        {{ $genre->links('vendor.pagination.custom-pagination') }}
     </div>
 </div>
 @foreach ($genre as $ft)
-
 <!-- Modal status-->
 <div class="modal fade" id="ModalCenterS{{ $ft->id }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

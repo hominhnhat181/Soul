@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Services\GenreService;
-use DB;
+use Illuminate\Support\Facades\DB;
 class GenreController
 {
     private $genreService;
@@ -17,7 +17,7 @@ class GenreController
     public function index(Request $request)
     {   
         $typing_search = null;
-        $genre = $this->getData($request, $typing_search, 10);
+        $genre = $this->getData($request, $typing_search, 8);
         return view('backend.genrehood.genre', compact('genre'));
     }
 
