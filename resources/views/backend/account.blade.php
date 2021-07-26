@@ -52,7 +52,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="website">New Password</label>
-                                <input type="password" name="password" class="form-control" id="website" placeholder="">
+                                <input autocomplete="off" type="password" name="password" class="form-control" id="website" placeholder="">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">

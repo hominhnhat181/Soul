@@ -9,9 +9,9 @@
                 <a href="">{{ $ft->name }}</a>
             </div>
             <div class="row">
-                @php  $counter = 1 @endphp
+                @php $counter = 1 @endphp
                 @foreach ($ft->albums as $ab)
-                @if ($ab->feature_id == $ft->id)
+                @if ($ab->feature_id == $ft->id && $ab->status == 1)
                 <div class="col-sm">
                     <div class="card card-stats">
                         <a class="link_album" href="{{Route('playlist',['id'=>$ab->id])}}"><span></span></a>
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                @php  $counter += 1 @endphp
+                @php $counter += 1 @endphp
                 @if ($counter > 5)
                 @break;
                 @endif

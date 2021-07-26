@@ -12,19 +12,19 @@
                     <div class="object_list">
                         <a href="{{Route('admin.user.index')}}">Total User</a>
                     </div>
-                    <span>{{$data['user']}}</span>
+                    <span>{{count($data['user'])}}</span>
                 </div>
                 <div class="object col-sm">
                     <div class="object_list">
                         <a href="{{Route('admin.feature.index')}}">Total Feature</a>
                     </div>
-                    <span>{{$data['feature']}}</span>
+                    <span>{{count($data['feature'])}}</span>
                 </div>
                 <div class="object col-sm">
                     <div class="object_list">
                         <a href="{{Route('admin.album.index')}}">Total Album</a>
                     </div>
-                    <span>{{$data['album']}}</span>
+                    <span>{{count($data['album'])}}</span>
                 </div>
             </div>
             <div class="main_contain-object row">
@@ -32,19 +32,19 @@
                     <div class="object_list">
                         <a href="{{Route('admin.genre.index')}}">Total Genres</a>
                     </div>
-                    <span>{{$data['genre']}}</span>
+                    <span>{{count($data['genre'])}}</span>
                 </div>
                 <div class="object col-sm">
                     <div class="object_list">
                         <a href="{{Route('admin.track.index')}}">Total Track</a>
                     </div>
-                    <span>{{$data['track']}}</span>
+                    <span>{{count($data['track'])}}</span>
                 </div>
                 <div class="object col-sm">
                     <div class="object_list">
                         <a href="{{Route('admin.artist.index')}}">Total Single & Band</a>
                     </div>
-                    <span>{{$data['artist']}}</span>
+                    <span>{{count($data['artist'])}}</span>
                 </div>
             </div>
         </div>

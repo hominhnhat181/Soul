@@ -27,7 +27,7 @@ class TrackController
         $track = Track::join('artists','tracks.artist_id','=','artists.id')
                         ->join('tags','tracks.tag_id','=','tags.id')
                         ->join('albums','tracks.album_id','=','albums.id')
-                        ->select('tracks.*')->orderBy('tracks.id');
+                        ->select('tracks.*')->orderBy('tracks.id', 'desc');
         if ($request->has('search')) {  
             $typing_search = $request->search;
             $track = $track->where(function ($user) use ($typing_search) {
@@ -110,14 +110,7 @@ class TrackController
 
     public function changeStatus($id)
     {
-        $tr = Track::findOrFail($id);
-        if ($tr->status == "0" || $tr->status == "2") {
-            $tr->status = "1";
-        } else {
-            $tr->status = "2";
-        }
-        $tr->save();
-        flash("Update status success")->success();
+        $this->trackService->changeStatus($id);
         return redirect()->Route('admin.track.index');
     }
 }

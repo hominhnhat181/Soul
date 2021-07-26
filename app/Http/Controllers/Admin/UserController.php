@@ -26,7 +26,7 @@ class UserController
 
     private function getData($request, $typing_search, $is_paginate = 0)
     {
-        $customers = User::where('is_admin', '<>', 1)->orderBy('id');
+        $customers = User::where('is_admin', '<>', 1)->orderBy('id', 'desc');
         // !empty (request->search)
         if ($request->has('search')) {
             // get request value
@@ -94,6 +94,7 @@ class UserController
         }
         $this->userService->update($id, $attributes);
         flash("Update User success")->success();
+
         return redirect()->route('admin.user.index');
     }
 
@@ -105,35 +106,28 @@ class UserController
         return back();
     }
 
-
     public function show($id)
     {
     }
 
-
     public function changeStatus($id)
     {
-        $st = User::findOrFail($id);
-        if ($st->status == "0" || $st->status == "2") {
-            $st->status = "1";
-        } else {
-            $st->status = "2";
-        }
-        $st->save();
-        flash("Change status success")->success();
+        $this->userService->changeStatus($id);
         return redirect()->route('admin.user.index');
     }
 
 
     // ADMIN -----------------------------------------------------------------------------------
 
-    public function admin($id){
-        $admins = User::where('id',$id)->where('is_admin',1)->get();
-        return view('backend.account',compact('admins'));
+    public function admin($id)
+    {
+        $admins = User::where('id', $id)->where('is_admin', 1)->get();
+        return view('backend.account', compact('admins'));
     }
 
-    public function adminUpdate($id, Request $request){
-        $attributes = $request->only('name','email');
+    public function adminUpdate($id, Request $request)
+    {
+        $attributes = $request->only('name', 'email');
         if (!empty($request->image)) {
             $attributes['image'] = $request->image;
         }
@@ -143,7 +137,6 @@ class UserController
         $this->userService->update($id, $attributes);
         flash("Update Admin success")->success();
         return redirect()->route('admin.dashboard');
-
     }
 
     // public function export(Request $request)

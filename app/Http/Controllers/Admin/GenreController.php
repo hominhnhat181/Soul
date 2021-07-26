@@ -24,7 +24,7 @@ class GenreController
 
     private function getData($request, $typing_search, $is_paginate = 0)
     {
-        $genre = Tag::orderBy('id');
+        $genre = Tag::orderBy('id', 'desc');
         // !empty (request->search)
         if ($request->has('search')) {
             // get request value
@@ -90,19 +90,15 @@ class GenreController
         return back();
     }
 
+
     public function show()
     {
     }
+
+
     public function changeStatus($id)
     {
-        $st = Tag::findOrFail($id);
-        if ($st->status == "0" || $st->status == "2") {
-            $st->status = "1";
-        } else {
-            $st->status = "2";
-        }
-        $st->save();
-        flash("Change status success")->success();
+         $this->genreService->changeStatus($id);
         return redirect()->Route('admin.genre.index');
     }
 }

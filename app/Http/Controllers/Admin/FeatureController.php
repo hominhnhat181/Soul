@@ -23,7 +23,7 @@ class FeatureController
 
     private function getData($request, $typing_search, $paginate = 0)
     {
-        $feature = Feature::orderBy('id');
+        $feature = Feature::orderBy('id','desc');
         // !empty (request->search)
         if ($request->has('search')) {
             // get request value
@@ -98,14 +98,7 @@ class FeatureController
 
     public function changeStatus($id)
     {
-        $st = Feature::findOrFail($id);
-        if ($st->status == "0" || $st->status == "2") {
-            $st->status = "1";
-        } else {
-            $st->status = "2";
-        }
-        $st->save();
-        flash("Change status success")->success();
+        $this->featureService->changeStatus($id);
         return redirect()->Route('admin.feature.index');
     }
 }

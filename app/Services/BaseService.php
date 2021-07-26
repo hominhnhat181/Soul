@@ -32,12 +32,6 @@ class BaseService
     }
 
 
-    public function showWithRelation($rela)
-    {
-        return $this->_model->with($rela)->get();
-    }
-
-
     public function find($id)
     {
         $result = $this->_model->where('id', $id)->get();
@@ -89,5 +83,18 @@ class BaseService
             'cat' => $cat,
             'typ' => $typ,
         ]);
+    }
+
+
+    public function changeStatus($id)
+    {
+        $st = $this->_model->findOrFail($id);
+        if ($st->status == "0" || $st->status == "2") {
+            $st->status = "1";
+        } else {
+            $st->status = "2";
+        }
+        $st->save();
+        flash("Change status success")->success();
     }
 }

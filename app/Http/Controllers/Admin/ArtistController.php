@@ -23,7 +23,7 @@ class ArtistController {
 
     private function getData($request, $typing_search, $is_paginate = 0)
     {
-        $customers = Artist::orderBy('id');
+        $customers = Artist::orderBy('id', 'desc');
         // !empty (request->search)
         if ($request->has('search')) {
             // get request value
@@ -95,14 +95,7 @@ class ArtistController {
 
 
     public function changeStatus($id){
-        $st = Artist::findOrFail($id);
-        if($st->status == "0" || $st->status == "2") {
-            $st->status = "1";
-        }else {
-            $st->status = "2";
-        }
-        $st->save();
-        flash("Change status success")->success();
+        $this->bandArtistService->changeStatus($id);
         return redirect()->route('admin.artist.index');
 
     }

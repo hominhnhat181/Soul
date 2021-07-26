@@ -38,7 +38,6 @@ class MusicController extends Controller
             'where' =>  $where
         ];
         $musics = $this->fakeService->getAlbums($params);
-        dd($musics);
         return view('frontend.home.index',compact('musics'));
     }
 }

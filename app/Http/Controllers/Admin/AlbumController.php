@@ -28,7 +28,7 @@ class AlbumController
 
     private function getData($request, $typing_search, $is_paginate = 0)
     {
-        $album = Album::join('features','albums.feature_id','=','features.id')->select('albums.*')->orderBy('albums.id');
+        $album = Album::join('features','albums.feature_id','=','features.id')->select('albums.*')->orderBy('albums.id', 'desc');
         // !empty (request->search)
         if ($request->has('search')) {
             // get request value
@@ -127,14 +127,7 @@ class AlbumController
 
     public function changeStatus($id)
     {
-        $ab = Album::findOrFail($id);
-        if ($ab->status == "0" || $ab->status == "2") {
-            $ab->status = "1";
-        } else {
-            $ab->status = "2";
-        }
-        $ab->save();
-        flash("Update status success")->success();
+        $this->albumService->changeStatus($id);
         return redirect()->Route('admin.album.index');
     }
 }
