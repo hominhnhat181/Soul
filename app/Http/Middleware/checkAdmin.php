@@ -20,17 +20,10 @@ class checkAdmin
     {
         if (Auth::guest()) {
             return redirect()->route('login');
-        } elseif (User::where('is_admin', '!=', 1)) {
-            return redirect()->route('home');
+        }elseif (User::where('is_admin', '==', 1)) {
+            return $next($request);
         }
-        return $next($request);
+        return redirect()->route('home');
 
-
-        // if(User::where('is_admin' ,'==', 1)  ){
-        //     return $next($request);
-        // }else{
-        //     return redirect()->route('home');
-
-        // }
     }
 }

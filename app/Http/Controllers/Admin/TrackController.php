@@ -91,9 +91,12 @@ class TrackController
 
     public function update($id, Request $request)
     {
-        $attributes = $request->except('_token', 'image', '_method');
+        $attributes = $request->except('_token', 'image', '_method','originSong');
         if (!empty($request->image)) {
             $attributes['image'] = $request->image;
+        }
+        if (empty($request->song)) {
+            $attributes['song'] = $request->originSong;
         }
         $this->trackService->update($id, $attributes);
         flash("Update Track success")->success();

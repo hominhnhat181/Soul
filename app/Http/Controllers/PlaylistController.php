@@ -13,8 +13,8 @@ class PlaylistController extends Controller
     }
 
     public function sendData(){
-        $track = Track::where('status',1)->get();
-        return view('frontend.inc.footer',compact('track'));
+        $data = Track::where('status',1)->get();
+        return view('frontend.inc.footer',compact('data'));
     }
     
 }

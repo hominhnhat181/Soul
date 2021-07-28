@@ -3,6 +3,7 @@
 @section('content')
 <div class="playlist">
     <div class="top_playlist">
+
     </div>
     <div class="playlist_table">
         <table class="table table-dark">
@@ -31,7 +32,7 @@
                     <td>{{$dt->tags->name}}</td>
                     <td>{{$dt->created_at}}</td>
                     <td>
-                        <button onclick="play{{$dt->id}}()" id="btn{{$dt->id}}" value="off">play</button>
+                        <a onclick="play{{$dt->id}}()" id="btn{{$dt->id}}"><i style="font-size: 18px" class="far fa-play-circle"></i></a>
                         <audio id="{{$dt->id}}" preload="auto" loop="false">
                             <source src="{{url('front/audio/'.$dt->song)}}" type="audio/mp3">
                         </audio>
@@ -42,8 +43,5 @@
         </table>
     </div>
 </div>
-
-
-
 
 @endsection

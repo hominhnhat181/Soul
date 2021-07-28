@@ -1,6 +1,8 @@
 
 </div>
-@foreach ($track as $dt)
+
+@php
+@endphp
 <div class="player">
     <ul>
         <li class="cover">
@@ -108,15 +110,18 @@ const ap = new APlayer({
 </script> --}}
 
 
-
+@if(isset($data))
+@foreach ($data as $green)
 <script type="text/javascript">
-    var audio = document.getElementById("{{$dt->id}}");
+    var audio = document.getElementById("{{$green->id}}");
     var playButton = document.getElementById("play");
     var pauseButton = document.getElementById("pause");
     var playhead = document.getElementById("elapsed");
     var timeline = document.getElementById("slider");
     var timer = document.getElementById("timer");
     var duration;
+
+    
     pauseButton.style.visibility = "hidden";
 
 
@@ -125,7 +130,7 @@ const ap = new APlayer({
 
 
     function timeUpdate() {
-        var audio = document.getElementById("{{$dt->id}}");
+        var audio = document.getElementById("{{$green->id}}");
         var playPercent = timelineWidth * (audio.currentTime / duration);
         playhead.style.width = playPercent + "px";
         var secondsIn = Math.floor(((audio.currentTime / duration) / 3.5) * 100);
@@ -137,17 +142,17 @@ const ap = new APlayer({
     }
 
 
-    function play{{$dt->id}}(){
-        var audio = document.getElementById("{{$dt->id}}");
-        var btn = document.getElementById("btn{{$dt->id}}").value;
+    function play{{$green->id}}(){
+        var audio = document.getElementById("{{$green->id}}");
+        var btn = document.getElementById("btn{{$green->id}}").value;
         if( btn == "off"){
             audio.play();
-            document.getElementById("btn{{$dt->id}}").value="on";
+            document.getElementById("btn{{$green->id}}").value="on";
             playButton.style.visibility = "hidden";
             pause.style.visibility = "visible";
         }else{
             audio.pause();
-            document.getElementById("btn{{$dt->id}}").value="off";
+            document.getElementById("btn{{$green->id}}").value="off";
             playButton.style.visibility = "visible";
             pause.style.visibility = "hidden";
         }
@@ -155,7 +160,7 @@ const ap = new APlayer({
 
   
     playButton.onclick = function() {
-        var audio = document.getElementById("{{$dt->id}}");
+        var audio = document.getElementById("{{$green->id}}");
         audio.play();
         playButton.style.visibility = "hidden";
         pause.style.visibility = "visible";
@@ -163,7 +168,7 @@ const ap = new APlayer({
 
 
     pauseButton.onclick = function() {
-        var audio = document.getElementById("{{$dt->id}}");
+        var audio = document.getElementById("{{$green->id}}");
         audio.pause();
         playButton.style.visibility = "visible";
         pause.style.visibility = "hidden";
@@ -171,10 +176,11 @@ const ap = new APlayer({
 
 
     audio.addEventListener("canplaythrough", function() {
-        var audio = document.getElementById("{{$dt->id}}");
+        var audio = document.getElementById("{{$green->id}}");
         duration = audio.duration;
     }, false);
 
 
 </script>
 @endforeach
+@endif

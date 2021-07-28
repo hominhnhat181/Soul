@@ -26,7 +26,6 @@ Route::get('register/social/{provider}', [App\Http\Controllers\Auth\RegisterCont
 Route::get('login/social/{provider}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('login.social');
 
 Route::get('/{id}/playlist', [App\Http\Controllers\PlaylistController::class, 'goPlaylist'])->name('playlist');
-Route::get('/playmusic', [App\Http\Controllers\PlaylistController::class, 'sendData'])->name('footer');
-
+Route::get('/playmusic', 'PlaylistController@sendData')->name('footer');
 
 
