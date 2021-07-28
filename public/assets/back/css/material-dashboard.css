@@ -1044,7 +1044,6 @@ pre code {
 
 .gutters_account{
     margin: 57px 0 70px 100px !important;
-
 }
 
 .no-gutters > .col,
@@ -24582,19 +24581,38 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     height: 79vh;
 }
 .main_contain{
+    position: relative;
+
     margin-top: 73px;
     width: 100%;
     height: auto;
-    background: #fff;
+    
 }
 
+.main_contain::before{
+    content: ' ';
+    display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+background-image: url('../../../front/images/STAR.jpg');
+}
 .main_contain-hover{
     padding: 30px 40px 33px;
+    position: relative;
+
 }
 
 .main_contain-title h2{
     font-size: 28px;
     font-weight: bold;
+    color: #b3aeae;
 }
 
 .main_contain-object{
@@ -24758,6 +24776,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     height: 30px;
     border-radius: 5px;
     border: unset;
+    /* background-color: #9095a2; */
     background-color: #0c142eab;
     color: thistle;
     margin-right: 4px;
@@ -24768,6 +24787,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     text-align: center;
     margin-top: 3px;
     line-height: 28px;
+    box-shadow: 0 2px 2px 0 rgb(144 149 162 / 14%), 0 3px 1px -2px rgb(144 149 162 / 20%), 0 1px 5px 0 rgb(144 149 162 / 12%);
 }   
 
 .ct .ct_btn:hover{
@@ -24944,7 +24964,7 @@ a {
     min-height: 80vh;
     padding-bottom: 40px;
     height: auto;
-    background-color: rgb(2, 10, 33);
+    background-image: url('../../../front/images/STAR.jpg');
   }
 
   #sort_features{

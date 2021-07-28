@@ -9295,6 +9295,9 @@ button.bg-dark:focus {
 
 .text-right {
     text-align: right !important;
+    position: absolute;
+    bottom: -255px;
+    right: 13px;
 }
 
 .text-center {
@@ -24657,4 +24660,8 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 
 .table-dark tbody tr:hover{
     background-color: #424040;
+}
+
+.gutters_account{
+    margin: 57px 0 70px 100px !important;
 }

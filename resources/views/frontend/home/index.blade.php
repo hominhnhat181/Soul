@@ -1,6 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('content')
+
 <div class="content">
     <div class="container-fluid">
         @foreach ($feature as $ft)

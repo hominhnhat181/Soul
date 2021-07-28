@@ -59,26 +59,31 @@ class RegisterController extends Controller
     public function callbackRegister($provider)
     {
         $redirectSession = session('auth');
-
-        $msgErr = ['error' => __('auth.user_not_exist')];
-        // login social
-        if($redirectSession == 'login'){
-            $user = $this->authService->getUserSocial(Socialite::driver($provider)->user(), $provider);
+        try{
+            // login social
+            if($redirectSession == 'login'){
+                $user = $this->authService->getUserSocial(\Socialite::driver($provider)->user(), $provider);
+                if($user){
+                    auth()->login($user);
+                    return redirect()->route('home');
+                }
+                flash(__('auth.user_not_exist'))->error();
+                return redirect()->route('login');
+            }
+            // register social
+            $user = $this->authService->createUserSocial(\Socialite::driver($provider)->user(), $provider);
             if($user){
                 auth()->login($user);
-                return redirect()->route('home');
+                return redirect()->route('my-profile')->with(['user' => $user]);
             }
-            return redirect()->route('login')->with($msgErr);
+            flash(__('auth.user_already_exist'))->error();
+            return redirect()->route('register');
+            
+        }catch(\Exception $e){
+            \Log::error($e->getMessage());
+            session()->forget('auth');
+            return redirect()->route( $redirectSession == 'login' ? 'login' :'register');
         }
-
-        // register social
-        $user = $this->authService->createUserSocial(Socialite::driver($provider)->user(), $provider);
-        if($user){
-            auth()->login($user);
-            return redirect()->route('my-profile')->with(['user' => $user]);
-        }
-        $msgErr['error'] = __('auth.user_already_exist');
-        return redirect()->route('register')->with($msgErr);
     }
 
 

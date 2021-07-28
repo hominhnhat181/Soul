@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Socialite;
+
 class LoginController extends Controller
 {
     /*
@@ -53,11 +57,32 @@ class LoginController extends Controller
 
     public function redirectToProvider($provider)
     {
-        session(['auth' => 'login']);
         return Socialite::driver($provider)->redirect();
     }
-    
 
 
+    public function handleProviderCallback($provider)
+    {
+        $user = Socialite::driver($provider)->stateless()->user();
+        $this->_registerOrLoginUser($user,$provider);
+
+        return redirect('/');
+    }
+
     
+    protected function _registerOrLoginUser($data,$provider)
+    {
+        $user = User::where('email', '=', $data->email)->first();
+        if (!$user) {
+            $provider_id = $provider.'_id';
+            $user = new User();
+            $user->name = $data->name;
+            $user->email = $data->email;
+            $user->status = "1";
+            $user->$provider_id = $data->id;
+            $user->image = $data->avatar;
+            $user->save();
+        }
+        Auth::login($user);
+    }
 }

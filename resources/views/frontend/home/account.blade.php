@@ -1,6 +1,7 @@
-@extends('backend.layouts.master')
+@extends('frontend.layouts.master')
 
 @section('content')
+
 @foreach ($admins as $master)
 <form action="{{Route('admin.profile.update',['id'=>$master->id])}}" method="POST" style="all: unset">
     @csrf
@@ -13,7 +14,11 @@
                         <div class="user-profile">
                             <div class="user-avatar">
                                 <div id="profile-container">
+                                    @if (!empty(Auth::user()->google_id)||!empty(Auth::user()->facebook_id))
+                                    <img id="profileImage" src="{{Url($master->image)}}">
+                                    @else
                                     <img id="profileImage" src="{{Url('front/images/'.$master->image)}}">
+                                    @endif
                                 </div>
                                 <input id="imageUpload" type="file" name="image" value="{{$master->image}}">
                             </div>
@@ -23,7 +28,8 @@
                         <div class="about">
                             <h5 class="mb-2 text-primary">Adminstrator</h5>
                             <p>Manager</p>
-                            <p style="position: relative; bottom: -88px">Join Date <br>{{$master->created_at->toDateString()}}</p>
+                            <p style="position: relative; bottom: -88px">Join Date
+                                <br>{{$master->created_at->toDateString()}}</p>
 
                             <img style="max-height: 100px; position: relative; top: -72px"
                                 src="http://localhost/myproject/public/layout/images/member.png" alt="Member"
@@ -51,7 +57,8 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="website">New Password</label>
-                                <input autocomplete="off" type="password" name="password" class="form-control" id="website" placeholder="">
+                                <input autocomplete="off" type="password" name="password" class="form-control"
+                                    id="website" placeholder="">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">

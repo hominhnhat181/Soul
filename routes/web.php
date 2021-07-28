@@ -18,14 +18,15 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::get('profile/{id}', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
 
-
-// social login
-Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\RegisterController::class, 'callbackRegister'])->name('register.social.callback');
-Route::get('register/social/{provider}', [App\Http\Controllers\Auth\RegisterController::class, 'redirectRegisterProvider'])->name('register.social');
-Route::get('login/social/{provider}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('login.social');
 
 Route::get('/{id}/playlist', [App\Http\Controllers\PlaylistController::class, 'goPlaylist'])->name('playlist');
 Route::get('/playmusic', 'PlaylistController@sendData')->name('footer');
+
+// // social login
+Route::get('login/social/{provider}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('login.social');
+Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('register.social.callback');
+
 
 

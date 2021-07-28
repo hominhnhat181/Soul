@@ -17,11 +17,10 @@ class AuthService
     }
 
 
-    public function createUserSocial(ProviderUser $providerUser, $social)
-    {
+    public function createUserSocial(ProviderUser $providerUser, $social){
 
         $user = $this->getUserSocial($providerUser, $social);
-        if ($user) return false;
+        if($user) return false;
 
         $data = [
             'email' => $providerUser->getEmail() ?? $providerUser->getNickname(),
@@ -29,13 +28,15 @@ class AuthService
             'status' => '1',
             'verified_at' => now()
         ];
-        if ($social == 'google') {
+        if($social == 'google'){
             $data['google_id'] = $providerUser->getId();
-        } else {
+        }else{
             $data['facebook_id'] = $providerUser->getId();
         }
         return User::create($data);
     }
+
+    
 }
 
 
