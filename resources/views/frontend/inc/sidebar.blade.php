@@ -5,31 +5,31 @@
 
     Tip 2: you can also add an image using data-image tag
 -->
-    <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+    <div class="logo"><a href="{{Route('home')}}" class="simple-text logo-normal">
         Music Box
         </a></div>
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item active  ">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{Route('home')}}">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="./user.html">
+                <a class="nav-link" href="#">
                     <i class="material-icons">favorite</i>
                     <p>Likes</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="./tables.html">
+                <a class="nav-link" href="#">
                     <i class="material-icons">library_music</i>
                     <p>Your Library</p>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="./typography.html">
+                <a class="nav-link" href="#">
                     <i class="material-icons">toc</i>
                     <p>Create Playlist</p>
                 </a>

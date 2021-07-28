@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="input_obj ">
                                         <h4>Song</h4>
-                                        <input value="{{ $tr->song }}" name="song" type="text">
+                                        <input value="{{ $tr->song }}" name="song" type="file">
                                     </div>
                                     <div class="input_obj ">
                                         <button class="btn btn-danger submit_btn">Save</button>

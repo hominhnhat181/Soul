@@ -1,7 +1,6 @@
 
-
 </div>
-{{-- Player --}}
+@foreach ($track as $dt)
 <div class="player">
     <ul>
         <li class="cover">
@@ -48,10 +47,6 @@
                 </span>
             </div>
             <div class="button-items">
-                <audio id="music" preload="auto" loop="false">
-                    <source src="{{url('front/audio/lastnightonearth.mp3')}}" type="audio/mp3">
-                    {{-- <source src="https://dl.dropbox.com/s/75jpngrgnavyu7f/The-Noisy-Freaks.ogg?dl=1" type="audio/ogg"> --}}
-                </audio>
                 <div style="display: flex">
                     <div class="time">
                         <p id="timer">0:00</p>
@@ -69,195 +64,117 @@
 </div>
 
 
-{{-- END FOOTER --}}
 
-
-<!--   Core JS Files   -->
-<link href="{{ asset('assets/front/css/material-dashboard.css') }}" rel="stylesheet" />
-
-<script src="{{ asset('assets/front/js/core/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/front/js/core/popper.min.js') }}"></script>
-<script src="{{ asset('assets/front/js/core/bootstrap-material-design.min.js') }}"></script>
-<script src="https://unpkg.com/default-passive-events"></script>
-<script src="{{ asset('assets/front/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<!--  Google Maps Plugin    -->
-{{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
-<!-- Chartist JS -->
-<script src="{{ asset('assets/front/js/plugins/chartist.min.js') }}"></script>
-<!--  Notifications Plugin    -->
-<script src="{{ asset('assets/front/js/plugins/bootstrap-notify.js') }}"></script>
-<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="{{ asset('assets/front/js/material-dashboard.js?v=2.1.0') }}"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+{{-- </div>
+<div id="aplayer"></div>
+<style>
+    #aplayer{
+        z-index: 999;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        bottom: 0;
+        background: rgb(13, 17, 36);
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css  ">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $().ready(function() {
-            $sidebar = $('.sidebar');
-
-            $sidebar_img_container = $sidebar.find('.sidebar-background');
-
-            $full_page = $('.full-page');
-
-            $sidebar_responsive = $('body > .navbar-collapse');
-
-            window_width = $(window).width();
-
-            $('.fixed-plugin a').click(function(event) {
-                // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-                if ($(this).hasClass('switch-trigger')) {
-                    if (event.stopPropagation) {
-                        event.stopPropagation();
-                    } else if (window.event) {
-                        window.event.cancelBubble = true;
-                    }
-                }
-            });
-
-            $('.fixed-plugin .active-color span').click(function() {
-                $full_page_background = $('.full-page-background');
-
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-
-                var new_color = $(this).data('color');
-
-                if ($sidebar.length != 0) {
-                    $sidebar.attr('data-color', new_color);
-                }
-
-                if ($full_page.length != 0) {
-                    $full_page.attr('filter-color', new_color);
-                }
-
-                if ($sidebar_responsive.length != 0) {
-                    $sidebar_responsive.attr('data-color', new_color);
-                }
-            });
-
-            $('.fixed-plugin .background-color .badge').click(function() {
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-
-                var new_color = $(this).data('background-color');
-
-                if ($sidebar.length != 0) {
-                    $sidebar.attr('data-background-color', new_color);
-                }
-            });
-
-            $('.fixed-plugin .img-holder').click(function() {
-                $full_page_background = $('.full-page-background');
-
-                $(this).parent('li').siblings().removeClass('active');
-                $(this).parent('li').addClass('active');
+const ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    listFolder: true,
+    audio: [
+    {
+        name: 'whatername',
+        artist: 'Greenday',
+        url: '../front/audio/whatername.mp3',
+        cover: '../front/images/greenday-21.jpg'
+    },
+    {
+        name: 'whatername',
+        artist: 'Greenday',
+        url: '../front/audio/whatername.mp3',
+        cover: '../front/images/greenday-21.jpg'
+    },
+    {
+        name: 'whatername',
+        artist: 'Greenday',
+        url: '../front/audio/whatername.mp3',
+        cover: '../front/images/greenday-21.jpg'
+    },
+]
+});
+</script> --}}
 
 
-                var new_image = $(this).find("img").attr('src');
 
-                if ($sidebar_img_container.length != 0 && $(
-                        '.switch-sidebar-image input:checked').length != 0) {
-                    $sidebar_img_container.fadeOut('fast', function() {
-                        $sidebar_img_container.css('background-image', 'url("' +
-                            new_image + '")');
-                        $sidebar_img_container.fadeIn('fast');
-                    });
-                }
+<script type="text/javascript">
+    var audio = document.getElementById("{{$dt->id}}");
+    var playButton = document.getElementById("play");
+    var pauseButton = document.getElementById("pause");
+    var playhead = document.getElementById("elapsed");
+    var timeline = document.getElementById("slider");
+    var timer = document.getElementById("timer");
+    var duration;
+    pauseButton.style.visibility = "hidden";
 
-                if ($full_page_background.length != 0 && $(
-                        '.switch-sidebar-image input:checked').length != 0) {
-                    var new_image_full_page = $('.fixed-plugin li.active .img-holder').find(
-                        'img').data('src');
 
-                    $full_page_background.fadeOut('fast', function() {
-                        $full_page_background.css('background-image', 'url("' +
-                            new_image_full_page + '")');
-                        $full_page_background.fadeIn('fast');
-                    });
-                }
+    var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
+    audio.addEventListener("timeupdate", timeUpdate, false);
 
-                if ($('.switch-sidebar-image input:checked').length == 0) {
-                    var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr(
-                        'src');
-                    var new_image_full_page = $('.fixed-plugin li.active .img-holder').find(
-                        'img').data('src');
 
-                    $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-                    $full_page_background.css('background-image', 'url("' +
-                        new_image_full_page + '")');
-                }
+    function timeUpdate() {
+        var audio = document.getElementById("{{$dt->id}}");
+        var playPercent = timelineWidth * (audio.currentTime / duration);
+        playhead.style.width = playPercent + "px";
+        var secondsIn = Math.floor(((audio.currentTime / duration) / 3.5) * 100);
+        if (secondsIn <= 9) {
+            timer.innerHTML = "0:0" + secondsIn;
+        } else {
+            timer.innerHTML = "0:" + secondsIn;
+        }
+    }
 
-                if ($sidebar_responsive.length != 0) {
-                    $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-                }
-            });
 
-            $('.switch-sidebar-image input').change(function() {
-                $full_page_background = $('.full-page-background');
+    function play{{$dt->id}}(){
+        var audio = document.getElementById("{{$dt->id}}");
+        var btn = document.getElementById("btn{{$dt->id}}").value;
+        if( btn == "off"){
+            audio.play();
+            document.getElementById("btn{{$dt->id}}").value="on";
+            playButton.style.visibility = "hidden";
+            pause.style.visibility = "visible";
+        }else{
+            audio.pause();
+            document.getElementById("btn{{$dt->id}}").value="off";
+            playButton.style.visibility = "visible";
+            pause.style.visibility = "hidden";
+        }
+    }
 
-                $input = $(this);
+  
+    playButton.onclick = function() {
+        var audio = document.getElementById("{{$dt->id}}");
+        audio.play();
+        playButton.style.visibility = "hidden";
+        pause.style.visibility = "visible";
+    }
 
-                if ($input.is(':checked')) {
-                    if ($sidebar_img_container.length != 0) {
-                        $sidebar_img_container.fadeIn('fast');
-                        $sidebar.attr('data-image', '#');
-                    }
-                    if ($full_page_background.length != 0) {
-                        $full_page_background.fadeIn('fast');
-                        $full_page.attr('data-image', '#');
-                    }
-                    background_image = true;
-                } else {
-                    if ($sidebar_img_container.length != 0) {
-                        $sidebar.removeAttr('data-image');
-                        $sidebar_img_container.fadeOut('fast');
-                    }
-                    if ($full_page_background.length != 0) {
-                        $full_page.removeAttr('data-image', '#');
-                        $full_page_background.fadeOut('fast');
-                    }
-                    background_image = false;
-                }
-            });
 
-            $('.switch-sidebar-mini input').change(function() {
-                $body = $('body');
+    pauseButton.onclick = function() {
+        var audio = document.getElementById("{{$dt->id}}");
+        audio.pause();
+        playButton.style.visibility = "visible";
+        pause.style.visibility = "hidden";
+    }
 
-                $input = $(this);
 
-                if (md.misc.sidebar_mini_active == true) {
-                    $('body').removeClass('sidebar-mini');
-                    md.misc.sidebar_mini_active = false;
+    audio.addEventListener("canplaythrough", function() {
+        var audio = document.getElementById("{{$dt->id}}");
+        duration = audio.duration;
+    }, false);
 
-                    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
 
-                } else {
-
-                    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
-
-                    setTimeout(function() {
-                        $('body').addClass('sidebar-mini');
-
-                        md.misc.sidebar_mini_active = true;
-                    }, 300);
-                }
-
-                // we simulate the window Resize so the charts will get updated in realtime.
-                var simulateWindowResize = setInterval(function() {
-                    window.dispatchEvent(new Event('resize'));
-                }, 180);
-
-                // we stop the simulation of Window Resize after the animations are completed
-                setTimeout(function() {
-                    clearInterval(simulateWindowResize);
-                }, 1000);
-            });
-        });
-    });
-<script>
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/front/js/demos.js
-        md.initDashboardPageCharts();
-    });
 </script>
+@endforeach

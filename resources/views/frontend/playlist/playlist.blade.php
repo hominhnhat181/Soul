@@ -1,25 +1,23 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-    <div class="playlist">
-        <div class="top_playlist">
-
-        </div>
-        <div class="playlist_table">
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th scope="col" class="center">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Album</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($data as $dt)
-                <tr  value="Off" id="tr">
-                    <a class="" href="google.com"></a>
+<div class="playlist">
+    <div class="top_playlist">
+    </div>
+    <div class="playlist_table">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col" class="center">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Album</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody class="playlist">
+                @foreach ($data as $dt)
+                <tr>
                     <th scope="row" class="center">{{$dt->id}}</th>
                     <td class="title_track" style="display: flex">
                         <img src="{{url('front/images/'.$dt->image)}}" alt="">
@@ -32,10 +30,20 @@
                     <td>{{$dt->albums->name}}</td>
                     <td>{{$dt->tags->name}}</td>
                     <td>{{$dt->created_at}}</td>
+                    <td>
+                        <button onclick="play{{$dt->id}}()" id="btn{{$dt->id}}" value="off">play</button>
+                        <audio id="{{$dt->id}}" preload="auto" loop="false">
+                            <source src="{{url('front/audio/'.$dt->song)}}" type="audio/mp3">
+                        </audio>
+                    </td>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
-</div>
+
+
+
+
 @endsection
