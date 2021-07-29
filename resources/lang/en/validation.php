@@ -135,9 +135,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        // 'name' => [
+        //     'required' => 'hahaha',
+        // ],
     ],
 
     /*
@@ -152,5 +152,4 @@ return [
     */
 
     'attributes' => [],
-
 ];

@@ -1042,7 +1042,7 @@ pre code {
     margin-left: 0;
 }
 
-.gutters_account{
+.gutters_account {
     margin: 57px 0 70px 100px !important;
 }
 
@@ -14840,8 +14840,8 @@ fieldset[disabled] .form-group .form-control {
 
 .navbar .collapse .navbar-nav .nav-item .nav-link {
     position: relative;
-    padding: 10px ;
-    padding-left:15px;
+    padding: 10px;
+    padding-left: 15px;
     font-weight: 400;
     font-size: 12px;
     text-transform: uppercase;
@@ -20053,7 +20053,7 @@ Copyright (c) 2015 Daniel Eden
         height: 100%;
         width: 100%;
         position: absolute;
-        background-color:  #3c4858;
+        background-color: #3c4858;
         display: block;
         content: "";
         z-index: 1;
@@ -24382,8 +24382,6 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     color: #555555;
 }
 
-
-
 .dark-edition .dropdown:not(.show-dropdown) .dropdown-menu .dropdown-item,
 .dark-edition .dropdown:not(.show-dropdown) .dropdown-menu li > a {
     color: #606477;
@@ -24564,119 +24562,123 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 .navbar .container-fluid {
     margin: 0 45px;
 }
-.nav-item img{
+.nav-item img {
     width: 41px;
     height: 41px;
     border-radius: 50%;
     margin-top: -3px;
 }
 
-
 /* CUSTOM */
 
 .wrapper {
-    height:100vh;
+    height: 100vh;
 }
-#admin{
+#admin {
     height: 79vh;
 }
-.main_contain{
+.main_contain {
     position: relative;
-
     margin-top: 73px;
     width: 100%;
     height: auto;
-    
 }
 
-.main_contain::before{
-    content: ' ';
+.main_contain::before {
+    content: " ";
     display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.3;
-  background-repeat: no-repeat;
-  background-position: 50% 0;
-  background-size: cover;
-background-image: url('../../../front/images/STAR.jpg');
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-size: cover;
+    background-image: url("../../../front/images/STAR.jpg");
 }
-.main_contain-hover{
+.main_contain-hover {
+    min-height: 79vh;
     padding: 30px 40px 33px;
     position: relative;
-
 }
 
-.main_contain-title h2{
-    font-size: 28px;
-    font-weight: bold;
-    color: #b3aeae;
+.main_contain-title h2 {
+    font-size: 33px;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 8px;
+    font-family: "Cinzel", serif;
 }
 
-.main_contain-object{
+.main_contain-object {
     border-radius: 10px;
     height: 180px;
 }
-.object{
+.object {
     margin: 10px;
     padding: 18px;
-    
+    transition: transform .8s;
     background-color: #bbe1bd;
     border-radius: 20px;
 }
-.object .object_list{
+
+.object:hover{
+    -ms-transform: scale(0.5);
+    -webkit-transform: scale(0.5); 
+    transform: scale(1.1); 
+    z-index: 999;
+} 
+
+.object .object_list {
     margin-bottom: 10px;
 }
-.object .object_list a{
+.object .object_list a {
     width: 100%;
     font-weight: 500;
     color: unset;
 }
-.object span{
+.object span {
     font-size: 30px;
     color: #5a6268;
     font-weight: bold;
 }
 
-
 /* List */
 
-.admin_search{
+.admin_search {
     margin-bottom: 12px;
     position: relative;
     font-weight: 500;
 }
 
-#alphax{
+#alphax {
     padding-right: 0;
 }
-#alphax i{
+#alphax i {
     right: 10px;
 }
 
-#alphay{
+#alphay {
     padding-left: 10px;
 }
 
-.admin_search .search{
+.admin_search .search {
     position: absolute;
     z-index: 10;
     top: 10px;
     left: 30px;
     cursor: pointer;
-
 }
-.admin_search .more{
+.admin_search .more {
     position: absolute;
     z-index: 10;
     top: 10px;
     right: 25px;
     cursor: pointer;
-
 }
-.admin_search .admin_search-input{
+.admin_search .admin_search-input {
     font-size: 0.975rem;
     width: 100%;
     padding-left: 50px;
@@ -24688,7 +24690,7 @@ background-image: url('../../../front/images/STAR.jpg');
     font-weight: 500;
     color: rgb(119, 119, 119);
 }
-.admin_search .admin_search-chose{
+.admin_search .admin_search-chose {
     color: rgb(119, 119, 119);
     font-size: 0.975rem;
     width: 100%;
@@ -24701,29 +24703,30 @@ background-image: url('../../../front/images/STAR.jpg');
     font-weight: 500;
 }
 
-#sort_user{
+#sort_user {
     margin-bottom: 0;
 }
-#sort_user .row{
+#sort_user .row {
     margin-bottom: 0 !important;
 }
 
-#omega{
+#omega {
     padding: unset;
 }
 
-.admin_search .admin_search-btn{
+.admin_search .admin_search-btn {
     margin-left: 10px;
     border: unset;
     outline: unset;
+    font-size: 14px;
 }
 
-.admin_search select{
+.admin_search select {
     color: rgb(119, 119, 119);
 }
 
-
-.admin_search a, .admin_search button {
+.admin_search a,
+.admin_search button {
     background-color: rgb(228, 228, 228);
     font-size: 0.975rem;
     font-weight: 500;
@@ -24735,9 +24738,9 @@ background-image: url('../../../front/images/STAR.jpg');
     line-height: 45px;
     text-align: center;
     height: 45px;
-
 }
-.admin_search a:hover, .admin_search button:hover{
+.admin_search a:hover,
+.admin_search button:hover {
     background-color: #3c4858;
     cursor: pointer;
     color: white;
@@ -24746,7 +24749,7 @@ background-image: url('../../../front/images/STAR.jpg');
 
 /* Table */
 
-.true_table{
+.true_table {
     width: 100%;
     background-color: #3c4858;
     color: rgb(209, 209, 209);
@@ -24754,26 +24757,27 @@ background-image: url('../../../front/images/STAR.jpg');
     margin-bottom: 30px;
 }
 
-.true_table td,th{
-
+.true_table td,
+th {
     padding: 0 20px;
 }
 
-.true_table thead tr{
+.true_table thead tr {
     height: 60px;
 }
 
-.true_table tbody tr{
+.true_table tbody tr {
     height: 70px;
 }
 
-.ct{
+.ct {
     justify-content: center;
 }
 
-.ct .ct_btn{
+.ct .ct_btn {
     outline: unset;
-    height: 30px;
+    /* height: 30px; */
+    /* align-self: center; */
     border-radius: 5px;
     border: unset;
     /* background-color: #9095a2; */
@@ -24787,250 +24791,266 @@ background-image: url('../../../front/images/STAR.jpg');
     text-align: center;
     margin-top: 3px;
     line-height: 28px;
-    box-shadow: 0 2px 2px 0 rgb(144 149 162 / 14%), 0 3px 1px -2px rgb(144 149 162 / 20%), 0 1px 5px 0 rgb(144 149 162 / 12%);
-}   
-
-.ct .ct_btn:hover{
-        background-color: rgb(176, 160, 247);
-        color: #0c142e;
-    transition: 0.8s;
-
+    box-shadow: 0 2px 2px 0 rgb(144 149 162 / 14%),
+        0 3px 1px -2px rgb(144 149 162 / 20%),
+        0 1px 5px 0 rgb(144 149 162 / 12%);
 }
 
-.true_table .table_img{
+.ct .ct_btn:hover {
+    background-color: rgb(176, 160, 247);
+    color: #0c142e;
+    transition: 0.8s;
+}
+
+.true_table .table_img {
     width: 111px;
     height: 111px;
     border-radius: 4px;
 }
 
-.true_table .center{
+.true_table .center {
     text-align: center;
 }
 
-.true_table td{
+.true_table td {
     padding-bottom: 10px;
 }
 
 /* paganation */
 
-.pagination{
+.pagination {
     justify-content: center;
     margin-top: -5px;
 }
 a {
-    -webkit-transition: all .2s linear;
-    -moz-transition: all .2s linear;
-        transition: all .2s linear;
-  }
-
-.pagination a{
-    border-radius: 50%;
-    background-color:  #1a2035;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    transition: all 0.2s linear;
 }
-.pagination a:hover{
-    background-color:  #1a2035;
-    border-radius: 50%;
-}
-  
 
-  
-  .pagination li {
-    border-top-color:  #1a2035;
-    border-bottom-color:  #1a2035;
-  }
-  .pagination li:before,
-  .pagination .active:after,
-  .pagination .active:before,
-  .pagination .active ~ li:before {
-    border-left-color:  #1a2035;
-    border-right-color:  #1a2035;
-  }
-  .pagination a {
+.pagination li {
+    border-top-color: #1a2035;
+    border-bottom-color: #1a2035;
+}
+.pagination li:before,
+.pagination .active:after,
+.pagination .active:before,
+.pagination .active ~ li:before {
+    border-left-color: #1a2035;
+    border-right-color: #1a2035;
+}
+
+.pagination a {
+    border-radius: 50%;
+    background-color: #1a2035;
     color: #888;
     font-family: "Edmondsans";
     font-size: 15px;
     font-weight: bold;
     text-decoration: none;
-  }
-  .pagination .active a { color: #ccc;  }
-  .pagination .disabled a,
-  .pagination .disabled:hover a { color: #54606e; cursor: default;  }
-  .pagination li:hover a { color: #fce4e5; }
-  
-  /*
+}
+
+.pagination a:hover {
+    background-color: #1a2035;
+    border-radius: 50%;
+}
+
+.pagination .active a {
+    color: #ccc;
+}
+.pagination .disabled a,
+.pagination .disabled:hover a {
+    color: #54606e;
+    cursor: default;
+}
+.pagination li:hover a {
+    color: #fce4e5;
+}
+
+/*
    * Basic style
    */
-  .pagination { text-align: center; }
-  .pagination ul {
+.pagination {
+    text-align: center;
+}
+.pagination ul {
     display: inline-block;
     list-style-type: none;
     margin: 0;
     padding: 0;
     text-align: center;
-  }
-  .pagination li {
-    border-right:10px solid transparent;
+}
+.pagination li {
+    border-right: 10px solid transparent;
     border-bottom-width: 17px;
     border-top-width: 17px;
     border-style: solid;
-   
-    transform:rotate(360deg);
+
+    transform: rotate(360deg);
     border-left: 0;
     height: 0;
     float: left;
     margin-right: 3px;
     position: relative;
-  }
-  .pagination li:before {
+}
+.pagination li:before {
     border-bottom-color: transparent;
     border-left-color: transparent;
     border-top-color: transparent;
     border-width: 17px 10px 17px 0;
     border-style: solid;
     position: absolute;
-    content: '';
+    content: "";
     left: -10px;
     height: 0px;
     top: -17px;
     width: 0px;
-  }
-  .pagination .active ~ li:before {
+}
+.pagination .active ~ li:before {
     border-bottom-color: transparent;
     border-top-color: transparent;
     border-width: 17px 0 17px 10px;
     right: -10px;
     left: auto;
-  }
-  .pagination .active ~ li {
-    border-left:10px solid transparent;
+}
+.pagination .active ~ li {
+    border-left: 10px solid transparent;
     border-right: 0;
-  }
-  .pagination .active  {
+}
+.pagination .active {
     border-right: 0;
     border-left: 0;
-  }
-  .pagination .active:after,
-  .pagination .active:before {
+}
+.pagination .active:after,
+.pagination .active:before {
     border-bottom-color: transparent;
     border-top-color: transparent;
     border-width: 17px 10px 17px 0;
     border-style: solid;
     position: absolute;
-    content: '';
+    content: "";
     height: 0px;
     width: 0px;
     top: -17px;
     left: -10px;
-  }
-  .pagination .active:after {
+}
+.pagination .active:after {
     border-bottom-color: transparent;
     border-right-color: transparent;
     border-top-color: transparent;
     border-width: 17px 0 17px 10px;
     left: 100%;
-  }
-  .pagination a {
+}
+.pagination a {
     line-height: 36px;
     margin-top: -17px;
     display: block;
     height: 34px;
     width: 30px;
-  }
-  .pagination .prev {
+}
+.pagination .prev {
     -webkit-border-radius: 20px 0 0 20px;
     -moz-border-radius: 20px 0 0 20px;
     border-radius: 20px 0 0 20px;
-  }
-  .pagination .next {
+}
+.pagination .next {
     -webkit-border-radius: 0 20px 20px 0;
     -moz-border-radius: 0 20px 20px 0;
     border-radius: 0 20px 20px 0;
     border-right: 0;
-  }
-  .pagination .prev a,
-  .pagination .next a {
+}
+.pagination .prev a,
+.pagination .next a {
     /* text-indent: -4px; */
     line-height: 35px;
     font-size: 30px;
-  }
-  .pagination .prev a { text-indent: -2px; }
-  .pagination .prev:before,
-  .pagination .next:before { content: none; }
+}
+.pagination .prev a {
+    text-indent: -2px;
+}
+.pagination .prev:before,
+.pagination .next:before {
+    content: none;
+}
 
+/* create */
 
-  /* create */
-
-  .main_contain-create{
+.main_contain-create {
     min-height: 80vh;
     padding-bottom: 40px;
     height: auto;
-    background-image: url('../../../front/images/STAR.jpg');
-  }
+    background-image: url("../../../front/images/STAR.jpg");
+}
 
-  #sort_features{
-      padding-top: 1px;
-      position: relative;
-  }
+#sort_features {
+    padding-top: 1px;
+    position: relative;
+}
 
-  .submit_btn{
-      position: absolute;
-      bottom: -110px;
-      left: 15px;
-  }
+.submit_btn {
+    position: absolute;
+    bottom: -110px;
+    left: 15px;
+}
 
-  .form_create{
-      max-width: 700px;
-      margin: 30px auto;
-      background: #fff;
-      padding-bottom: 100px;
-  }
+.form_create {
+    max-width: 700px;
+    margin: 30px auto;
+    background: #fff;
+    padding-bottom: 100px;
+}
 
-  .form_create-ctn{
+.form_create-ctn {
     padding: 30px 50px;
+}
 
-  }
+.ctn_input .input_obj {
+    margin-top: 10px;
+}
 
-  .ctn_input .input_obj{
-      margin-bottom: 10px;
-  }
-
-  .account-settings{
+.account-settings {
     margin-left: 9px;
+}
 
-  }
+.account-settings .user-profile {
+    margin: 0;
+    padding: 0;
+}
 
-  .account-settings .user-profile{
-      margin: 0;
-      padding: 0;
-  }
+.input_obj input {
+    width: 230px;
+}
 
-
-  .input_obj input{
-      width: 230px;
-  }
-
-  .input_obj .one{
-      width: 230px;
-      height: 30px;
+.input_obj .one {
+    width: 230px;
+    height: 30px;
     padding-left: 8px;
+}
 
-  }
+#genre {
+    margin-top: 25.5px;
+}
 
-  #genre{
-      margin-top: 25.5px;
-  }
-
-  .gj-icon{
-      display: none;
-      position: unset !important;
-  }
-  #datepicker::placeholder{
+.gj-icon {
+    display: none;
+    position: unset !important;
+}
+#datepicker::placeholder {
     color: rgb(119, 119, 119);
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-weight: 500 !important;
-  }
+}
 
-
-  .daterangepicker {
+.daterangepicker {
     width: 414px;
-  }
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+.country:hover{
+    color:rgb(193, 238, 252);
+    transition: 0.4;
+}

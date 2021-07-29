@@ -14,17 +14,20 @@
    
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"> 
 
     {{-- icon --}}
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/back/img/apple-icon.png')}}">
     <link rel="icon" type="image/png" href="{{asset('assets/back/img/favicon.png')}}">
 
+
     {{-- css --}}
     <link href="{{asset('assets/back/css/material-dashboard.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet"/>
     <!-- Latest compiled and minified JavaScript -->
   
     <title> @yield('title')</title>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\AuthRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\UserService;
@@ -63,7 +64,7 @@ class UserController
     }
 
 
-    public function store(Request $request)
+    public function store(AuthRequest $request)
     {
         $attributes = $request->all();
         if (!($request->image)) {

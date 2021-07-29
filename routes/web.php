@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AjaxController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +30,8 @@ Route::get('/playmusic', 'PlaylistController@sendData')->name('footer');
 Route::get('login/social/{provider}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('login.social');
 Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('register.social.callback');
 
+// AJAX
+Route::get('ajax-request', [ AjaxController::class, 'create' ]);
+Route::post('ajax-request', [ AjaxController::class, 'store' ]);
 
-
+Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
