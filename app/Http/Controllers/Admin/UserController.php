@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\AuthRequest;
+use App\Models\Album;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Foundation\Validation\ValidatesRequests;
 class UserController
 {
     private $userService;
@@ -107,7 +108,7 @@ class UserController
         return back();
     }
 
-    public function show($id)
+    public function show()
     {
     }
 
@@ -118,7 +119,7 @@ class UserController
     }
 
 
-    // ADMIN -----------------------------------------------------------------------------------
+    // ADMIN Profile-----------------------------------------------------------------------------------
 
     public function admin($id)
     {

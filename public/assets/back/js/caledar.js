@@ -15,6 +15,8 @@
     });
     // get value
     $('input[name="joined_date"]').val('');
-    if(request('joined_date'))
-    $('input[name="joined_date"]').value("{{request('joined_date')}}");
-    endif
+    
+    // error catch request
+    // if(request('joined_date'))
+    // $('input[name="joined_date"]').value("{{request('joined_date')}}");
+    // endif

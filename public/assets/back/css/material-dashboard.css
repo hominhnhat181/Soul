@@ -5234,7 +5234,7 @@ tbody.collapse.show {
 .alert {
     position: relative;
     padding: 0.75rem 1.25rem;
-    margin-bottom: 1rem;
+    margin-bottom: 12px;
     border: 1px solid transparent;
     border-radius: 0.25rem;
 }
@@ -11438,9 +11438,9 @@ fieldset[disabled][disabled] .btn-group-raised .btn,
 .btn.btn-fab,
 .btn.btn-just-icon {
     font-size: 24px;
-    height: 41px;
-    min-width: 41px;
-    width: 41px;
+    height: 34px;
+    min-width: 34px;
+    width: 34px;
     padding: 0;
     overflow: hidden;
     position: relative;
@@ -11524,7 +11524,7 @@ fieldset[disabled][disabled] .btn-group-raised .btn,
     left: 0;
     top: 0;
     height: 100%;
-    line-height: 41px;
+    line-height: 37px;
     font-size: 20px;
 }
 
@@ -14812,8 +14812,9 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .navbar.navbar-transparent {
-    background-color: transparent !important;
+    background-color: #1a2133e6 !important;
     box-shadow: none;
+    padding: 7px 0;
 }
 
 .navbar .notification {
@@ -15899,7 +15900,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .footer {
-    padding: 0.9375rem 0;
+    padding: 11px 0;
     text-align: center;
     display: -webkit-flex;
     /* Safari */
@@ -24575,11 +24576,11 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     height: 100vh;
 }
 #admin {
-    height: 79vh;
+    height: 89vh;
 }
 .main_contain {
     position: relative;
-    margin-top: 73px;
+  
     width: 100%;
     height: auto;
 }
@@ -24600,7 +24601,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 }
 .main_contain-hover {
     min-height: 79vh;
-    padding: 30px 40px 33px;
+    padding: 100px 40px 33px;
     position: relative;
 }
 
@@ -24976,14 +24977,15 @@ a {
 /* create */
 
 .main_contain-create {
-    min-height: 80vh;
-    padding-bottom: 40px;
+    min-height: 90vh;
     height: auto;
     background-image: url("../../../front/images/STAR.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #sort_features {
-    padding-top: 1px;
+    padding-top: 111px;
     position: relative;
 }
 

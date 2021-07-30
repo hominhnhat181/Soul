@@ -24,8 +24,8 @@ User Detail
                 <div class="admin_search col-md-4" id="alphay">
                     <i class="material-icons more">expand_more</i>
                     <select class="admin_search-chose" id="select_user" name="status">
-                        <option value="">Status</option>
-                        {{-- if request('status') == value option then selected, else fail --}}
+                        <option>Status</option>
+                        {{-- if request('status') == option value then selected, else return false = '' --}}
                         <option value="1" {{ request('status') == "1" ? 'selected' : '' }}>Active</option>
                         <option value="2" {{ request('status') == "2" ? 'selected' : '' }}>Deactive</option>
                         <option value="3" {{ request('status') == "3" ? 'selected' : '' }}>Unverify</option>

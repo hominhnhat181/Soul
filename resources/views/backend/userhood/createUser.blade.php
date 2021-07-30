@@ -17,14 +17,14 @@ Create New User
                         <div class="ctn_input col-md-6">
                             <div class="input_obj ">
                                 <h4>User name</h4>
-                                <input name="name" type="text">
+                                <input name="name" type="text" value="{{ old('name') }}">
                             </div>
                             @error('name')
                             <strong class="error">{{ __($message)}}</strong>
                             @enderror                           
                             <div class="input_obj ">
                                 <h4>Email</h4>
-                                <input name="email" type="text">
+                                <input name="email" type="text" value="{{ old('email') }}">
                             </div>
                             @error('email')
                             <strong class="error">{{ $message}}</strong>
@@ -40,6 +40,9 @@ Create New User
                                 <h4>Config Password</h4>
                                 <input name="password_confirmation" type="password">
                             </div>
+                            @error('password_confirmation')
+                            <strong class="error">{{ $message}}</strong>
+                            @enderror
                             <div class="input_obj ">
                                 <button class="btn btn-danger submit_btn">Save</button>
                             </div>

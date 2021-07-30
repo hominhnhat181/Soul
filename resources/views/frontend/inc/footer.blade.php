@@ -109,7 +109,7 @@ const ap = new APlayer({
 });
 </script> --}}
 
-
+{{-- 
 @if(isset($data))
 @foreach ($data as $green)
 <script type="text/javascript">
@@ -183,4 +183,4 @@ const ap = new APlayer({
 
 </script>
 @endforeach
-@endif
+@endif --}}

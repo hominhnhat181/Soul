@@ -17,7 +17,7 @@ use App\Http\Controllers\AjaxController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::get('profile/{id}', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
@@ -31,7 +31,6 @@ Route::get('login/social/{provider}', [App\Http\Controllers\Auth\LoginController
 Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('register.social.callback');
 
 // AJAX
-Route::get('ajax-request', [ AjaxController::class, 'create' ]);
-Route::post('ajax-request', [ AjaxController::class, 'store' ]);
+Route::get('/', [App\Http\Controllers\AjaxController::class, 'getArticles'])->name('home');
 
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);

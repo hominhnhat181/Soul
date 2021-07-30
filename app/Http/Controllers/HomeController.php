@@ -17,7 +17,7 @@ class HomeController extends Controller
     // }
 
     public function index(){
-        $feature = Feature::where('status', 1)->get();
+        $feature = Feature::where('status', 1)->limit(5)->get();
        return view('frontend.home.index', compact('feature'));
 
     }

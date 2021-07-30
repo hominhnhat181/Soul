@@ -135,9 +135,9 @@ return [
     */
 
     'custom' => [
-        // 'name' => [
-        //     'required' => 'hahaha',
-        // ],
+        'password_confirmation' => [
+            'same' => 'The password confirmation does not match.',
+        ],
     ],
 
     /*

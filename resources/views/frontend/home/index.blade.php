@@ -2,6 +2,12 @@
 
 @section('content')
 
+<head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
 <div class="content">
     <div class="container-fluid">
         @foreach ($feature as $ft)
@@ -43,6 +49,46 @@
             </div>
         </div>
         @endforeach
+        {{-- END POINT --}}
+
     </div>
 </div>
+<script>
+    var site_url = "{{ url('/') }}";   
+    var page = 1;
+    
+    load_more(page);
+ 
+    $(window).scroll(function() {
+       if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+       page++;
+       load_more(page);
+       }
+     });
+ 
+     function load_more(page){
+         $.ajax({
+           url: site_url + "/" + page,
+           type: "get",
+           datatype: "html",
+           beforeSend: function()
+           {
+             $('.feature_music').show();
+           }
+         })
+         .done(function(data)
+         {          
+           if(data.length == 0){
+           $('.feature_music').html("No more records!");
+           return;
+         }
+           $('.feature_music').hide();
+           $('.container-fluid').append(data);
+         })
+        //  .fail(function(jqXHR, ajaxOptions, thrownError)
+        //  {
+        //    alert('No response from server');
+        //  });
+     }
+ </script>
 @endsection

@@ -7,7 +7,7 @@
     {{-- plugin --}}
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
@@ -21,18 +21,14 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/back/img/apple-icon.png')}}">
     <link rel="icon" type="image/png" href="{{asset('assets/back/img/favicon.png')}}">
 
-
     {{-- css --}}
-    <link href="{{asset('assets/back/css/material-dashboard.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/back/css/material-dashboard.css?v='.time())}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet"/>
-    <!-- Latest compiled and minified JavaScript -->
   
     <title> @yield('title')</title>
-   
-
 
 </head>
 <body class="dark-edition">

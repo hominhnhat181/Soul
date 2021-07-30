@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
 
 class AuthRequest extends FormRequest
 {
@@ -31,8 +32,17 @@ class AuthRequest extends FormRequest
                 'Required','email',
                 Rule::unique('users','email')->ignore($this->admin_id),
             ],
-            'password' => 'Required|min:8|Present|confirmed',
+            'password' => 'Required|min:8|Present',
+            'password_confirmation' => 'required|min:8|same:password',
         ];
+        // $messages = [
+        //     'password_confirmation.same' => 'The password confirmation does not match.',
+        // ];
+        // $validator = Validator::make($input, $rules, $messages);
+        
+        // if ($validator->fails()) {
+        //     return back()->withInput()->withErrors($validator->messages());
+        // }
     }
 }
 // bail => exclude_if:email,false

@@ -59,8 +59,6 @@ class AlbumController
     }
 
 
-    
-
     public function show()
     {
     }
