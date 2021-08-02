@@ -27,11 +27,14 @@ Route::get('profile/{id}', [App\Http\Controllers\AuthController::class, 'profile
 Route::get('login/social/{provider}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('login.social');
 Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('register.social.callback');
 
+
 // AJAX
 Route::get('/', [App\Http\Controllers\AjaxController::class, 'getArticles'])->name('home');
 
+
+// Language
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+
 
 // song
 Route::get('/{id}/playlist', [App\Http\Controllers\PlaylistController::class, 'goPlaylist'])->name('playlist');
-Route::get('/playmusic', 'PlaylistController@sendData')->name('footer');

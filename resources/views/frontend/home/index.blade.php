@@ -68,7 +68,7 @@
  
      function load_more(page){
          $.ajax({
-           url: site_url + "/" + page,
+           url: site_url,
            type: "get",
            datatype: "html",
            beforeSend: function()
