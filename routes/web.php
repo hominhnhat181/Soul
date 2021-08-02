@@ -23,9 +23,6 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 Route::get('profile/{id}', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
 
 
-Route::get('/{id}/playlist', [App\Http\Controllers\PlaylistController::class, 'goPlaylist'])->name('playlist');
-Route::get('/playmusic', 'PlaylistController@sendData')->name('footer');
-
 // // social login
 Route::get('login/social/{provider}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('login.social');
 Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('register.social.callback');
@@ -34,3 +31,7 @@ Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\LoginControl
 Route::get('/', [App\Http\Controllers\AjaxController::class, 'getArticles'])->name('home');
 
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+
+// song
+Route::get('/{id}/playlist', [App\Http\Controllers\PlaylistController::class, 'goPlaylist'])->name('playlist');
+Route::get('/playmusic', 'PlaylistController@sendData')->name('footer');

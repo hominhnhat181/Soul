@@ -32,9 +32,8 @@
                     <td>{{$dt->tags->name}}</td>
                     <td>{{$dt->created_at}}</td>
                     <td>
-                        <a onclick="play{{$dt->id}}()" id="btn{{$dt->id}}"><i style="font-size: 18px" class="far fa-play-circle"></i></a>
-                        <audio id="{{$dt->id}}" preload="auto" loop="false">
-                            <source src="{{url('front/audio/'.$dt->song)}}" type="audio/mp3">
+                        <audio controls style="height:54px;">
+                            <source src="{{ Storage::url($dt->song) }}" type="audio/mp3">
                         </audio>
                     </td>
                 </tr>
