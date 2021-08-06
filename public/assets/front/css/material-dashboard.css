@@ -2032,7 +2032,7 @@ pre code {
 .table {
     width: 100%;
     max-width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     background-color: transparent;
 }
 
@@ -24665,3 +24665,5 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 .gutters_account{
     margin: 57px 0 70px 100px !important;
 }
+
+/* player */

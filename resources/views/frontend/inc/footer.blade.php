@@ -1,4 +1,4 @@
-{{-- 
+
 </div>
 
 @php
@@ -64,7 +64,86 @@
         </li>
     </ul>
 </div>
- --}}
+
+
+@if(isset($data))
+@foreach ($data as $green)
+<script type="text/javascript">
+    // var audio = document.getElementById("{{$green->id}}");
+    // var playButton = document.getElementById("play");
+    // var pauseButton = document.getElementById("pause");
+    // var playhead = document.getElementById("elapsed");
+    // var timeline = document.getElementById("slider");
+    // var timer = document.getElementById("timer");
+    // var duration;
+
+    
+    // pauseButton.style.visibility = "hidden";
+
+
+    // var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
+    // audio.addEventListener("timeupdate", timeUpdate, false);
+
+
+    // function timeUpdate() {
+    //     var audio = document.getElementById("song-{{$green->id}}");
+    //     var playPercent = timelineWidth * (audio.currentTime / duration);
+    //     playhead.style.width = playPercent + "px";
+    //     var secondsIn = Math.floor(((audio.currentTime / duration) / 3.5) * 100);
+    //     if (secondsIn <= 9) {
+    //         timer.innerHTML = "0:0" + secondsIn;
+    //     } else {
+    //         timer.innerHTML = "0:" + secondsIn;
+    //     }
+    // }
+
+
+    // function play{{$green->id}}(){
+    //     var audio = document.getElementById("song{{$green->id}}");
+    //     var btn = document.getElementById("control{{$green->id}}").value;
+    //     if( btn == "off"){
+    //         audio.play();
+    //         document.getElementById("control{{$green->id}}").value="on";
+    //         playButton.style.visibility = "hidden";
+    //         pause.style.visibility = "visible";
+    //     }else{
+    //         audio.pause();
+    //         document.getElementById("control{{$green->id}}").value="off";
+    //         playButton.style.visibility = "visible";
+    //         pause.style.visibility = "hidden";
+    //     }
+    // }
+
+  
+    // playButton.onclick = function() {
+    //     var audio = document.getElementById("song{{$green->id}}");
+    //     audio.play();
+    //     playButton.style.visibility = "hidden";
+    //     pause.style.visibility = "visible";
+    // }
+
+
+    // pauseButton.onclick = function() {
+    //     var audio = document.getElementById("{{$green->id}}");
+    //     audio.pause();
+    //     playButton.style.visibility = "visible";
+    //     pause.style.visibility = "hidden";
+    // }
+
+
+    // audio.addEventListener("canplaythrough", function() {
+    //     var audio = document.getElementById("{{$green->id}}");
+    //     duration = audio.duration;
+    // }, false);
+
+
+</script>
+@endforeach
+@endif
+
+
+
+
 
 
 {{-- </div>
@@ -108,79 +187,3 @@ const ap = new APlayer({
 ]
 });
 </script> --}}
-
-{{-- 
-@if(isset($data))
-@foreach ($data as $green)
-<script type="text/javascript">
-    var audio = document.getElementById("{{$green->id}}");
-    var playButton = document.getElementById("play");
-    var pauseButton = document.getElementById("pause");
-    var playhead = document.getElementById("elapsed");
-    var timeline = document.getElementById("slider");
-    var timer = document.getElementById("timer");
-    var duration;
-
-    
-    pauseButton.style.visibility = "hidden";
-
-
-    var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
-    audio.addEventListener("timeupdate", timeUpdate, false);
-
-
-    function timeUpdate() {
-        var audio = document.getElementById("{{$green->id}}");
-        var playPercent = timelineWidth * (audio.currentTime / duration);
-        playhead.style.width = playPercent + "px";
-        var secondsIn = Math.floor(((audio.currentTime / duration) / 3.5) * 100);
-        if (secondsIn <= 9) {
-            timer.innerHTML = "0:0" + secondsIn;
-        } else {
-            timer.innerHTML = "0:" + secondsIn;
-        }
-    }
-
-
-    function play{{$green->id}}(){
-        var audio = document.getElementById("{{$green->id}}");
-        var btn = document.getElementById("btn{{$green->id}}").value;
-        if( btn == "off"){
-            audio.play();
-            document.getElementById("btn{{$green->id}}").value="on";
-            playButton.style.visibility = "hidden";
-            pause.style.visibility = "visible";
-        }else{
-            audio.pause();
-            document.getElementById("btn{{$green->id}}").value="off";
-            playButton.style.visibility = "visible";
-            pause.style.visibility = "hidden";
-        }
-    }
-
-  
-    playButton.onclick = function() {
-        var audio = document.getElementById("{{$green->id}}");
-        audio.play();
-        playButton.style.visibility = "hidden";
-        pause.style.visibility = "visible";
-    }
-
-
-    pauseButton.onclick = function() {
-        var audio = document.getElementById("{{$green->id}}");
-        audio.pause();
-        playButton.style.visibility = "visible";
-        pause.style.visibility = "hidden";
-    }
-
-
-    audio.addEventListener("canplaythrough", function() {
-        var audio = document.getElementById("{{$green->id}}");
-        duration = audio.duration;
-    }, false);
-
-
-</script>
-@endforeach
-@endif --}}

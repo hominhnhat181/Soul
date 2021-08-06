@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {{-- plugin --}}
@@ -24,6 +25,7 @@
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link href="{{asset('assets/front/css/material-dashboard.css')}}" rel="stylesheet" />
   <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/front/css/player.css') }}">
   <title>Home</title>
 </head>
 

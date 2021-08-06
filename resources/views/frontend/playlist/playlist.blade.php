@@ -17,9 +17,9 @@
                 </tr>
             </thead>
             <tbody class="playlist">
-                @php $count = 0; @endphp
+                @php $count = 0 @endphp
                 @foreach ($data as $dt)
-                @php $count += 1; @endphp
+                @php $count += 1 @endphp
                 <tr>
                     <th scope="row" class="center">{{$count}}</th>
                     <td class="title_track" style="display: flex">
@@ -34,8 +34,9 @@
                     <td>{{$dt->tags->name}}</td>
                     <td>{{$dt->created_at->toDateString()}}</td>
                     <td>
-                        <audio controls style="height:54px;">
-                            <source src="{{ Storage::url($dt->song) }}" type="audio/mp3">
+                        {{-- <button id="control{{$dt->id}}" value="off" href="">play</button> --}}
+                        <audio id="song{{$dt->id}}" controls style="height:54px;">
+                            <source  src="{{ Storage::url($dt->song) }}" type="audio/mp3">
                         </audio>
                     </td>
                 </tr>

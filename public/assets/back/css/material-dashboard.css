@@ -24617,6 +24617,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     border-radius: 10px;
     height: 180px;
 }
+
 .object {
     margin: 10px;
     padding: 18px;
@@ -24635,11 +24636,13 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 .object .object_list {
     margin-bottom: 10px;
 }
+
 .object .object_list a {
     width: 100%;
     font-weight: 500;
     color: unset;
 }
+
 .object span {
     font-size: 30px;
     color: #5a6268;
@@ -24672,6 +24675,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     left: 30px;
     cursor: pointer;
 }
+
 .admin_search .more {
     position: absolute;
     z-index: 10;
@@ -24679,6 +24683,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     right: 25px;
     cursor: pointer;
 }
+
 .admin_search .admin_search-input {
     font-size: 0.975rem;
     width: 100%;
@@ -24691,6 +24696,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     font-weight: 500;
     color: rgb(119, 119, 119);
 }
+
 .admin_search .admin_search-chose {
     color: rgb(119, 119, 119);
     font-size: 0.975rem;
