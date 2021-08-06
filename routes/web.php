@@ -16,7 +16,7 @@ use App\Http\Controllers\AjaxController;
 */
 
 Auth::routes();
-
+// switch to ajax
 // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
@@ -29,7 +29,7 @@ Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\LoginControl
 
 
 // AJAX
-Route::get('home/', [App\Http\Controllers\AjaxController::class, 'getArticles'])->name('home');
+Route::get('/', [App\Http\Controllers\AjaxController::class, 'getArticles'])->name('home');
 
 
 // Language

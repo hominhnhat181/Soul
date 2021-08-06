@@ -1,4 +1,4 @@
-
+{{-- 
 </div>
 
 @php
@@ -64,7 +64,7 @@
         </li>
     </ul>
 </div>
-
+ --}}
 
 @if(isset($data))
 @foreach ($data as $green)
