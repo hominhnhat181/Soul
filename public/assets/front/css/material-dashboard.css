@@ -18523,7 +18523,7 @@ label {
 }
 
 .card .card-header {
-    z-index: 3 !important;
+    z-index: 6 !important;
 }
 
 .card .card-header .card-title {
@@ -18651,7 +18651,7 @@ label {
 .card [class*="card-header-"] {
     margin: 0px 15px 0;
     padding: 0;
-    position: relative;
+    /* position: relative; */
 }
 
 .card [class*="card-header-"] .card-title + .card-category {
@@ -21710,6 +21710,7 @@ Copyright (c) 2015 Daniel Eden
     color: #606477;
     font-size: 12px;
     font-weight: 500;
+    margin-left: 2px;
 }
 
 .dark-edition .card .card-header.card-header-tabs .nav-tabs-title {
@@ -24611,6 +24612,46 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 .card_album .card-title:hover {
     color: rgb(146, 145, 145) !important;
 }
+
+
+.card-header .ajax_add_library .library{
+    position: absolute;
+    bottom: 42%;
+    left: 1%;
+    font-size: 18px !important;
+    opacity: 0;
+    transition: 0.5s;
+    color: rgb(194, 247, 194);
+}
+
+.card-header .library:hover{
+    transform: scale(1.1);
+    color: rgb(98, 253, 98);
+}
+
+.card-header .ajax_add_library .heart{
+    position: absolute;
+    bottom: 42%;
+    right: 46%;
+    font-size: 16px !important;
+    opacity: 0;
+    transition: 0.5s;
+    color: rgb(248, 139, 139);
+
+}
+
+.card-header .heart:hover{
+    transform: scale(1.1);
+    color: rgb(255, 81, 81);
+}
+
+.card .card-header:hover > .ajax_add_library i{
+    opacity: 1;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+
 .card-header img {
     height: 90px;
     width: 90px;
@@ -24666,4 +24707,115 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     margin: 57px 0 70px 100px !important;
 }
 
-/* player */
+/* own css */
+
+.library__object{
+    background-color: rgba(14, 14, 14, 0.514);
+    padding: 22px 17px 15px 17px;
+    transition: 0.4s;
+    position: relative;
+}
+
+.library__object .setting{
+    position: absolute;
+    top: 1.6%;
+    right: 4%;
+    color: white;
+    opacity: 0;
+    transition: 0.4s;
+    cursor: pointer;
+
+}
+
+.library__object:hover{
+    background-color: rgba(87, 87, 87, 0.315);
+    transition: 0.4s;
+}
+
+.library__object:hover > .library__object--img i{
+    color: rgb(147, 192, 102);
+    opacity: 1;
+    transition: 0.4s;
+}
+
+.library__object:hover > .setting{
+    opacity: 1;
+    transition: 1s;
+    color: rgb(179, 178, 177);
+}
+
+.library__object--img{
+    position: relative;
+}
+
+.library__object--img i{
+    position: absolute;
+    bottom: 12%;
+    right: 6%;
+    font-size: 30px;
+    opacity: 0;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.library__object--img i:hover{
+    transform: scale(1.1);
+}
+
+.library__object--img img{
+   width: 100%;
+   min-height: 140px;
+   margin-bottom: 8px;
+}
+
+.library__object--status{
+    color: rgb(196, 196, 196);
+    font-weight: 700;
+}
+
+.library__object--status h4{
+    margin: 0;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+.library__object--status h5{
+    margin: 0;
+    font-size: 13px;
+}
+
+.category .type{
+    display: flex;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.category .type li{
+    list-style-type: none;
+    margin-right: 30px;
+}
+
+.category .type li a{
+    font-weight: 500;
+    color: rgb(190, 190, 190);
+    transition: 0.4s;
+}
+
+.category .type li a:hover{
+    color: cornsilk;
+    transition: 0.4s;
+}
+
+.title{
+    text-align: center;
+}
+
+.title h2{
+    margin-bottom: 35px;
+    letter-spacing:3px;
+    font-family: "Cinzel", serif;
+    color: rgb(143, 143, 143);
+    font-weight: 500;
+    font-size: 18px;
+}

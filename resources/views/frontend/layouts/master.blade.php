@@ -100,7 +100,6 @@
         $('.auto-load').html("No more records!");
         return;
       }
-        
         $('.auto-load').hide();
         $('#list_feature').append(data);
       })

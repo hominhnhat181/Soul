@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{Route('library')}}">
                     <i class="material-icons">library_music</i>
                     <p>Your Library</p>
                 </a>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
 use App\Models\Feature;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 class AjaxController extends Controller
 {
@@ -29,14 +31,21 @@ class AjaxController extends Controller
                                 <a class="link_album" href="'.Route("playlist",["id"=>''.$ab->id.'']).'"><span></span></a>
                                 <div class="card-header card-header-warning card-header-icon">
                                     <img src=" '.asset('/front/images/'.''.$ab->image.'').'">
+                                    <a class= "ajax_add_library" href="'.Route("addLibrary",["user_id"=>''.Auth::user()->id.'',"album_id"=>''.$ab->id.'']).'">
+                                        <i class="library material-icons">library_music</i>
+                                    </a>
+                                    <a class= "ajax_add_library" href="'.Route("addLibrary",["user_id"=>''.Auth::user()->id.'',"album_id"=>''.$ab->id.'']).'">
+                                        <i class="heart fas fa-heart"></i>
+                                    </a>
                                     <div class="card_album">
                                         <div>
                                             <a href="" class="card-category"> '.$ab->name.' </a>
                                         </div>';
-                                        
+
                         foreach($ab->tags as $role){
                             $artilces .= '<a href="" class="card-title">'.$role->name.'</a>';
                         }
+
                         $artilces .= '
                                     </div>
                                 </div>
@@ -53,7 +62,7 @@ class AjaxController extends Controller
                         }
                     }
                 }
-
+                
                 $artilces .= ' 
                     </div>
                 </div>';
@@ -61,5 +70,13 @@ class AjaxController extends Controller
             return $artilces;
         }
         return view('frontend.home.index');
+    }
+
+
+    public function addLibrary($user_id, $album_id){
+        $album = Album::find($album_id);
+        $album->users()->sync($user_id);
+        flash("Add Album To Library Success")->success();
+        return redirect('/');
     }
 }

@@ -30,6 +30,7 @@ Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\LoginControl
 
 // AJAX
 Route::get('/', [App\Http\Controllers\AjaxController::class, 'getArticles'])->name('home');
+Route::get('/library/{user_id}/{album_id}', [App\Http\Controllers\AjaxController::class, 'addLibrary'])->name('addLibrary');
 
 
 // Language
@@ -40,3 +41,6 @@ Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controller
 Route::get('/{id}/playlist', [App\Http\Controllers\PlaylistController::class, 'goPlaylist'])->name('playlist');
 // Route::get('/{song}/playlist', [App\Http\Controllers\PlaylistController::class, 'getAudio'])->name('song');
 
+
+// library
+Route::get('library',[\App\Http\Controllers\HomeController::class, 'library'])->name('library');
