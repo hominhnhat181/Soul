@@ -24614,7 +24614,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 }
 
 
-.card-header .ajax_add_library .library{
+.card-header  .library{
     position: absolute;
     bottom: 42%;
     left: 1%;
@@ -24629,9 +24629,9 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     color: rgb(98, 253, 98);
 }
 
-.card-header .ajax_add_library .heart{
+.card-header  .heart{
     position: absolute;
-    bottom: 42%;
+    bottom: 39%;
     right: 46%;
     font-size: 16px !important;
     opacity: 0;
@@ -24645,7 +24645,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     color: rgb(255, 81, 81);
 }
 
-.card .card-header:hover > .ajax_add_library i{
+.card .card-header:hover >  i{
     opacity: 1;
     transition: 0.5s;
     cursor: pointer;

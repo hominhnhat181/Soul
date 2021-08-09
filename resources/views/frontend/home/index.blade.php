@@ -5,12 +5,13 @@
 <head>
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <div class="content">
   <div class="container-fluid " id="list_feature" data-limit="5">
 
     {{-- AJAX DATA HERE  --}}
-    
+
   </div>
   <!-- Data Loader -->
   <div class="auto-load text-center">
@@ -25,18 +26,35 @@
   </div>
 </div>
 
-<script>
-  $.ajax({
-    url:"{{url('cart/update/{cat_id}/{qty}')}}",  
-    method:"POST",  
-    data:{
-         cat_id : cat_id,
-         qty: qty
-    },                              
-    success: function( data ) {
-        // console.log(data);
-    }
-});
-</script>
+
 
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+function addRow(ele) {
+
+var album_id= $(ele).attr('album-id');
+
+var data = {
+    'album_id': album_id,
+  }
+
+  $.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+  $.ajax({
+
+    type:"POST",
+    url:$(ele).attr('data-url'),
+    data: data,
+    dataType:"json",
+    success: function (response){
+      console.log(response);
+    }
+  });
+}
+// </script>
