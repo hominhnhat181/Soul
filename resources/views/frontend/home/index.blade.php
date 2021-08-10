@@ -13,7 +13,7 @@
 
   </div>
   <!-- Data Loader -->
-  <div class="auto-load text-center">
+  <div class="auto-load text-center" style="margin-top: 50px">
     <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
       y="0px" height="60" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
       <path fill="#000"
@@ -24,9 +24,42 @@
     </svg>
   </div>
 
-  {{-- mess --}}
-  <div id="msg"></div>
 </div>
 
 @endsection
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{-- SaveData --}}
+<script type="text/javascript">
+
+  function addRow(ele) {
+    var album_id = $(ele).attr('album-id');
+    var url = $(ele).attr('data-url');
+    var data = {
+        'album_id': album_id,
+      }
+
+      $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+      });
+
+      $.ajax({
+        type:"POST",
+        url: url,
+        data: data,
+        dataType:"json",
+        success: function (response){
+          console.log(response);
+          $('.modal').hide(); 
+          $('.modal-backdrop').remove();
+          $('body').removeClass('modal-open');
+        },
+       
+        error: function(data) {
+          console.log('Error')
+        }
+      });
+    }
+</script>

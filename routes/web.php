@@ -30,7 +30,7 @@ Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\LoginControl
 
 // AJAX
 Route::get('/', [App\Http\Controllers\AjaxController::class, 'getArticles'])->name('home');
-Route::post('/library/{album_id}', [App\Http\Controllers\AjaxController::class, 'addLibrary'])->name('addLibrary');
+Route::post('/library', [App\Http\Controllers\AjaxController::class, 'addLibrary'])->name('addLibrary');
 
 
 // Language

@@ -24710,7 +24710,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 /* own css */
 
 .library__object{
-    background-color: rgba(14, 14, 14, 0.514);
+    background-color: rgba(14, 14, 14, 0.137);
     padding: 22px 17px 15px 17px;
     transition: 0.4s;
     position: relative;
@@ -24746,6 +24746,8 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 
 .library__object--img{
     position: relative;
+    -webkit-box-shadow: 0px 0px 25px 9px rgba(0,0,0,0.33); 
+    box-shadow: 0px 0px 25px 9px rgba(0,0,0,0.33);
 }
 
 .library__object--img i{
@@ -24765,7 +24767,6 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 .library__object--img img{
    width: 100%;
    min-height: 140px;
-   margin-bottom: 8px;
 }
 
 .library__object--status{
@@ -24774,10 +24775,9 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 }
 
 .library__object--status h4{
-    margin: 0;
+    margin: 8px 0 3px 0;
     font-weight: 700;
     font-size: 15px;
-    margin-bottom: 3px;
 }
 
 .library__object--status h5{

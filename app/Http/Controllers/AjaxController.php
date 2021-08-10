@@ -66,7 +66,7 @@ class AjaxController extends Controller
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" onclick="addRow(this)" data-url="'.Route('addLibrary',['album_id'=>$ab->id]).'" album-id="'.$ab->id.'" class="btn btn-primary">Save changes</button>
+                                    <button type="button" onclick="addRow(this)" data-url="'.Route('addLibrary').'" album-id="'.$ab->id.'" class="btn btn-primary">Save changes</button>
                                 </div>
                                 </div>
                             </div>
@@ -89,10 +89,10 @@ class AjaxController extends Controller
     }
 
 
-    public function addLibrary($album_id){
-        $album = Album::find($album_id);
-        $album->users()->sync(Auth::user()->id);
-        flash("Add Album To Library Success")->success();
-        return $album;
+    public function addLibrary(Request $request){
+        $data = Album::find($request->album_id);
+        $data->users()->sync(Auth::user()->id);
+
+        return response()->json('Success');
     }
 }
