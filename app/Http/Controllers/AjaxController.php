@@ -90,9 +90,10 @@ class AjaxController extends Controller
 
 
     public function addLibrary(Request $request){
+        
         $data = Album::find($request->album_id);
         $data->users()->sync(Auth::user()->id);
 
-        return response()->json('Success');
+        return $data;
     }
 }

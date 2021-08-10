@@ -71,6 +71,7 @@
 
 {{-- AJAX -> front index --}}
 {{-- loadMore --}}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   var ENDPOINT = "{{ url('/') }}";
@@ -78,39 +79,49 @@
 
   load_more(page);
 
+  // height view
+  var viewH = $(document).height();
+
   $(window).scroll(function() {
-    if($(window).scrollTop() + 1 + $(window).height() >= $(document).height()) {
+    // height full web
+    var webH = $(window).height();
+
+    if($(document).scrollTop() >= (webH - viewH - 3)) {
     page++;
     load_more(page);
     }
+    // console.log($(document).scrollTop());
+    // console.log(webH - viewH );
+    // console.log(viewH);
   });
 
+
   function load_more(page){
-      $.ajax({
-        url: ENDPOINT + "/?page=" + page,
-        type: "get",
-        datatype: "html",
-        beforeSend: function()
-        {
-          $('.auto-load').show();
-        }
-      })
-      .done(function(data)
-      {          
-        if(data.length == 0){
-        $('.auto-load').html("No more records!");
-        return;
-      }
-        $('.auto-load').hide();
-        $('#list_feature').append(data);
-      })
-      .fail(function(jqXHR, ajaxOptions, thrownError)
+    $.ajax({
+      url: ENDPOINT + "/?page=" + page,
+      type: "get",
+      datatype: "html",
+      beforeSend: function()
       {
-        alert('No response from server');
-      });
+        $('.auto-load').show();
+      }
+    })
+
+    .done(function(data)
+    {          
+      if(data.length == 0){
+      $('.auto-load').html("No more records!");
+      return;
+      }
+      $('.auto-load').hide();
+      $('#list_feature').append(data);
+    })
+
+    .fail(function(jqXHR, ajaxOptions, thrownError)
+    {
+      alert('No response from server');
+    });
   }
 </script>
-
-
 
 </html>

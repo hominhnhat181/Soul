@@ -7,6 +7,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
 </head>
 <div class="content">
+
+  {{-- messes --}}
+
   <div class="container-fluid " id="list_feature" data-limit="5">
 
     {{-- AJAX DATA HERE  --}}
@@ -23,7 +26,6 @@
       </path>
     </svg>
   </div>
-
 </div>
 
 @endsection
@@ -51,15 +53,20 @@
         data: data,
         dataType:"json",
         success: function (response){
-          console.log(response);
-          $('.modal').hide(); 
+          // console.log(response);
+          $('.fade').hide(); 
           $('.modal-backdrop').remove();
           $('body').removeClass('modal-open');
+          $("#mess").fadeIn("slow").delay(2000).fadeOut("slow");
         },
-       
-        error: function(data) {
+        error: function(data) { 
           console.log('Error')
         }
+
       });
+      // setTimeout(function() {
+      //     $('#mess').fadeOut('slow');
+      // }, 4000);
     }
+    
 </script>
