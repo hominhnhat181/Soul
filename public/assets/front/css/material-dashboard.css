@@ -24819,3 +24819,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     font-weight: 500;
     font-size: 18px;
 }
+
+.save__ajax .modal-dialog{
+    margin-top:  222px;
+}

@@ -31,7 +31,7 @@ class AjaxController extends Controller
                                 <a class="link_album" href="'.Route("playlist",["id"=>''.$ab->id.'']).'"><span></span></a>
                                 <div class="card-header card-header-warning card-header-icon">
                                     <img src=" '.asset('/front/images/'.''.$ab->image.'').'">
-                                    <i  data-toggle="modal" data-target="#exampleModal'.$ab->id.'"  class="library material-icons">library_music</i>
+                                    <i data-toggle="modal" data-target="#exampleModal'.$ab->id.'"  class="library material-icons">library_music</i>
                                     <div class="card_album">
                                         <div>
                                             <a href="" class="card-category"> '.$ab->name.' </a>
@@ -50,35 +50,33 @@ class AjaxController extends Controller
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade save__ajax" id="exampleModal'.$ab->id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are You Want To Add This Album to Library?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" onclick="addRow(this)" data-url="'.Route('addLibrary',['album_id'=>$ab->id]).'" album-id="'.$ab->id.'" class="btn btn-primary">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
                         </div>';
+
                         $counter += 1;
                         if($counter > 5){
                             break;
                         }
-                        $artilces .= '
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal'.$ab->id.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Are You Want To Add This Album to Library?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" onclick="addRow(this)" data-url="'.Route('addLibrary',['album_id'=>$ab->id]).'" album-id="'.$ab->id.'" user-id="'.Auth::user()->id.'"  class="btn btn-primary">Save changes</button>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    ';
                     }
-                    
                 }
                 
                 $artilces .= ' 
@@ -91,7 +89,7 @@ class AjaxController extends Controller
     }
 
 
-    public function addLibrary( $album_id){
+    public function addLibrary($album_id){
         $album = Album::find($album_id);
         $album->users()->sync(Auth::user()->id);
         flash("Add Album To Library Success")->success();

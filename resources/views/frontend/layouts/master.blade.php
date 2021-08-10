@@ -69,7 +69,8 @@
 
 <script src="{{ asset('assets/back/js/auth.js') }}"></script>
 
-{{-- loadmore --}}
+{{-- AJAX --}}
+{{-- loadMore --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   var ENDPOINT = "{{ url('/') }}";
@@ -109,6 +110,36 @@
       });
   }
 </script>
-{{-- loadmore --}}
+{{-- SaveData --}}
+<script type="text/javascript">
+
+  function addRow(ele) {
+    var album_id = $(ele).attr('album-id');
+    var url = $(ele).attr('data-url');
+    var data = {
+        'album_id': album_id,
+      }
+
+      $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+      });
+
+      $.ajax({
+        type:"POST",
+        url: url,
+        data: data,
+        dataType:"json",
+        success: function (response){
+          console.log(response);
+          $('.modal').hide(); 
+          $('.modal-backdrop').remove();
+          $('body').removeClass('modal-open');
+        }
+      });
+    }
+</script>
+
 
 </html>
