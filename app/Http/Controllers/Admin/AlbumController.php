@@ -116,10 +116,12 @@ class AlbumController
     }
 
     public function destroy($id)
-    {
+    {   
         $this->albumService->destroy($id);
         flash("Delete Album success")->success();
-        return back();
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
     }
 
 

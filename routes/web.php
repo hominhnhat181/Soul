@@ -47,3 +47,4 @@ Route::get('/{id}/playlist', [App\Http\Controllers\PlaylistController::class, 'g
 // library
 Route::get('library/{user_id}',[\App\Http\Controllers\LibraryController::class, 'library'])->name('library');
 Route::post('/library', [App\Http\Controllers\LibraryController::class, 'addLibrary'])->name('addLibrary');
+Route::delete('library/{album_id}', [\App\Http\Controllers\LibraryController::class, 'destroy'])->name('libraryDestroy');

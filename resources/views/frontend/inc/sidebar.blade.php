@@ -22,7 +22,7 @@
                     <p>Likes</p>
                 </a>
             </li>
-            <li class="{{ request()->is('library') ? 'active' : '' }}">
+            <li class="{{ request()->is('library/'.Auth::user()->id) ? 'active' : '' }}">
                 <a class="nav-link" href="{{Route('library',['user_id'=>Auth::user()->id])}}">
                     <i class="material-icons">library_music</i>
                     <p>Your Library</p>

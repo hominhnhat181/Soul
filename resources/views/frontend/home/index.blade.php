@@ -52,8 +52,9 @@
         url: url,
         data: data,
         dataType:"json",
+        
         success: function (response){
-          // console.log(response);
+          console.log('success');
           $('.fade').hide(); 
           $('.modal-backdrop').remove();
           $('body').removeClass('modal-open');

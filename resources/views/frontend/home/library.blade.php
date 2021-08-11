@@ -13,16 +13,16 @@
             </ul>
         </div>
         <div class="title">
-            <h2>PLAYLISTS</h2>
+            <h2> PLAYLISTS</h2>
         </div>
-        <div class="row">
+        <div  class="row">
             @foreach ($us->albums as $ab)
-            <div class="library col-md-2">
+            <div style="margin-bottom: 25px" class="library col-md-2">
                 <div class="library__object">
                     <i class="fas fa-ellipsis-h setting" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"></i>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Delete from Library</a>
+                        <button class="dropdown-item deleteRecord" data-id="{{ $ab->id }}" data-token="{{ csrf_token() }}" >Delete from Library</button>
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
@@ -37,7 +37,6 @@
                 </div>
             </div>
             @endforeach
-
         </div>
     </div>
     <!-- Data Loader -->
@@ -52,7 +51,28 @@
         </svg>
     </div>
     @endforeach
-
 </div>
-
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(".deleteRecord").click(function(){
+    var id = $(this).data("id");
+    var token = $("meta[name='csrf-token']").data("content");
+    console.log(id);
+        
+    $.ajax(
+    {
+        url: "library/"+id,
+        type: 'DELETE',
+        data: {
+            "id": id,
+            "_token": token,
+        },
+        success: function (){
+            console.log("it Works");
+        }
+    });
+   
+});
+</script>
