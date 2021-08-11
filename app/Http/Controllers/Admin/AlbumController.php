@@ -28,7 +28,7 @@ class AlbumController
 
     private function getData($request, $typing_search, $is_paginate = 0)
     {
-        $album = Album::join('features','albums.feature_id','=','features.id')->select('albums.*')->orderBy('albums.id', 'desc');
+        $album = Album::join('features', 'albums.feature_id', '=', 'features.id')->select('albums.*')->orderBy('albums.id', 'desc');
         // !empty (request->search)
         if ($request->has('search')) {
             // get request value
@@ -116,18 +116,16 @@ class AlbumController
     }
 
     public function destroy($id)
-    {   
+    {
         $this->albumService->destroy($id);
-        flash("Delete Album success")->success();
-        return response()->json([
-            'success' => 'Record deleted successfully!'
-        ]);
+        flash("Delete Album Success")->success();
+        return response()->json('Success', 200);
     }
 
 
     public function changeStatus($id)
     {
         $this->albumService->changeStatus($id);
-        return redirect()->Route('admin.album.index');
+        return response()->json('Success', 200);
     }
 }

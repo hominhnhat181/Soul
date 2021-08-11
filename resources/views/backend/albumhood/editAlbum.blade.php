@@ -57,7 +57,15 @@
                                         <h4 >Genre: 
                                             @foreach ($data->tags as $ogg)
                                             <a href="{{Route('admin.genre.index')}}" style="font-size: 14px; font-weight: 500; color:black";>{{ $ogg->name }}, </a>
-                                            @endforeach </h4>
+                                            @endforeach 
+                                        </h4>
+                                        {{-- <select multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm " class="selectpicker w-100">
+                                            <option>United Kingdom</option>
+                                            <option>United States</option>
+                                            <option>France</option>
+                                            <option>Germany</option>
+                                            <option>Italy</option>
+                                        </select> --}}
                                         <select name="tag_id[]" id="choices-multiple-remove-button"
                                             placeholder="Select new genres?" multiple>
                                             @foreach ($genre as $genre)

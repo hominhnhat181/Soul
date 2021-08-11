@@ -22,7 +22,7 @@
                     <i class="fas fa-ellipsis-h setting" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"></i>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <button class="dropdown-item deleteRecord" data-id="{{ $ab->id }}" data-token="{{ csrf_token() }}" >Delete from Library</button>
+                        <button class="dropdown-item deleteRecord" data-id="{{ $ab->id }}" data-url="{{ Route('libraryDestroy',['album_id'=>$ab->id]) }}" >Delete from Library</button>
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
@@ -39,8 +39,18 @@
             @endforeach
         </div>
     </div>
+    <div >
+        <button id="getData" >Get Data</button>
+        <div >
+          <div >
+            <h1 id="title"></h1>
+            <p id="description"></p>
+          </h1>
+          <div ></div>
+        </div>
+      </div>
     <!-- Data Loader -->
-    <div style="margin-top: 30px" class="auto-load text-center">
+    {{-- <div style="margin-top: 30px" class="auto-load text-center">
         <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
             y="0px" height="60" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
             <path fill="#000"
@@ -49,30 +59,45 @@
                     to="360 50 50" repeatCount="indefinite" />
             </path>
         </svg>
-    </div>
+    </div> --}}
     @endforeach
 </div>
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $(".deleteRecord").click(function(){
-    var id = $(this).data("id");
-    var token = $("meta[name='csrf-token']").data("content");
-    console.log(id);
-        
-    $.ajax(
-    {
-        url: "library/"+id,
-        type: 'DELETE',
-        data: {
-            "id": id,
-            "_token": token,
-        },
-        success: function (){
-            console.log("it Works");
-        }
+    $(document).on('click', '.deleteRecord', function() {
+        var id = $(this).data("id");
+        var url = $(this).data("url")
+
+        $.ajax({
+            url: url,
+            type: "DELETE",
+            data: {
+                "id": id,
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function (response){
+                location.reload();
+            },
+            error: function(xhr) {
+            console.log(xhr.responseText); 
+            }
+        });
     });
-   
-});
+    
 </script>
+<script type=text/javascript>
+    $(document).ready(function() {
+      $("#getData").click(function() { 
+       $.ajax({  
+        type: "GET",
+        url: "/library2",       
+        success: function (data) {
+          $("#title").html(data.name);
+        }
+      });
+    });
+    });
+    
+    </script>

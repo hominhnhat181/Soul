@@ -95,6 +95,6 @@ class BaseService
             $st->status = "2";
         }
         $st->save();
-        flash("Change status success")->success();
+        flash("Status Change Success")->success();
     }
 }

@@ -114,40 +114,34 @@ Album Detail
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                Are you sure about that?
-            </div>
+            <div class="modal-body">Are you sure about that?</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a href="{{ Route('admin.album.status', ['id' => $ab->id]) }}"><button type="button"
-                        class="btn btn-primary">Save changes</button></a>
+                <button data-id="{{$ab->id}}" data-url="{{ Route('admin.album.status', ['id' => $ab->id]) }}" class="btn btn-primary changeStatus">Save changes</button>
             </div>
         </div>
     </div>
 </div>
-<!-- Modal delete -->
 
-    <div class="modal fade" id="ModalCenterD{{ $ab->id }}" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLongTitle">Delete Album</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Are you sure about that?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    
-                    <button data-url="{{ Route('admin.album.destroy', ['id' => $ab->id]) }}" data-id="{{$ab->id}}" class="btn btn-primary deleteRecord">Save changes</button>
-                </div>
+<!-- Modal delete -->
+<div class="modal fade" id="ModalCenterD{{ $ab->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Delete Album</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">Are you sure about that?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button data-url="{{ Route('admin.album.destroy', ['id' => $ab->id]) }}" data-id="{{$ab->id}}" class="btn btn-primary deleteRecord">Save changes</button>
             </div>
         </div>
     </div>
+</div>
 @endforeach
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -155,27 +149,47 @@ Album Detail
 <script src="{{asset('assets/back/js/caledar.js')}}"></script>
 @endsection
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-   $(document).on('click', '.deleteRecord', function() {
-    var id = $(this).data("id");
-    var url = $(this).data("url")
+    // Delete
+    $(document).on('click', '.deleteRecord', function() {
+        var id = $(this).data("id");
+        var url = $(this).data("url")
 
-    $.ajax(
-    {
-        url: url,
-        type: "DELETE",
-        data: {
-            "id": id,
-            "_token": "{{ csrf_token() }}",
-        },
-        success: function (response){
-            location.reload();
-        },
-        error: function(xhr) {
-         console.log(xhr.responseText); 
-        }
+        $.ajax({
+            url: url,
+            type: "DELETE",
+            data: {
+                "id": id,
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function (response){
+                location.reload();
+            },
+            error: function(xhr) {
+            console.log(xhr.responseText); 
+            }
+        });
     });
-});
+
+    // Status
+    $(document).on('click','.changeStatus', function(){
+        var id = $(this).data("id");
+        var url = $(this).data("url");
+
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:{
+                "id": id,
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function(response){
+                location.reload();
+            },
+            error: function(xhr){
+                console.log(xhr.responseText); // Save time
+            }
+        });
+    });
 </script>

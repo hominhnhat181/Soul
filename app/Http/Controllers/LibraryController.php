@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LibraryController extends Controller
 {   
-
+     // Library Show
     public function library($user_id){
         $user = User::where('id',$user_id)->get();
         return view('frontend.home.library', compact('user'));
@@ -23,13 +23,14 @@ class LibraryController extends Controller
         return $data;
     }
 
-
+     // Library Del
     public function destroy($id){
         Album_User::where('album_id', $id)->delete();
-        
-        return response()->json([
-            'success' => 'Record deleted successfully!'
-        ]);
-        // return redirect()->route('libraryDestroy');
+        return response()->json('Success', 200);
+    }
+
+    public function library2(){
+        $user = User::find(Auth::user()->id);
+        return response()->json($user, 200);
     }
 }
