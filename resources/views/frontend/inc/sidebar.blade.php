@@ -10,7 +10,7 @@
         </a></div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item active  ">
+            <li class="{{ request()->is('/') ? 'active' : '' }}">
                 <a class="nav-link" href="{{Route('home')}}">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
@@ -22,7 +22,7 @@
                     <p>Likes</p>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="{{ request()->is('library') ? 'active' : '' }}">
                 <a class="nav-link" href="{{Route('library')}}">
                     <i class="material-icons">library_music</i>
                     <p>Your Library</p>
