@@ -18,9 +18,8 @@ use App\Http\Controllers\AjaxController;
 Auth::routes();
 // switch to ajax
 // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
+Route::get('/login', [App\Http\Controllers\UserController::class, 'login'])->name('login');
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
-Route::get('profile/{id}', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
 
 
 // // social login
@@ -30,7 +29,10 @@ Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\LoginControl
 
 // AJAX
 Route::get('/', [App\Http\Controllers\AjaxController::class, 'getArticles'])->name('home');
-Route::post('/library', [App\Http\Controllers\AjaxController::class, 'addLibrary'])->name('addLibrary');
+
+
+// User
+Route::get('profile/{id}', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
 
 
 // Language
@@ -43,4 +45,5 @@ Route::get('/{id}/playlist', [App\Http\Controllers\PlaylistController::class, 'g
 
 
 // library
-Route::get('library',[\App\Http\Controllers\HomeController::class, 'library'])->name('library');
+Route::get('library/{user_id}',[\App\Http\Controllers\LibraryController::class, 'library'])->name('library');
+Route::post('/library', [App\Http\Controllers\LibraryController::class, 'addLibrary'])->name('addLibrary');

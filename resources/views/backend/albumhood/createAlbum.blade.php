@@ -51,7 +51,7 @@
                             </div>
                             <div class="ctn_input col-md-12">
                                 <div class="input_obj" id="genre">
-                                    <h4>Genre</h4>
+                                    <h4>Genre (ctrl + click)</h4>
                                     <select name="tag_id[]" id="choices-multiple-remove-button"
                                         placeholder="Select upto 5 Genres" multiple>
                                         @foreach ($tag as $tag)

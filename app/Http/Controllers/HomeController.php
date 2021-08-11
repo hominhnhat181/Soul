@@ -16,13 +16,8 @@ class HomeController extends Controller
     //     Middleware('admin');
     // }
 
-    public function index(){
-        $feature = Feature::where('status', 1)->limit(5)->get();
-       return view('frontend.home.index', compact('feature'));
-    }
-
-    public function library(){
-        $album = Album::get();
-        return view('frontend.home.library', compact('album'));
-    }
+    // public function index(){
+    //     $feature = Feature::where('status', 1)->limit(5)->get();
+    //    return view('frontend.home.index', compact('feature'));
+    // }
 }

@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 class AjaxController extends Controller
-{
+{   
+    // Loadmore Home
     public function getArticles(Request $request)
     {
         $result = Feature::orderBy('id')->paginate(5);
@@ -86,14 +87,5 @@ class AjaxController extends Controller
             return $artilces;
         }
         return view('frontend.home.index');
-    }
-
-
-    public function addLibrary(Request $request){
-        
-        $data = Album::find($request->album_id);
-        $data->users()->sync(Auth::user()->id);
-
-        return $data;
     }
 }

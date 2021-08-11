@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="content">
+    @foreach ($user as $us)
     <div class="container-fluid ">
         <div class="category">
             <ul class="type">
@@ -15,6 +16,7 @@
             <h2>PLAYLISTS</h2>
         </div>
         <div class="row">
+            @foreach ($us->albums as $ab)
             <div class="library col-md-2">
                 <div class="library__object">
                     <i class="fas fa-ellipsis-h setting" id="dropdownMenuButton" data-toggle="dropdown"
@@ -25,110 +27,17 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                     <div class="library__object--img">
-                        <img src="{{asset('/front/images/21pilots-444f.jpg')}}" alt="">
+                        <img src="{{asset('/front/images/'.$ab->image)}}" alt="">
                         <i class="fas fa-play-circle"></i>
                     </div>
                     <div class="library__object--status">
-                        <h4>Album Name</h4>
-                        <h5>Some Thing</h5>
+                        <h4>{{$ab->name}}</h4>
+                        <h5>{{$us->name}}</h5>
                     </div>
                 </div>
             </div>
-            <div class="library col-md-2">
-                <div class="library__object">
-                    <i class="fas fa-ellipsis-h setting" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"></i>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Delete from Library</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                    <div class="library__object--img">
-                        <img src="{{asset('/front/images/21pilots-444f.jpg')}}" alt="">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                    <div class="library__object--status">
-                        <h4>Album Name</h4>
-                        <h5>Some Thing</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="library col-md-2">
-                <div class="library__object">
-                    <i class="fas fa-ellipsis-h setting" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"></i>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Delete from Library</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                    <div class="library__object--img">
-                        <img src="{{asset('/front/images/21pilots-444f.jpg')}}" alt="">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                    <div class="library__object--status">
-                        <h4>Album Name</h4>
-                        <h5>Some Thing</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="library col-md-2">
-                <div class="library__object">
-                    <i class="fas fa-ellipsis-h setting" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"></i>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Delete from Library</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                    <div class="library__object--img">
-                        <img src="{{asset('/front/images/21pilots-444f.jpg')}}" alt="">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                    <div class="library__object--status">
-                        <h4>Album Name</h4>
-                        <h5>Some Thing</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="library col-md-2">
-                <div class="library__object">
-                    <i class="fas fa-ellipsis-h setting" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"></i>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Delete from Library</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                    <div class="library__object--img">
-                        <img src="{{asset('/front/images/21pilots-444f.jpg')}}" alt="">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                    <div class="library__object--status">
-                        <h4>Album Name</h4>
-                        <h5>Some Thing</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="library col-md-2">
-                <div class="library__object">
-                    <i class="fas fa-ellipsis-h setting" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"></i>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Delete from Library</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                    <div class="library__object--img">
-                        <img src="{{asset('/front/images/21pilots-444f.jpg')}}" alt="">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                    <div class="library__object--status">
-                        <h4>Album Name</h4>
-                        <h5>Some Thing</h5>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
     <!-- Data Loader -->
@@ -142,6 +51,8 @@
             </path>
         </svg>
     </div>
+    @endforeach
+
 </div>
 
 @endsection
