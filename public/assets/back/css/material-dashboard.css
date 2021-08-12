@@ -24716,9 +24716,16 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 #sort_user .row {
     margin-bottom: 0 !important;
 }
-
-#omega {
+.row #omega {
     padding: unset;
+    margin-bottom: 12px !important;
+}
+
+@media only screen and (max-width: 1200px) {
+    .row #omega {
+        padding-left: 20px;
+        text-align: center;
+    }
 }
 
 .admin_search .admin_search-btn {

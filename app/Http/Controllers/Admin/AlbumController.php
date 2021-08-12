@@ -112,8 +112,8 @@ class AlbumController
             $album->tags()->sync($request->tag_id);
         }
         $this->albumService->update($id, $attributes);
-        Session::flash('success', 'File has been uploaded successfully!');
-        return response()->json('success', 200)->with();
+        // Session::flash('success', 'File has been uploaded successfully!');
+        return response()->json('success', 200);
     }
 
     public function destroy($id)

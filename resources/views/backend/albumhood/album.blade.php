@@ -9,18 +9,18 @@ Album Detail
             <h2>Albums</h2>
         </div>
         <form class="" id="sort_user" action="" method="GET">
-            <div class="row mb-2">
-                <div class="admin_search col-md-12">
+            <div class="row ">
+                <div class="admin_search col-xl-12 col-md-12">
                     <i class="material-icons search">search</i>
                     <input class="admin_search-input" value="{{ request('search') }}" name="search" type="text"
                         placeholder="Search... typing album or feature">
                 </div>
-                <div class="admin_search col-md-4" id="alphax">
+                <div class="admin_search col-xl-4 col-md-7" id="alphax">
                     <i class="material-icons more">expand_more</i>
                     <input id="datepicker" class="admin_search-chose" id="joined_date" name="joined_date"
                         value="{{ request('joined_date') }}" autocomplete="off" placeholder="Date">
                 </div>
-                <div class="admin_search col-md-4" id="alphay">
+                <div class="admin_search col-xl-3 col-md-5" id="alphay">
                     <i class="material-icons more">expand_more</i>
                     <select class="admin_search-chose" id="select_user" name="status">
                         <option value="">Status</option>
@@ -36,7 +36,7 @@ Album Detail
                     $newRequest = http_build_query($request);
                     ?>
                 {{-- *** --}}
-                <div class="admin_search col-md-4 row" id="omega">
+                <div class="admin_search col-xl-5 col-md-12 row" id="omega">
                     <button type="submit" class="admin_search-btn col-md" href="">Search</button>
 
                     <a class="admin_search-btn col-md" href="{{ route('admin.album.index') }}">Reset</a>
@@ -83,15 +83,15 @@ Album Detail
                             <td>
                                 <div class="ct row">
                                     <a href="{{ Route('admin.album.edit', ['id' => $ab->id]) }}"
-                                        class="ct_btn col-md-3">Detail</a>
+                                        class="ct_btn col-xl-8  col-sm-12">Detail</a>
                                     @if ($ab->status == 0 || $ab->status == 2)
-                                    <a href="" class="ct_btn col-md-3" data-toggle="modal"
+                                    <a href="" class="ct_btn col-xl-8  col-sm-12" data-toggle="modal"
                                         data-target="#ModalCenterS{{ $ab->id }}">Active</a>
                                     @else
-                                    <a href="" class="ct_btn col-md-3" data-toggle="modal"
+                                    <a href="" class="ct_btn col-xl-8  col-sm-12" data-toggle="modal"
                                         data-target="#ModalCenterS{{ $ab->id }}">Deactive</a>
                                     @endif
-                                    <a href="" class="ct_btn col-md-3" data-toggle="modal"
+                                    <a href="" class="ct_btn col-xl-8  col-sm-12" data-toggle="modal"
                                         data-target="#ModalCenterD{{ $ab->id }}">Delete</a>
                                 </div>
                             </td>
