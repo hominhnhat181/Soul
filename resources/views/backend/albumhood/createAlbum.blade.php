@@ -73,3 +73,38 @@
     <script src="{{ asset('assets/back/js/auth.js') }}"></script>
 
 @endsection
+
+{{--  function addTodo() {
+        var task = $('#task').val();
+        let _url     = `/todos`;
+        let _token   = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: _url,
+            type: "POST",
+            data: {
+                todo: task,
+                _token: _token
+            },
+            success: function(data) {
+                    todo = data
+                    $('table tbody').append(`
+                        <tr id="todo_${todo.id}">
+                            <td>${todo.id}</td>
+                            <td>${ todo.todo }</td>
+                            <td>
+                                <a data-id="${ todo.id }" onclick="editTodo(${todo.id})" class="btn btn-info">Edit</a>
+                                <a data-id="${todo.id}" class="btn btn-danger" onclick="deleteTodo(${todo.id})">Delete</a>
+                            </td>
+                        </tr>
+                    `);
+
+                    $('#task').val('');
+
+                    $('#addTodoModal').modal('hide');
+            },
+            error: function(response) {
+                $('#taskError').text(response.responseJSON.errors.todo);
+            }
+        });
+    } --}}

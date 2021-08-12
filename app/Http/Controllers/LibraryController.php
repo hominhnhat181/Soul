@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class LibraryController extends Controller
 {   
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
      // Library Show
     public function library($user_id){
         $user = User::where('id',$user_id)->get();

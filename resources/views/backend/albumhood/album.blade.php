@@ -44,6 +44,9 @@ Album Detail
                     <a class="admin_search-btn col-md" href="{{ Route('admin.album.create') }}">Create</a>
                 </div>
             </div>
+            @if(Session::has('success'))
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
+            @endif
             @include('flash::message')
         </form>
         <div class="table_view">
@@ -147,9 +150,7 @@ Album Detail
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="{{asset('assets/back/js/caledar.js')}}"></script>
-@endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     // Delete
     $(document).on('click', '.deleteRecord', function() {
@@ -193,3 +194,5 @@ Album Detail
         });
     });
 </script>
+
+@endsection

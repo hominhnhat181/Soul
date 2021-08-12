@@ -5,11 +5,9 @@
 @section('content')
     <div class="main_contain">
         <div class="main_contain-create">
+            @include('flash::message')
             @foreach ($data as $data)
-                <form class="" id="sort_features" action="{{ Route('admin.album.update', ['id' => $data->id]) }}"
-                    method="Post">
-                    @csrf
-                    {{ method_field('PUT') }}
+                <form id="albumData">
                     <div class="form_create">
                         <div class="form_create-ctn">
                             <div class="ctn_title">
@@ -74,7 +72,7 @@
                                         </select>
                                     </div>
                                     <div class="input_obj ">
-                                        <button class="btn btn-danger submit_btn">Save</button>
+                                        <button data-url="{{ Route('admin.album.update', ['id' => $data->id]) }}" class="btn btn-danger submit_btn updateAlbum">Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -84,4 +82,33 @@
             @endforeach
         </div>
     </div>
+
+<script>
+    $(document).on('click', '.updateAlbum', function() {
+
+        var data = $("#albumData").serialize();
+        var url = $(this).data("url");
+       
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: url,
+            type: "PUT",
+            data: data,
+
+            success: function (response){
+                window.location.replace("http://127.0.0.1:8000/admin/album");
+                console.log(response)
+            },
+            error: function(xhr) {
+            console.log(xhr.responseText); 
+            }
+        });
+    });
+</script>
+
 @endsection

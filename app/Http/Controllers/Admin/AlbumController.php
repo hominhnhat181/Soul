@@ -8,6 +8,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Services\AlbumService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class AlbumController
 {
@@ -111,8 +112,8 @@ class AlbumController
             $album->tags()->sync($request->tag_id);
         }
         $this->albumService->update($id, $attributes);
-        flash("Update Album success")->success();
-        return redirect()->Route('admin.album.index');
+        Session::flash('success', 'File has been uploaded successfully!');
+        return response()->json('success', 200)->with();
     }
 
     public function destroy($id)

@@ -22,12 +22,21 @@
                     <p>Likes</p>
                 </a>
             </li>
+            @if(Auth::check())
             <li class="{{ request()->is('library/'.Auth::user()->id) ? 'active' : '' }}">
                 <a class="nav-link" href="{{Route('library',['user_id'=>Auth::user()->id])}}">
                     <i class="material-icons">library_music</i>
                     <p>Your Library</p>
                 </a>
             </li>
+            @else
+            <li >
+                <a class="nav-link" href="{{Route('login')}}">
+                    <i class="material-icons">library_music</i>
+                    <p>Your Library</p>
+                </a>
+            </li>
+            @endif
             <li class="nav-item ">
                 <a class="nav-link" href="#">
                     <i class="material-icons">toc</i>

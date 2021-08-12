@@ -24593,7 +24593,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
     top: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.3;
+    opacity: 0.1;
     background-repeat: no-repeat;
     /* background-attachment: fixed; */
     background-size: cover;
@@ -24990,9 +24990,8 @@ a {
     background-size: cover;
 }
 
-#sort_features {
-    padding-top: 111px;
-    position: relative;
+#albumData {
+    padding-top: 52px;
 }
 
 .submit_btn {
