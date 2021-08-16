@@ -3,17 +3,19 @@
 Album Detail
 @endsection
 @section('content')
-<div class="main_contain">
+<div id="pages" class="main_contain">
     <div class="main_contain-hover">
         <div class="main_contain-title">
             <h2>Albums</h2>
+            <button class="btn btn-danger">a</button>
         </div>
         <form class="" id="sort_user" action="" method="GET">
             <div class="row ">
                 <div class="admin_search col-xl-12 col-md-12">
                     <i class="material-icons search">search</i>
-                    <input class="admin_search-input" value="{{ request('search') }}" name="search" type="text"
-                        placeholder="Search... typing album or feature">
+                    <input class="admin_search-input" value="{{ request('search') }}" autocomplete="off" name="search" type="text"
+                        placeholder="Search... typing album or feature" id="search">
+                    <div id="objectList"></div>
                 </div>
                 <div class="admin_search col-xl-4 col-md-7" id="alphax">
                     <i class="material-icons more">expand_more</i>
@@ -44,9 +46,6 @@ Album Detail
                     <a class="admin_search-btn col-md" href="{{ Route('admin.album.create') }}">Create</a>
                 </div>
             </div>
-            @if(Session::has('success'))
-            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
-            @endif
             @include('flash::message')
         </form>
         <div class="table_view">
@@ -105,7 +104,9 @@ Album Detail
         {{ $album->links('vendor.pagination.custom-pagination') }}
     </div>
 </div>
+
 @foreach ($album as $ab)
+
 <!-- Modal status-->
 <div class="modal fade" id="ModalCenterS{{ $ab->id }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -120,7 +121,8 @@ Album Detail
             <div class="modal-body">Are you sure about that?</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button data-id="{{$ab->id}}" data-url="{{ Route('admin.album.status', ['id' => $ab->id]) }}" class="btn btn-primary changeStatus">Save changes</button>
+                <button data-id="{{$ab->id}}" data-url="{{ Route('admin.album.status', ['id' => $ab->id]) }}"
+                    class="btn btn-primary changeStatus">Save changes</button>
             </div>
         </div>
     </div>
@@ -140,12 +142,15 @@ Album Detail
             <div class="modal-body">Are you sure about that?</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button data-url="{{ Route('admin.album.destroy', ['id' => $ab->id]) }}" data-id="{{$ab->id}}" class="btn btn-primary deleteRecord">Save changes</button>
+                <button data-url="{{ Route('admin.album.destroy', ['id' => $ab->id]) }}" data-id="{{$ab->id}}"
+                    class="btn btn-primary deleteRecord">Save changes</button>
             </div>
         </div>
     </div>
 </div>
+
 @endforeach
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -191,6 +196,38 @@ Album Detail
             error: function(xhr){
                 console.log(xhr.responseText); // Save time
             }
+        });
+    });
+
+    // search
+    $(document).ready(function(){
+        $('#search').keyup(function(){ //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
+            var query = $(this).val(); //lấy gía trị ng dùng gõ
+            if(query != ''){
+
+                $.ajax({
+                    url:"{{route('admin.album.fillSearch')}}", // đường dẫn khi gửi dữ liệu đi 'search' là tên route mình đặt bạn mở route lên xem là hiểu nó là cái j.
+                    method:"POST", // phương thức gửi dữ liệu.
+                    data:{
+                        query:query, 
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success:function(data){ //dữ liệu nhận về
+                        $('#objectList').fadeIn();  
+                        $('#objectList').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là objectList
+                    },
+                    error: function(xhr){
+                    console.log(xhr.responseText); // Save time
+                    }   
+                });
+            }
+        });
+        $(document).on('click', 'li', function(){  
+            $('#search').val($(this).text());  
+            $('#objectList').fadeOut();  
+        });
+        $(document).on('click', '#pages', function(){  
+            $('#objectList').fadeOut();
         });
     });
 </script>

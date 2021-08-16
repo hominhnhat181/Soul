@@ -60,6 +60,24 @@ class AlbumController
     }
 
 
+    public function fillSearch(Request $request){
+        if($request->get('query'))
+        {
+            $query = $request->get('query');
+            $data = Album::where('name', 'LIKE', "%{$query}%")->get();
+            $output = '<ul class="fill_search" >';
+            foreach($data as $row)
+            {
+               $output .= '
+               <li class="nav-item "><a class="nav-link" href="album/'. $row->id .'/edit">'.$row->name.'</a></li>
+               ';
+           }
+           $output .= '</ul>';
+           echo $output;
+       }
+    }
+
+
     public function show()
     {
     }

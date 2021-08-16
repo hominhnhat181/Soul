@@ -35,6 +35,7 @@ Route::prefix('admin')->name('admin.')->namespace('App\\Http\\Controllers\\Admin
     // album
     Route::prefix('album')->name('album.')->group(function () {
         Route::resource('/', 'AlbumController', ['parameters' => ['' => 'id']]);
+        Route::post('/search', 'AlbumController@fillSearch')->name('fillSearch');
         Route::post('/{id}/albumSt', 'AlbumController@changeStatus')->name('status');
     });
     // genre
