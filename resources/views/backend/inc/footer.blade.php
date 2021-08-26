@@ -42,7 +42,8 @@
 <script src="{{ asset('assets/back/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('assets/back/js/core/bootstrap-material-design.min.js') }}"></script>
 <script src="https://unpkg.com/default-passive-events"></script>
-<script src="{{ asset('assets/back/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+{{-- too murch error --}}
+{{-- <script src="{{ asset('assets/back/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script> --}}
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!--  Google Maps Plugin    -->

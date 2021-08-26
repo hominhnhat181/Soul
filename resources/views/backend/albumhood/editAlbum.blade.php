@@ -49,6 +49,12 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    {{-- remember add change status in edit object --}}
+                                    {{-- <div class="input_obj ">
+                                        <h4>Status</h4>
+                                        <input name="desc" value="{{ $data->status }}" type="text">
+
+                                    </div> --}}
                                 </div>
                                 <div class="ctn_input col-md-12">
                                     <div class="input_obj" id="genre">

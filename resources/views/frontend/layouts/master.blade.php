@@ -50,8 +50,6 @@
 
 <link href="{{ asset('assets/front/css/material-dashboard.css') }}" rel="stylesheet" />
 
-
-
 <script src="{{ asset('assets/front/js/core/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/front/js/core/popper.min.js') }}"></script>
 <script src="https://unpkg.com/default-passive-events"></script>

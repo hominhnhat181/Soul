@@ -30,6 +30,7 @@ html {
     -ms-text-size-adjust: 100%;
     -ms-overflow-style: scrollbar;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
 }
 
 @-ms-viewport {
@@ -25018,8 +25019,12 @@ a {
     padding: 30px 50px;
 }
 
+#choices-multiple-remove-button{
+    width: 230px;
+}
+
 .ctn_input .input_obj {
-    margin-top: 10px;
+    margin-top: 7px;
 }
 
 .account-settings {
@@ -25087,8 +25092,10 @@ a {
     padding: 0;
     border-radius: 6px;
     max-height:315px;
-    overflow: auto;
+    overflow: scroll;
 }
+
+.fill_search:hover >  body {overflow: hidden}
 
 .fill_search li a{
     padding: 10px 20px;

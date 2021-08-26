@@ -129,7 +129,7 @@ class UserController
 
     public function adminUpdate($id, Request $request)
     {
-        $attributes = $request->only('name', 'email');
+        $attributes = $request->only('name','email','city_id','district_id','ward_id','address');
         if (!empty($request->image)) {
             $attributes['image'] = $request->image;
         }

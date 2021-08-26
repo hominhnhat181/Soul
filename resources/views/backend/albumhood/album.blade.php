@@ -7,7 +7,6 @@ Album Detail
     <div class="main_contain-hover">
         <div class="main_contain-title">
             <h2>Albums</h2>
-            <button class="btn btn-danger">a</button>
         </div>
         <form class="" id="sort_user" action="" method="GET">
             <div class="row ">

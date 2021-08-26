@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\District;
 use App\Models\Feature;
+use App\Models\Ward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -87,5 +89,48 @@ class AjaxController extends Controller
             return $artilces;
         }
         return view('frontend.home.index');
+    }
+
+
+    // LOCATION
+    public function getDistrict(Request $request)
+    {
+        // if(!empty($request->language)){
+        //     \LaravelLocalization::setLocale($request->language);
+        // }
+        
+        $html = '';
+        if ($request->ajax()) {
+            if($request->filled('province_id')){
+                $districts = District::where('province_id', $request->province_id)->get();
+                $html .= '<option value="">District</option>';
+                foreach($districts as $item) {
+                    $html.= '<option value="' . $item->id . '">' . $item->name . '</option>';
+                }
+            }else{
+                $html .= '<option value="">'.__('home.district').'</option>';
+            }
+        }
+        echo $html;
+    }
+    
+    public function getWard(Request $request)
+    {
+        // if(!empty($request->language)){
+        //     \LaravelLocalization::setLocale($request->language);
+        // }
+        $html = '';
+        if ($request->ajax()) {
+            if($request->filled('district_id')){
+                $wards = Ward::where('district_id', $request->district_id)->get();
+                $html = '<option value="">Ward</option>';
+                foreach($wards as $item) {
+                    $html.= '<option value="' . $item->id . '">' . $item->name . '</option>';
+                }
+            }else{
+                $html = '<option value="">'.__('home.ward').'</option>';
+            }
+        }
+        echo $html;
     }
 }
