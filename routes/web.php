@@ -27,13 +27,14 @@ Route::get('login/social/{provider}', [App\Http\Controllers\Auth\LoginController
 Route::get('social/{provider}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('register.social.callback');
 
 
-// Ajax Loadmore
-Route::get('/', [App\Http\Controllers\AjaxController::class, 'getArticles'])->name('home');
 // Ajax Location
 Route::prefix('ajax')->namespace('App\\Http\\Controllers')->group(function(){
     Route::post('get-districts', 'AjaxController@getDistrict')->name('ajax.get.district');
     Route::post('get-wards', 'AjaxController@getWard')->name('ajax.get.ward');
 });
+// Ajax Loadmore
+Route::get('/', [App\Http\Controllers\AjaxController::class, 'getArticles'])->name('home');
+
 
 // User
 Route::get('profile/{id}', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');

@@ -25093,6 +25093,7 @@ a {
     border-radius: 6px;
     max-height:315px;
     overflow: scroll;
+    overflow-x: hidden;
 }
 
 .fill_search:hover >  body {overflow: hidden}
