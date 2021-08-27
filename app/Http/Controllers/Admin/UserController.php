@@ -123,7 +123,7 @@ class UserController
 
     public function admin($id)
     {
-        $admins = User::where('id', $id)->where('is_admin', 1)->get();
+        $admins = User::with('fk_province')->with('fk_district')->findOrFail($id);
         return view('backend.account', compact('admins'));
     }
 

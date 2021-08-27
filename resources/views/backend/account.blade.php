@@ -1,8 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('content')
-@foreach ($admins as $master)
-<form action="{{Route('admin.profile.update',['id'=>$master->id])}}" method="POST" style="all: unset">
+<form action="{{Route('admin.profile.update',['id'=>$admins->id])}}" method="POST" style="all: unset">
     @csrf
     {{-- {{ method_field('PUT') }} --}}
     <div class="row gutters_account">
@@ -13,18 +12,18 @@
                         <div class="user-profile">
                             <div class="user-avatar">
                                 <div id="profile-container">
-                                    <img id="profileImage" src="{{Url('front/images/'.$master->image)}}">
+                                    <img id="profileImage" src="{{Url('front/images/'.$admins->image)}}">
                                 </div>
-                                <input id="imageUpload" type="file" name="image" value="{{$master->image}}">
+                                <input id="imageUpload" type="file" name="image" value="{{$admins->image}}">
                             </div>
-                            <h5 style="font-weight: 500" class="user-name">{{$master->name}}</h5>
-                            <h5 style="font-weight: 500" class="user-email">{{$master->email}}</h5>
+                            <h5 style="font-weight: 500" class="user-name">{{$admins->name}}</h5>
+                            <h5 style="font-weight: 500" class="user-email">{{$admins->email}}</h5>
                         </div>
                         <div class="about">
                             <h5 class="mb-2 text-primary">Adminstrator</h5>
                             <p>Manager</p>
                             <p style="position: relative; bottom: -88px">Join Date
-                                <br>{{$master->created_at->toDateString()}}</p>
+                                <br>{{$admins->created_at->toDateString()}}</p>
 
                             <img style="max-height: 100px; position: relative; top: -72px"
                                 src="http://localhost/myproject/public/layout/images/member.png" alt="Member"
@@ -43,12 +42,12 @@
                             <div class="form-group">
                                 <label for="fullName">Full Name</label>
                                 <input type="text" class="form-control" name="name" id="fullName"
-                                    value="{{$master->name}}" placeholder="Enter full name">
+                                    value="{{$admins->name}}" placeholder="Enter full name">
                             </div>
                             <div class="form-group">
                                 <label for="eMail">Email</label>
                                 <input type="email" class="form-control" name="email" id="eMail"
-                                    value="{{$master->email}}" placeholder="Enter email ID">
+                                    value="{{$admins->email}}" placeholder="Enter email ID">
                             </div>
                             {{-- <div class="form-group">
                                 <label for="phone">Phone</label>
@@ -73,37 +72,37 @@
                             <div class="form-group">
                                 <label for="Street">Province</label>
                                 <select id="city-dd" class="custom-select  mb-3 " name="city_id" >
-                                    <option value="{{$master->city_id}}">{{__('— Choose province —')}}</option>
+                                    <option value="{{$admins->city_id}}">{{__('— Choose province —')}}</option>
                                     @foreach(\App\Models\Province::orderBy('name','asc')->get() as $province)
-                                        <option value="{{ $province->id }}" {!! !empty(old('city_id')) && old('city_id') == $province->id ? ' selected' : null !!}>{{$province->name}}</option>
+                                        <option value="{{ $province->id }}" {!! isset($admins) && $admins->city_id == $province->id ? ' selected' : null !!}>{{$province->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="ciTy">District</label>
                                 <select id="district-dd" class="custom-select mb-3" name="district_id"  >
-                                    <option  value="{{$master->district_id}}">{{__('— Choose district —')}}</option>
-                                    {{-- @if(!empty(old('city_id')))
-                                        @foreach(get_districts_by_province(old('district_id')) as $district)
-                                            <option value="{{ $district->id }}"{!! !empty(old('district_id')) && old('district_id') == $district->id ? ' selected' : null !!}>{{ $district->name }}</option>
+                                    <option value="{{$admins->district_id}}">{{__('— Choose district —')}}</option>
+                                    @if(!empty($admins->city_id))
+                                        @foreach(get_districts_by_province($admins->city_id) as $district)
+                                        <option value="{{ $district->id }}"{!! isset($admins) && $admins->district_id == $district->id ? ' selected' : null !!}>{{ $district->name }}</option>
                                         @endforeach
-                                    @endif --}}
+                                    @endif
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="Street">Ward</label>
                                 <select id="ward-dd" class="custom-select mb-3" name="ward_id" >
-                                    <option value="{{$master->ward_id}}">{{__('— Choose Ward —')}}</option>
-                                    {{-- @if(!empty(old('district_id')))
-                                        @foreach(get_wards_by_district(old('district_id')) as $ward)
-                                            <option value="{{ $ward->id }}"{!! !empty(old('ward_id')) && old('ward_id') == $ward->id ? ' selected' : null !!}>{{ $ward->name }}</option>
+                                    <option value="{{$admins->ward_id}}">{{__('— Choose Ward —')}}</option>
+                                    @if(!empty($admins->district_id))
+                                        @foreach(get_wards_by_district($admins->district_id) as $ward)
+                                        <option value="{{ $ward->id }}"{!! isset($admins) && $admins->ward_id == $ward->id ? ' selected' : null !!}>{{ $ward->name }}</option>
                                         @endforeach
-                                    @endif --}}
+                                    @endif
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="Street">Address</label>
-                                <input type="name" class="form-control" name="address" value="{{$master->address}}" id="Street"
+                                <input type="name" class="form-control" name="address" value="{{$admins->address}}" id="Street"
                                     placeholder="Enter Street">
                             </div>
                             <div class="text-right" style="all: unset">
@@ -119,7 +118,6 @@
         </div>
     </div>
 </form>
-@endforeach
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
