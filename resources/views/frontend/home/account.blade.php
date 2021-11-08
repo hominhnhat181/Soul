@@ -2,8 +2,7 @@
 
 @section('content')
 
-@foreach ($admins as $master)
-<form action="{{Route('admin.profile.update',['id'=>$master->id])}}" method="POST" style="all: unset">
+<form action="{{Route('admin.profile.update',['id'=>$admins->id])}}" method="POST" style="all: unset">
     @csrf
     {{-- {{ method_field('PUT') }} --}}
     <div class="row gutters_account">
@@ -118,5 +117,4 @@
         </div>
     </div>
 </form>
-@endforeach
 @endsection

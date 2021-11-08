@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Dashboard' => 'Dashboard English',
+    'Dashboard' => 'Dashboard ',
     'Overview' =>'Overview',
     'ttuser' => 'Total User',
     'ttalbum' => 'Total Album',

@@ -107,7 +107,7 @@
             data: data,
 
             success: function (response){
-                window.location.replace("http://127.0.0.1:8000/admin/album");
+                window.location.replace("http://127.0.0.1:8000/admin/album/");
                 console.log(response)
             },
             error: function(xhr) {

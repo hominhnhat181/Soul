@@ -25,6 +25,7 @@
     {{-- css --}}
     <link href="{{asset('assets/back/css/material-dashboard.css?v='.time())}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet"/>
@@ -45,4 +46,4 @@
 
     @include('backend.inc.footer')
   </body>
-</html>
+</html> 

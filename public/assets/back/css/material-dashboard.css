@@ -25082,31 +25082,33 @@ a {
 }
 
 
-.fill_search{
-    display: block;
-    background-color: rgb(252, 252, 252);
-    list-style-type: none;
-    width: 394px;
-    position: absolute;
-    z-index: 11;
-    padding: 0;
-    border-radius: 6px;
-    max-height:315px;
-    overflow: scroll;
-    overflow-x: hidden;
-}
+    .fill_search{
+        display: block;
+        background-color: rgb(252, 252, 252);
+        list-style-type: none;
+        width: 394px;
+        position: absolute;
+        z-index: 11;
+        padding: 0;
+        border-radius: 6px;
+        max-height:315px;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
 
-.fill_search:hover >  body {overflow: hidden}
+    .fill_search:hover >  body {overflow: hidden}
 
-.fill_search li a{
-    padding: 10px 20px;
-    background-color: unset;
-    text-align: left;
-    line-height: 24px;
-    margin: 0;
-    z-index: 0;
-}
+    .fill_search li a{
+        padding: 10px 20px;
+        background-color: unset;
+        text-align: left;
+        line-height: 24px;
+        margin: 0;
+        z-index: 0;
+    }
 
-.fill_search li a:hover{
-    background:rgb(92, 92, 92);
-}
+    .fill_search li a:hover{
+        background:rgb(216, 216, 216);
+    }
+
+    

@@ -56,3 +56,6 @@ Route::get('library2',[\App\Http\Controllers\LibraryController::class, 'library2
 
 Route::post('/library', [App\Http\Controllers\LibraryController::class, 'addLibrary'])->name('addLibrary');
 Route::delete('library/{album_id}', [\App\Http\Controllers\LibraryController::class, 'destroy'])->name('libraryDestroy');
+
+
+Route::get('/test', [App\Http\Controllers\HomeController::class, 'test']);
