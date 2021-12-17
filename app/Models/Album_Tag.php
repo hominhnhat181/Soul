@@ -13,6 +13,5 @@ class Album_Tag extends Model
         'album_id','tag_id'
     ] ;
 
-
     public $timestamps = false;
 }

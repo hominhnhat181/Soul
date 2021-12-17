@@ -95,10 +95,6 @@ class AjaxController extends Controller
     // LOCATION
     public function getDistrict(Request $request)
     {
-        // if(!empty($request->language)){
-        //     \LaravelLocalization::setLocale($request->language);
-        // }
-        
         $html = '';
         if ($request->ajax()) {
             if($request->filled('province_id')){
@@ -116,9 +112,6 @@ class AjaxController extends Controller
     
     public function getWard(Request $request)
     {
-        // if(!empty($request->language)){
-        //     \LaravelLocalization::setLocale($request->language);
-        // }
         $html = '';
         if ($request->ajax()) {
             if($request->filled('district_id')){

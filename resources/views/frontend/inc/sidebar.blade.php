@@ -43,8 +43,7 @@
                     <p>Create Playlist</p>
                 </a>
             </li>
-           <p id="mess">Add Library Success
-            <i class="material-icons">label_important</i></p>
+           <p id="mess">Add Library Success <i class="material-icons">label_important</i></p>
         </ul>
     </div>
 </div>
