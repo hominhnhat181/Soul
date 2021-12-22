@@ -26,7 +26,9 @@
     <link href="{{asset('assets/back/css/material-dashboard.css?v='.time())}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/back/css/auth_img.css') }}">
 
+    {{-- datetime --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet"/>
   
@@ -40,9 +42,10 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=495127995056192&autoLogAppEvents=1" nonce="mgnraTKs"></script>
     @include('backend.inc.header')
+
     @include('backend.inc.sidebar')
 
-    @yield('content')
+        @yield('content')
 
     @include('backend.inc.footer')
   </body>
